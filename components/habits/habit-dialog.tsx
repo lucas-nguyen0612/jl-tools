@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { LoadingButton } from "@/components/ui/loading-button";
 
 type HabitFormValues = {
   id?: string;
@@ -193,7 +194,9 @@ function HabitDialog({
                   />
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  <Button type="submit">{submitLabel}</Button>
+                  <LoadingButton type="submit" loadingText="Saving...">
+                    {submitLabel}
+                  </LoadingButton>
                   {!closeHref ? (
                     <Button variant="ghost" type="button" onClick={() => setOpen(false)}>
                       Cancel
@@ -215,9 +218,9 @@ function HabitDialog({
                     </p>
                     <form action={archiveHabit}>
                       <input type="hidden" name="habit_id" value={defaultValues.id} />
-                      <Button type="submit" variant="destructive">
+                      <LoadingButton type="submit" variant="destructive" loadingText="Archiving...">
                         Archive habit
-                      </Button>
+                      </LoadingButton>
                     </form>
                   </CardContent>
                 </Card>

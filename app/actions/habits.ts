@@ -6,6 +6,17 @@ import { redirect } from "next/navigation";
 import { getTodayInTZ } from "@/lib/date";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
+type NoticeKey = "error" | "warning" | "success" | "info";
+
+function buildNoticeRedirect(path: string, key: NoticeKey, message: string) {
+  const safePath = path || "/";
+  const [base, query = ""] = safePath.split("?");
+  const params = new URLSearchParams(query);
+  params.set(key, message);
+  const nextQuery = params.toString();
+  return nextQuery ? `${base}?${nextQuery}` : base;
+}
+
 function getHabitFields(formData: FormData) {
   const name = String(formData.get("name") || "").trim();
   const goalDays = Number(formData.get("goal_days") || 0);
@@ -27,7 +38,7 @@ export async function createHabit(formData: FormData) {
   const { name, goalDays, startDate } = getHabitFields(formData);
 
   if (!name || !startDate || !Number.isFinite(goalDays) || goalDays < 1) {
-    redirect(`/habits/new?error=${encodeURIComponent("All fields are required.")}`);
+    redirect(buildNoticeRedirect("/habits/new", "error", "All fields are required."));
   }
 
   const { error } = await supabase.from("habits").insert({
@@ -38,11 +49,11 @@ export async function createHabit(formData: FormData) {
   });
 
   if (error) {
-    redirect(`/habits/new?error=${encodeURIComponent(error.message)}`);
+    redirect(buildNoticeRedirect("/habits/new", "error", error.message));
   }
 
   revalidatePath("/");
-  redirect("/");
+  redirect(buildNoticeRedirect("/", "success", "Habit created."));
 }
 
 export async function updateHabit(formData: FormData) {
@@ -52,7 +63,11 @@ export async function updateHabit(formData: FormData) {
 
   if (!habitId || !name || !startDate || !Number.isFinite(goalDays) || goalDays < 1) {
     redirect(
-      `/habits/${habitId}/edit?error=${encodeURIComponent("All fields are required.")}`
+      buildNoticeRedirect(
+        `/habits/${habitId}/edit`,
+        "error",
+        "All fields are required."
+      )
     );
   }
 
@@ -67,13 +82,13 @@ export async function updateHabit(formData: FormData) {
     .eq("user_id", userId);
 
   if (error) {
-    redirect(`/habits/${habitId}/edit?error=${encodeURIComponent(error.message)}`);
+    redirect(buildNoticeRedirect(`/habits/${habitId}/edit`, "error", error.message));
   }
 
   revalidatePath("/");
   revalidatePath(`/habits/${habitId}`);
   revalidatePath(`/habits/${habitId}/edit`);
-  redirect(`/habits/${habitId}`);
+  redirect(buildNoticeRedirect(`/habits/${habitId}`, "success", "Habit updated."));
 }
 
 export async function archiveHabit(formData: FormData) {
@@ -91,16 +106,17 @@ export async function archiveHabit(formData: FormData) {
     .eq("user_id", userId);
 
   if (error) {
-    redirect(`/habits/${habitId}?error=${encodeURIComponent(error.message)}`);
+    redirect(buildNoticeRedirect(`/habits/${habitId}`, "error", error.message));
   }
 
   revalidatePath("/");
-  redirect("/");
+  redirect(buildNoticeRedirect("/", "info", "Habit archived."));
 }
 
 export async function markDoneToday(formData: FormData) {
   const { supabase, userId } = await requireUserId();
   const habitId = String(formData.get("habit_id") || "");
+  const redirectTo = String(formData.get("redirect_to") || "").trim();
   const logDate = getTodayInTZ();
 
   if (!habitId) {
@@ -120,16 +136,19 @@ export async function markDoneToday(formData: FormData) {
   );
 
   if (error) {
-    redirect(`/habits/${habitId}?error=${encodeURIComponent(error.message)}`);
+    redirect(buildNoticeRedirect(`/habits/${habitId}`, "error", error.message));
   }
 
   revalidatePath("/");
   revalidatePath(`/habits/${habitId}`);
+  const nextPath = redirectTo || `/habits/${habitId}`;
+  redirect(buildNoticeRedirect(nextPath, "success", "Marked as done today."));
 }
 
 export async function undoDoneToday(formData: FormData) {
   const { supabase, userId } = await requireUserId();
   const habitId = String(formData.get("habit_id") || "");
+  const redirectTo = String(formData.get("redirect_to") || "").trim();
   const logDate = getTodayInTZ();
 
   if (!habitId) {
@@ -144,9 +163,11 @@ export async function undoDoneToday(formData: FormData) {
     .eq("log_date", logDate);
 
   if (error) {
-    redirect(`/habits/${habitId}?error=${encodeURIComponent(error.message)}`);
+    redirect(buildNoticeRedirect(`/habits/${habitId}`, "error", error.message));
   }
 
   revalidatePath("/");
   revalidatePath(`/habits/${habitId}`);
+  const nextPath = redirectTo || `/habits/${habitId}`;
+  redirect(buildNoticeRedirect(nextPath, "info", "Marked as not done today."));
 }

@@ -1,18 +1,12 @@
 import Link from "next/link";
 
 import { signIn } from "@/app/actions/auth";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { LoadingButton } from "@/components/ui/loading-button";
 
-export default function LoginPage({
-  searchParams,
-}: {
-  searchParams?: { error?: string };
-}) {
-  const error = searchParams?.error ? decodeURIComponent(searchParams.error) : null;
-
+export default function LoginPage() {
   return (
     <div className="mx-auto max-w-md">
       <Card>
@@ -41,14 +35,9 @@ export default function LoginPage({
                 required
               />
             </div>
-            {error ? (
-              <p className="rounded-md border border-red-200 bg-red-50 p-2 text-sm text-red-700">
-                {error}
-              </p>
-            ) : null}
-            <Button type="submit" className="w-full">
+            <LoadingButton type="submit" className="w-full" loadingText="Signing in...">
               Sign in
-            </Button>
+            </LoadingButton>
           </form>
           <p className="mt-4 text-sm text-black/60">
             No account yet?{" "}

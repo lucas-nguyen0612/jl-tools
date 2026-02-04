@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { signOut } from "@/app/actions/auth";
 import { Button } from "@/components/ui/button";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { LoadingButton } from "@/components/ui/loading-button";
 
 export default async function AppLayout({
   children,
@@ -27,9 +28,14 @@ export default async function AppLayout({
         <div className="flex items-center gap-3">
           <span className="text-sm text-black/60">{data.user.email}</span>
           <form action={signOut}>
-            <Button type="submit" variant="outline" size="sm">
+            <LoadingButton
+              type="submit"
+              variant="outline"
+              size="sm"
+              loadingText="Signing out..."
+            >
               Sign out
-            </Button>
+            </LoadingButton>
           </form>
         </div>
       </header>
