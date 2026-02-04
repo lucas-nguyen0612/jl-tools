@@ -53,7 +53,7 @@ export async function signUp(formData: FormData) {
     );
   }
 
-  const { error } = await supabase.auth.signUp({
+  const { data, error } = await supabase.auth.signUp({
     email,
     password
   });
@@ -62,7 +62,23 @@ export async function signUp(formData: FormData) {
     redirect(buildNoticeRedirect("/auth/signup", "error", error.message));
   }
 
-  redirect(buildNoticeRedirect("/", "success", "Account created."));
+  if (data?.user && data.user.identities?.length === 0) {
+    redirect(
+      buildNoticeRedirect(
+        "/auth/login",
+        "warning",
+        "Email already exists. Please sign in."
+      )
+    );
+  }
+
+  redirect(
+    buildNoticeRedirect(
+      "/auth/login",
+      "success",
+      "Check your email to confirm your account."
+    )
+  );
 }
 
 export async function signOut() {

@@ -42,7 +42,7 @@ export default function LoginPage() {
           <p className="mt-4 text-sm text-black/60">
             No account yet?{" "}
             <Link className="text-black underline" href="/auth/signup">
-              Create one
+              Sign up
             </Link>
             .
           </p>
