@@ -5,10 +5,8 @@ import { createSupabaseServerClient } from "@/lib/supabase/server";
 
 export default async function EditHabitPage({
   params,
-  searchParams,
 }: {
   params: { id: string };
-  searchParams?: { error?: string };
 }) {
   const supabase = createSupabaseServerClient();
   const { data: userData } = await supabase.auth.getUser();
@@ -28,15 +26,8 @@ export default async function EditHabitPage({
     redirect("/");
   }
 
-  const error = searchParams?.error ? decodeURIComponent(searchParams.error) : null;
-
   return (
     <div className="space-y-3">
-      {error ? (
-        <p className="rounded-md border border-red-200 bg-red-50 p-2 text-sm text-red-700">
-          {error}
-        </p>
-      ) : null}
       <HabitEditDialog
         habitId={habit.id}
         name={habit.name}

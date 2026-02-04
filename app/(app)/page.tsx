@@ -8,6 +8,7 @@ import { getTodayInTZ } from "@/lib/date";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { calculateCurrentStreak, getConsecutiveMissedDays } from "@/lib/streaks";
 import { HabitCreateDialog } from "@/components/habits/habit-dialog";
+import { LoadingButton } from "@/components/ui/loading-button";
 
 export default async function HomePage() {
   const supabase = createSupabaseServerClient();
@@ -120,9 +121,15 @@ export default async function HomePage() {
                   <div className="flex flex-wrap gap-2">
                     <form action={markDoneToday}>
                       <input type="hidden" name="habit_id" value={habit.id} />
-                      <Button type="submit" variant="outline" disabled={doneToday}>
+                      <input type="hidden" name="redirect_to" value="/" />
+                      <LoadingButton
+                        type="submit"
+                        variant="outline"
+                        disabled={doneToday}
+                        loadingText="Marking..."
+                      >
                         Mark done today
-                      </Button>
+                      </LoadingButton>
                     </form>
                     <Button asChild variant="ghost">
                       <Link href={`/habits/${habit.id}`}>View details</Link>

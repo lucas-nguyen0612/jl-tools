@@ -4,6 +4,17 @@ import { redirect } from "next/navigation";
 
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
+type NoticeKey = "error" | "warning" | "success" | "info";
+
+function buildNoticeRedirect(path: string, key: NoticeKey, message: string) {
+  const safePath = path || "/";
+  const [base, query = ""] = safePath.split("?");
+  const params = new URLSearchParams(query);
+  params.set(key, message);
+  const nextQuery = params.toString();
+  return nextQuery ? `${base}?${nextQuery}` : base;
+}
+
 function getAuthFields(formData: FormData) {
   const email = String(formData.get("email") || "").trim();
   const password = String(formData.get("password") || "");
@@ -16,7 +27,7 @@ export async function signIn(formData: FormData) {
 
   if (!email || !password) {
     redirect(
-      `/auth/login?error=${encodeURIComponent("Email and password are required.")}`
+      buildNoticeRedirect("/auth/login", "error", "Email and password are required.")
     );
   }
 
@@ -26,10 +37,10 @@ export async function signIn(formData: FormData) {
   });
 
   if (error) {
-    redirect(`/auth/login?error=${encodeURIComponent(error.message)}`);
+    redirect(buildNoticeRedirect("/auth/login", "error", error.message));
   }
 
-  redirect("/");
+  redirect(buildNoticeRedirect("/", "success", "Welcome back."));
 }
 
 export async function signUp(formData: FormData) {
@@ -38,7 +49,7 @@ export async function signUp(formData: FormData) {
 
   if (!email || !password) {
     redirect(
-      `/auth/signup?error=${encodeURIComponent("Email and password are required.")}`
+      buildNoticeRedirect("/auth/signup", "error", "Email and password are required.")
     );
   }
 
@@ -48,14 +59,14 @@ export async function signUp(formData: FormData) {
   });
 
   if (error) {
-    redirect(`/auth/signup?error=${encodeURIComponent(error.message)}`);
+    redirect(buildNoticeRedirect("/auth/signup", "error", error.message));
   }
 
-  redirect("/");
+  redirect(buildNoticeRedirect("/", "success", "Account created."));
 }
 
 export async function signOut() {
   const supabase = createSupabaseServerClient();
   await supabase.auth.signOut();
-  redirect("/auth/login");
+  redirect(buildNoticeRedirect("/auth/login", "info", "Signed out."));
 }

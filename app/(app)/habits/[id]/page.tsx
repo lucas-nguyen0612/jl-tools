@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { HabitEditDialog } from "@/components/habits/habit-dialog";
+import { LoadingButton } from "@/components/ui/loading-button";
 import { getDateRange, getMonthInfo, getMonthInfoFor, getTodayInTZ } from "@/lib/date";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import {
@@ -100,8 +101,6 @@ export default async function HabitDetailPage({
   );
   const weeklyDates = getDateRange(today, 7);
 
-  const error = searchParams?.error ? decodeURIComponent(searchParams.error) : null;
-
   return (
     <div className="space-y-6">
       <div>
@@ -154,12 +153,6 @@ export default async function HabitDetailPage({
             <Badge variant="danger">Needs attention</Badge>
           </CardContent>
         </Card>
-      ) : null}
-
-      {error ? (
-        <p className="rounded-md border border-red-200 bg-red-50 p-2 text-sm text-red-700">
-          {error}
-        </p>
       ) : null}
 
       <div className="grid gap-4 lg:grid-cols-3">
@@ -217,16 +210,31 @@ export default async function HabitDetailPage({
             <div className="flex flex-wrap gap-2">
               <form action={markDoneToday}>
                 <input type="hidden" name="habit_id" value={habit.id} />
-                <Button type="submit" variant="outline" disabled={doneToday}>
+                <input
+                  type="hidden"
+                  name="redirect_to"
+                  value={`/habits/${habit.id}?view=${view}`}
+                />
+                <LoadingButton
+                  type="submit"
+                  variant="outline"
+                  disabled={doneToday}
+                  loadingText="Marking..."
+                >
                   Mark done today
-                </Button>
+                </LoadingButton>
               </form>
               {doneToday ? (
                 <form action={undoDoneToday}>
                   <input type="hidden" name="habit_id" value={habit.id} />
-                  <Button type="submit" variant="ghost">
+                  <input
+                    type="hidden"
+                    name="redirect_to"
+                    value={`/habits/${habit.id}?view=${view}`}
+                  />
+                  <LoadingButton type="submit" variant="ghost" loadingText="Undoing...">
                     Undo today
-                  </Button>
+                  </LoadingButton>
                 </form>
               ) : null}
             </div>
