@@ -51,7 +51,7 @@ export default async function HabitDetailPage({
   searchParams,
 }: {
   params: { id: string };
-  searchParams?: { error?: string };
+  searchParams?: { error?: string; view?: string };
 }) {
   const supabase = createSupabaseServerClient();
   const { data: userData } = await supabase.auth.getUser();
@@ -80,7 +80,7 @@ export default async function HabitDetailPage({
     .eq("user_id", userData.user.id)
     .gte("log_date", habit.start_date);
 
-  const logSet = new Set(logs.map((log) => log.log_date));
+  const logSet = new Set((logs || []).map((log) => log.log_date));
 
   const currentStreak = calculateCurrentStreak(logSet, today, habit.start_date);
   const bestStreak = calculateBestStreak(logSet);
@@ -263,13 +263,12 @@ export default async function HabitDetailPage({
                 return (
                   <div
                     key={dateStr}
-                    className={`rounded-md border px-2 py-3 text-center text-sm ${
-                      isDone
+                    className={`rounded-md border px-2 py-3 text-center text-sm ${isDone
                         ? "border-emerald-200 bg-emerald-50 text-emerald-700"
                         : isMissed
-                        ? "border-red-200 bg-red-50 text-red-700"
-                        : "border-black/10 bg-white text-black/60"
-                    } ${isActive ? "" : "opacity-40"}`}
+                          ? "border-red-200 bg-red-50 text-red-700"
+                          : "border-black/10 bg-white text-black/60"
+                      } ${isActive ? "" : "opacity-40"}`}
                   >
                     <div className="text-xs font-medium">{label}</div>
                     <div className="text-base font-semibold">{dateStr.slice(-2)}</div>
@@ -300,13 +299,12 @@ export default async function HabitDetailPage({
               {calendarCells.map((cell) => (
                 <div
                   key={cell.dateStr}
-                  className={`rounded-md border px-2 py-1 text-center text-sm ${
-                    cell.isDone
+                  className={`rounded-md border px-2 py-1 text-center text-sm ${cell.isDone
                       ? "border-emerald-200 bg-emerald-50 text-emerald-700"
                       : cell.isMissed
-                      ? "border-red-200 bg-red-50 text-red-700"
-                      : "border-black/10 bg-white text-black/60"
-                  } ${cell.isActive ? "" : "opacity-40"}`}
+                        ? "border-red-200 bg-red-50 text-red-700"
+                        : "border-black/10 bg-white text-black/60"
+                    } ${cell.isActive ? "" : "opacity-40"}`}
                 >
                   {cell.day}
                 </div>
@@ -355,13 +353,12 @@ export default async function HabitDetailPage({
                       {monthCells.map((cell) => (
                         <div
                           key={cell.dateStr}
-                          className={`rounded border px-1 py-0.5 text-center ${
-                            cell.isDone
+                          className={`rounded border px-1 py-0.5 text-center ${cell.isDone
                               ? "border-emerald-200 bg-emerald-50 text-emerald-700"
                               : cell.isMissed
-                              ? "border-red-200 bg-red-50 text-red-700"
-                              : "border-black/10 bg-white text-black/60"
-                          } ${cell.isActive ? "" : "opacity-40"}`}
+                                ? "border-red-200 bg-red-50 text-red-700"
+                                : "border-black/10 bg-white text-black/60"
+                            } ${cell.isActive ? "" : "opacity-40"}`}
                         >
                           {cell.day}
                         </div>

@@ -17,12 +17,14 @@ export default async function HomePage() {
     return null;
   }
 
-  const { data: habits = [] } = await supabase
+  const { data: habitsData } = await supabase
     .from("habits")
     .select("id,user_id,name,goal_days,start_date,archived_at")
     .eq("user_id", data.user.id)
     .is("archived_at", null)
     .order("name", { ascending: true });
+
+  const habits = habitsData || [];
 
   const today = getTodayInTZ();
   const earliestStart = habits.reduce(
@@ -30,11 +32,13 @@ export default async function HomePage() {
     habits[0]?.start_date ?? today
   );
 
-  const { data: logs = [] } = await supabase
+  const { data: logsData } = await supabase
     .from("habit_logs")
     .select("habit_id,log_date")
     .eq("user_id", data.user.id)
     .gte("log_date", earliestStart);
+
+  const logs = logsData || [];
 
   const logsByHabit = new Map<string, Set<string>>();
   logs.forEach((log) => {
