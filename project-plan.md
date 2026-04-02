@@ -78,24 +78,24 @@ _XP, Level, Level-up Detection_
 
 _Timer engine, Focus Mode, Session tracking, Labels, Stats_
 
-- [ ] **4.1** Thiết kế schema `pomodoro.sessions`:
-  - [ ] (id, user_id, label, duration_minutes, status, started_at, completed_at, xp_earned)
-- [ ] **4.2** Apply schema + RLS policies + indexes (`user_id`, `status`, `started_at`) lên Supabase local
-- [ ] **4.3** Tạo Timer engine (useReducer / custom hook `usePomodoroTimer`)
-- [ ] **4.4** Tạo Timer UI: circular/linear countdown, time display
-- [ ] **4.5** Tạo Timer Controls: Start, Pause, Resume, Skip, Cancel
-- [ ] **4.6** Pomodoro State Machine: focus → short break → focus → ... → long break
-- [ ] **4.7** Pomodoro Settings: focus duration, short break, long break, sessions before long break
-- [ ] **4.8** Persist Pomodoro Settings trong `profiles.pomodoro_settings`
-- [ ] **4.9** Tạo Focus Mode UI: fullscreen immersive, hide sidebar, show only timer + session count + XP preview (XP sẽ nhận được khi hoàn thành)
-- [ ] **4.10** Implement Session completion → call `grantXP()` → save to DB
-- [ ] **4.11** Session Labels: tạo bảng `pomodoro.session_labels` (id, user_id, name, color) để reuse labels; hoặc dùng text field nếu đơn giản hơn cho MVP
-- [ ] **4.12** Session History page: list past sessions, filter by date/label
-- [ ] **4.13** Daily Stats widget: sessions hôm nay, total focus minutes
-- [ ] **4.14** Integrate XP Bar + Level display vào Pomodoro page
-- [ ] **4.15** Auto-trigger level-up modal khi session completed
-- [ ] **4.16** Viết unit tests cho Timer engine
-- [ ] **4.17** Commit Phase 4
+- [x] **4.1** Thiết kế schema `pomodoro.sessions`:
+  - [x] (id, user_id, label, duration_minutes, status, started_at, completed_at, xp_earned)
+- [x] **4.2** Apply schema + RLS policies + indexes (`user_id`, `status`, `started_at`) lên Supabase local
+- [x] **4.3** Tạo Timer engine (useReducer / custom hook `usePomodoroTimer`)
+- [x] **4.4** Tạo Timer UI: circular/linear countdown, time display
+- [x] **4.5** Tạo Timer Controls: Start, Pause, Resume, Skip, Cancel
+- [x] **4.6** Pomodoro State Machine: focus → short break → focus → ... → long break
+- [x] **4.7** Pomodoro Settings: focus duration, short break, long break, sessions before long break
+- [x] **4.8** Persist Pomodoro Settings trong `profiles.pomodoro_settings`
+- [x] **4.9** Tạo Focus Mode UI: fullscreen immersive, hide sidebar, show only timer + session count + XP preview (XP sẽ nhận được khi hoàn thành)
+- [x] **4.10** Implement Session completion → call `grantXP()` → save to DB
+- [x] **4.11** Session Labels: tạo bảng `pomodoro.session_labels` (id, user_id, name, color) để reuse labels; hoặc dùng text field nếu đơn giản hơn cho MVP
+- [x] **4.12** Session History page: list past sessions, filter by date/label
+- [x] **4.13** Daily Stats widget: sessions hôm nay, total focus minutes
+- [x] **4.14** Integrate XP Bar + Level display vào Pomodoro page
+- [x] **4.15** Auto-trigger level-up modal khi session completed
+- [x] **4.16** Viết unit tests cho Timer engine
+- [x] **4.17** Commit Phase 4
 
 ---
 
@@ -204,7 +204,7 @@ _Docs, README, code conventions_
 | 1        | Project Foundation                 | 10      | [x]    |
 | 2        | Platform Foundation                | 15      | [x]    |
 | 3        | Gamification System                | 15      | [x]    |
-| 4        | Pomodoro App                       | 17      | [ ]    |
+| 4        | Pomodoro App                       | 17      | [x]    |
 | 5        | Habit Tracker                      | 17      | [ ]    |
 | 6        | Cross-Feature Integration & Polish | 14      | [ ]    |
 | 7        | Integration & E2E Testing          | 12      | [ ]    |

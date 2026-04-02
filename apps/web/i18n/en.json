@@ -11,7 +11,11 @@
     "back": "Back",
     "next": "Next",
     "done": "Done",
-    "close": "Close"
+    "close": "Close",
+    "back": "Back",
+    "save": "Save",
+    "saving": "Saving...",
+    "settingsSaved": "Settings saved"
   },
   "auth": {
     "login": "Log in",
@@ -48,6 +52,7 @@
   },
   "pomodoro": {
     "title": "Pomodoro",
+    "subtitle": "Focus timer with XP rewards",
     "focus": "Focus",
     "shortBreak": "Short Break",
     "longBreak": "Long Break",
@@ -67,7 +72,14 @@
     "minutes": "{n} min",
     "sessionComplete": "Session complete!",
     "xpEarned": "You earned {xp} XP!",
-    "history": "Session History"
+    "history": "Session History",
+    "noSessions": "No sessions yet",
+    "completeFirst": "Complete your first pomodoro session!",
+    "sessionsToday": "Today",
+    "sessions": "sessions",
+    "focusMinutes": "focus minutes",
+    "focusMode": "Focus Mode",
+    "exitFocusMode": "Exit focus mode"
   },
   "habits": {
     "title": "Habits",

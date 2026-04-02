@@ -11,7 +11,11 @@
     "back": "Quay lại",
     "next": "Tiếp theo",
     "done": "Xong",
-    "close": "Đóng"
+    "close": "Đóng",
+    "back": "Quay lại",
+    "save": "Lưu",
+    "saving": "Đang lưu...",
+    "settingsSaved": "Đã lưu cài đặt"
   },
   "auth": {
     "login": "Đăng nhập",
@@ -48,6 +52,7 @@
   },
   "pomodoro": {
     "title": "Pomodoro",
+    "subtitle": "Bộ đếm thời gian tập trung với phần thưởng XP",
     "focus": "Tập trung",
     "shortBreak": "Nghỉ ngắn",
     "longBreak": "Nghỉ dài",
@@ -67,7 +72,14 @@
     "minutes": "{n} phút",
     "sessionComplete": "Hoàn thành!",
     "xpEarned": "Bạn đã nhận được {xp} XP!",
-    "history": "Lịch sử phiên"
+    "history": "Lịch sử phiên",
+    "noSessions": "Chưa có phiên nào",
+    "completeFirst": "Hoàn thành phiên Pomodoro đầu tiên của bạn!",
+    "sessionsToday": "Hôm nay",
+    "sessions": "phiên",
+    "focusMinutes": "phút tập trung",
+    "focusMode": "Chế độ tập trung",
+    "exitFocusMode": "Thoát chế độ tập trung"
   },
   "habits": {
     "title": "Thói quen",

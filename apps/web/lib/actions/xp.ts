@@ -21,9 +21,11 @@ export async function grantXP(params: {
   source: 'pomodoro' | 'habit' | 'streak_bonus' | 'manual'
   sourceId?: string
   sessionDurationSeconds?: number
+  /** Only grant XP if this was a valid completed pomodoro session (not a skip/pause) */
+  wasSession?: boolean
 }): Promise<XpGrantResult> {
   const supabase = await createServerSupabase()
-  const { userId, amount, source, sourceId, sessionDurationSeconds } = params
+  const { userId, amount, source, sourceId, sessionDurationSeconds, wasSession } = params
 
   const errorResult = {
     success: false as const,
@@ -70,6 +72,11 @@ export async function grantXP(params: {
   const todayTotal = (todayXp ?? []).reduce((sum, t) => sum + t.amount, 0)
   if (todayTotal >= XP_DAILY_CAP) {
     return { ...profileErrorResult, error: 'Daily XP cap reached' }
+  }
+
+  // XP abuse: only grant if this was a real completed session (not skipped/paused)
+  if (source === 'pomodoro' && wasSession === false) {
+    return { ...profileErrorResult, error: 'Not a completed session' }
   }
 
   // XP abuse: validate session duration for pomodoro
