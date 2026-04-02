@@ -26,23 +26,23 @@ _Thiết lập repo, monorepo structure, CI/CD base, Supabase local_
 
 _Auth, Layout, i18n, Theme, Responsive_
 
-- [ ] **2.1** Thiết kế database schema với ERD (Supabase Postgres):
-  - [ ] `profiles` (id, email, display_name, avatar_url, locale, created_at)
-  - [ ] `xp_transactions` (id, user_id, amount, source, source_id, created_at)
-- [ ] **2.2** Tạo Supabase migration (`supabase migration new`) cho schema trên, apply bằng `supabase db reset`
-- [ ] **2.3** Generate Supabase TypeScript client types
-- [ ] **2.4** Setup Supabase Auth: Email/Password + Google OAuth (providers enabled)
-- [ ] **2.5** Tạo Auth pages: Login, Register, Forgot Password
-- [ ] **2.6** Tạo Auth providers (React Context / Supabase SSR helpers)
-- [ ] **2.7** Implement RLS policies: users chỉ đọc/ghi own data
-- [ ] **2.8** Tạo Layout shell: Sidebar (desktop) + Bottom Nav (mobile)
-- [ ] **2.9** Setup i18n với next-intl hoặc react-i18next (vi/en)
-- [ ] **2.10** Tạo i18n translation files: `locales/vi.json`, `locales/en.json`
-- [ ] **2.11** Setup Theme System: Light/Dark mode toggle, class-based Tailwind
-- [ ] **2.12** Persist theme + locale preference trong profile
-- [ ] **2.13** Implement responsive breakpoints (mobile-first, 375px+)
-- [ ] **2.14** Tạo User Profile page: display name, avatar, locale/theme settings
-- [ ] **2.15** Setup middleware: protect routes, redirect unauthenticated users
+- [x] **2.1** Thiết kế database schema với ERD (Supabase Postgres):
+  - [x] `profiles` (id, email, display_name, avatar_url, locale, created_at)
+  - [x] `xp_transactions` (id, user_id, amount, source, source_id, created_at)
+- [x] **2.2** Tạo Supabase migration (`supabase migration new`) cho schema trên, apply bằng `supabase db reset`
+- [x] **2.3** Generate Supabase TypeScript client types
+- [x] **2.4** Setup Supabase Auth: Email/Password + Google OAuth (providers enabled)
+- [x] **2.5** Tạo Auth pages: Login, Register, Forgot Password
+- [x] **2.6** Tạo Auth providers (React Context / Supabase SSR helpers)
+- [x] **2.7** Implement RLS policies: users chỉ đọc/ghi own data
+- [x] **2.8** Tạo Layout shell: Sidebar (desktop) + Bottom Nav (mobile)
+- [x] **2.9** Setup i18n với next-intl hoặc react-i18next (vi/en)
+- [x] **2.10** Tạo i18n translation files: `locales/vi.json`, `locales/en.json`
+- [x] **2.11** Setup Theme System: Light/Dark mode toggle, class-based Tailwind
+- [x] **2.12** Persist theme + locale preference trong profile
+- [x] **2.13** Implement responsive breakpoints (mobile-first, 375px+)
+- [x] **2.14** Tạo User Profile page: display name, avatar, locale/theme settings
+- [x] **2.15** Setup middleware: protect routes, redirect unauthenticated users
 
 ---
 
@@ -202,7 +202,7 @@ _Docs, README, code conventions_
 | Phase    | Name                               | Tasks   | Status |
 | -------- | ---------------------------------- | ------- | ------ |
 | 1        | Project Foundation                 | 10      | [x]    |
-| 2        | Platform Foundation                | 15      | [ ]    |
+| 2        | Platform Foundation                | 15      | [x]    |
 | 3        | Gamification System                | 14      | [ ]    |
 | 4        | Pomodoro App                       | 17      | [ ]    |
 | 5        | Habit Tracker                      | 17      | [ ]    |
