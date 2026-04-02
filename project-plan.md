@@ -103,26 +103,26 @@ _Timer engine, Focus Mode, Session tracking, Labels, Stats_
 
 _Habit CRUD, Check-in, Streaks, Weekly Progress_
 
-- [ ] **5.1** Thiết kế schema `habits`:
-  - [ ] (id, user_id, name, icon, color, frequency_type, frequency_days, created_at, archived_at)
-- [ ] **5.2** Thiết kế schema `habit_check_ins`:
-  - [ ] (id, habit_id, user_id, checked_at, xp_earned)
-- [ ] **5.3** Apply schemas + RLS policies + indexes (`user_id`, `habit_id`, `checked_at`) lên Supabase local
-- [ ] **5.4** Tạo Habit CRUD page: create/edit/delete/archive habit
-- [ ] **5.5** Frequency config: daily, weekly, custom (chọn ngày cụ thể)
-- [ ] **5.6** Habit Icon picker + Color picker components
-- [ ] **5.7** Daily Check-in page: list habits for today, tap to check-in
-- [ ] **5.8** Streak calculation logic (useMemo):
-  - [ ] current streak, longest streak, missed days
-- [ ] **5.9** Streak UI: fire emoji + count + streak progress ring/bar
-- [ ] **5.10** Implement check-in → call `grantXP()` → save to DB
-- [ ] **5.11** Weekly Progress widget: % habits completed this week
-- [ ] **5.12** Habit Insights: streak history chart (simple bar/line)
-- [ ] **5.13** Integrate XP Bar vào Habit Tracker pages
-- [ ] **5.14** Auto-trigger level-up modal khi check-in
-- [ ] **5.15** Archived habits UI: page xem danh sách habits đã archive, cho phép restore hoặc xóa vĩnh viễn
-- [ ] **5.16** Viết unit tests cho Streak calculation
-- [ ] **5.17** Commit Phase 5
+- [x] **5.1** Thiết kế schema `habits`:
+  - [x] (id, user_id, name, icon, color, frequency_type, frequency_days, created_at, archived_at)
+- [x] **5.2** Thiết kế schema `habit_check_ins`:
+  - [x] (id, habit_id, user_id, checked_at, xp_earned)
+- [x] **5.3** Apply schemas + RLS policies + indexes (`user_id`, `habit_id`, `checked_at`) lên Supabase local
+- [x] **5.4** Tạo Habit CRUD page: create/edit/delete/archive habit
+- [x] **5.5** Frequency config: daily, weekly, custom (chọn ngày cụ thể)
+- [x] **5.6** Habit Icon picker + Color picker components
+- [x] **5.7** Daily Check-in page: list habits for today, tap to check-in
+- [x] **5.8** Streak calculation logic (useMemo):
+  - [x] current streak, longest streak, missed days
+- [x] **5.9** Streak UI: fire emoji + count + streak progress ring/bar
+- [x] **5.10** Implement check-in → call `grantXP()` → save to DB
+- [x] **5.11** Weekly Progress widget: % habits completed this week
+- [x] **5.12** Habit Insights: streak history chart (simple bar/line)
+- [x] **5.13** Integrate XP Bar vào Habit Tracker pages
+- [x] **5.14** Auto-trigger level-up modal khi check-in
+- [x] **5.15** Archived habits UI: page xem danh sách habits đã archive, cho phép restore hoặc xóa vĩnh viễn
+- [x] **5.16** Viết unit tests cho Streak calculation
+- [x] **5.17** Commit Phase 5
 
 ---
 
@@ -205,7 +205,7 @@ _Docs, README, code conventions_
 | 2        | Platform Foundation                | 15      | [x]    |
 | 3        | Gamification System                | 15      | [x]    |
 | 4        | Pomodoro App                       | 17      | [x]    |
-| 5        | Habit Tracker                      | 17      | [ ]    |
+| 5        | Habit Tracker                      | 17      | [x]    |
 | 6        | Cross-Feature Integration & Polish | 14      | [ ]    |
 | 7        | Integration & E2E Testing          | 12      | [ ]    |
 | 8        | Deployment & DevOps                | 10      | [ ]    |

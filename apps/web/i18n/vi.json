@@ -103,7 +103,18 @@
     "noHabitsYet": "Chưa có thói quen nào",
     "createFirst": "Tạo thói quen đầu tiên của bạn",
     "today": "Hôm nay",
-    "thisWeek": "Tuần này"
+    "thisWeek": "Tuần này",
+    "icon": "Biểu tượng",
+    "color": "Màu sắc",
+    "habitNamePlaceholder": "VD: Chạy bộ buổi sáng",
+    "saving": "Đang lưu...",
+    "checkedIn": "Đã check-in!",
+    "checkInUndone": "Đã hủy check-in",
+    "undoCheckIn": "Hủy check-in",
+    "leveledUp": "Lên cấp!",
+    "nameRequired": "Tên thói quen là bắt buộc",
+    "habitCreated": "Đã tạo thói quen!",
+    "habitUpdated": "Đã cập nhật thói quen"
   },
   "profile": {
     "title": "Hồ sơ",

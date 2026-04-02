@@ -103,7 +103,18 @@
     "noHabitsYet": "No habits yet",
     "createFirst": "Create your first habit",
     "today": "Today",
-    "thisWeek": "This week"
+    "thisWeek": "This week",
+    "icon": "Icon",
+    "color": "Color",
+    "habitNamePlaceholder": "e.g. Morning run",
+    "saving": "Saving...",
+    "checkedIn": "Checked in!",
+    "checkInUndone": "Check-in undone",
+    "undoCheckIn": "Undo check-in",
+    "leveledUp": "Level up!",
+    "nameRequired": "Habit name is required",
+    "habitCreated": "Habit created!",
+    "habitUpdated": "Habit updated"
   },
   "profile": {
     "title": "Profile",
