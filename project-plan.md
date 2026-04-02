@@ -50,27 +50,27 @@ _Auth, Layout, i18n, Theme, Responsive_
 
 _XP, Level, Level-up Detection_
 
-- [ ] **3.1** Mở rộng schema: thêm `profiles.current_xp`, `profiles.current_level`, `profiles.total_xp_earned`
-- [ ] **3.2** Định nghĩa Level thresholds (20 levels) trong `constants/levels.ts` — mỗi level có title vi/en (VD: "Tân binh" / "Rookie", "Chiến binh kỷ luật" / "Discipline Warrior")
-- [ ] **3.3** Tạo utility function tính XP → Level và Level → next threshold
-- [ ] **3.4** Tạo `grantXP()` server action / RPC function
-- [ ] **3.5** Tạo XP Transaction table: ghi nhận mọi XP source
-- [ ] **3.6** Apply RLS policies cho `xp_transactions`
-- [ ] **3.7** Tạo Unified XP Bar component (sidebar, animate on XP gain)
-- [ ] **3.8** Tạo Level Badge / Level Title component
-- [ ] **3.9** Implement Level-up detection logic (client-side)
-- [ ] **3.10** Tạo Level-up Celebration Modal (simple animation)
-- [ ] **3.11** Tạo XP Sources constants:
+- [x] **3.1** Mở rộng schema: thêm `profiles.current_xp`, `profiles.current_level`, `profiles.total_xp_earned`
+- [x] **3.2** Định nghĩa Level thresholds (20 levels) trong `constants/levels.ts` — mỗi level có title vi/en (VD: "Tân binh" / "Rookie", "Chiến binh kỷ luật" / "Discipline Warrior")
+- [x] **3.3** Tạo utility function tính XP → Level và Level → next threshold
+- [x] **3.4** Tạo `grantXP()` server action / RPC function
+- [x] **3.5** Tạo XP Transaction table: ghi nhận mọi XP source
+- [x] **3.6** Apply RLS policies cho `xp_transactions`
+- [x] **3.7** Tạo Unified XP Bar component (sidebar, animate on XP gain)
+- [x] **3.8** Tạo Level Badge / Level Title component
+- [x] **3.9** Implement Level-up detection logic (client-side)
+- [x] **3.10** Tạo Level-up Celebration Modal (simple animation)
+- [x] **3.11** Tạo XP Sources constants:
   - Pomodoro session completed: +50 XP
   - Habit check-in: +20 XP
   - Streak milestone bonuses: 7-day streak +100 XP, 14-day +200 XP, 30-day +500 XP
-- [ ] **3.12** Implement XP abuse prevention cơ bản:
+- [x] **3.12** Implement XP abuse prevention cơ bản:
   - Max XP cap/ngày (VD: 500 XP)
   - Validate session duration server-side (không grant XP nếu duration < focus setting)
   - Cooldown giữa các Pomodoro session (VD: không grant XP nếu 2 session completed < 5 phút cách nhau)
-- [ ] **3.12** Viết unit tests cho XP/Level utility functions
-- [ ] **3.13** Viết unit tests cho XP abuse prevention logic
-- [ ] **3.14** Commit Phase 3
+- [ ] **3.13** Viết unit tests cho XP/Level utility functions
+- [ ] **3.14** Viết unit tests cho XP abuse prevention logic
+- [x] **3.15** Commit Phase 3
 
 ---
 
@@ -203,7 +203,7 @@ _Docs, README, code conventions_
 | -------- | ---------------------------------- | ------- | ------ |
 | 1        | Project Foundation                 | 10      | [x]    |
 | 2        | Platform Foundation                | 15      | [x]    |
-| 3        | Gamification System                | 14      | [ ]    |
+| 3        | Gamification System                | 15      | [x]    |
 | 4        | Pomodoro App                       | 17      | [ ]    |
 | 5        | Habit Tracker                      | 17      | [ ]    |
 | 6        | Cross-Feature Integration & Polish | 14      | [ ]    |

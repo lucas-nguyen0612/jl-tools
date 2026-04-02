@@ -5,28 +5,10 @@ import { usePathname } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { LayoutDashboard, Timer, CheckSquare, User, Settings, Sparkles } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import { Progress } from '@/components/ui/progress'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Separator } from '@/components/ui/separator'
 import { useAuth } from '@/components/providers/auth-provider'
-
-function xpProgressInLevel(totalXp: number): number {
-  const LEVEL_THRESHOLDS = [
-    0, 100, 250, 500, 850, 1300, 1900, 2650, 3550, 4600, 5800, 7150, 8650, 10300, 12100, 14050,
-    16150, 18400, 20800, 23400,
-  ] as const
-  for (let i = LEVEL_THRESHOLDS.length - 1; i >= 0; i--) {
-    if (totalXp >= LEVEL_THRESHOLDS[i]) {
-      const level = i + 1
-      const currentThreshold = LEVEL_THRESHOLDS[i]
-      const nextThreshold = LEVEL_THRESHOLDS[level] ?? LEVEL_THRESHOLDS[LEVEL_THRESHOLDS.length - 1]
-      const xpInLevel = totalXp - currentThreshold
-      const xpNeeded = nextThreshold - currentThreshold
-      return xpNeeded > 0 ? Math.min(100, Math.round((xpInLevel / xpNeeded) * 100)) : 100
-    }
-  }
-  return 0
-}
+import { XpBar } from '@/components/gamification/xp-bar'
 
 export function Sidebar() {
   const pathname = usePathname()
@@ -35,8 +17,6 @@ export function Sidebar() {
 
   const displayName = profile?.display_name || 'User'
   const level = profile?.current_level ?? 1
-  const totalXp = profile?.total_xp_earned ?? 0
-  const xpProgress = xpProgressInLevel(totalXp)
 
   return (
     <aside className="bg-surface-1 border-border sticky top-0 hidden h-screen w-64 shrink-0 flex-col border-r lg:flex">
@@ -64,19 +44,8 @@ export function Sidebar() {
           </div>
         </div>
 
-        {/* XP Bar */}
-        <div className="space-y-1.5">
-          <div className="flex items-center justify-between text-xs">
-            <span className="text-muted-foreground font-medium">{t('xp')}</span>
-            <span className="font-tabular font-semibold">
-              {totalXp} {t('xp')}
-            </span>
-          </div>
-          <Progress value={xpProgress} className="h-2" />
-          <p className="text-muted-foreground text-right text-xs">
-            {100 - xpProgress}% to {t('level')} {level + 1}
-          </p>
-        </div>
+        {/* Animated XP Bar */}
+        <XpBar />
       </div>
 
       <Separator className="mx-4" />
