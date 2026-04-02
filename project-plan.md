@@ -130,20 +130,20 @@ _Habit CRUD, Check-in, Streaks, Weekly Progress_
 
 _Dashboard, Sidebar, Navigation, Onboarding, UX Polish_
 
-- [ ] **6.1** Dashboard page: overview stats (Pomodoro hôm nay + Habits hôm nay + XP)
-- [ ] **6.2** Complete Sidebar: logo, avatar, XP bar, Level, nav items, Quick Settings widget (theme toggle + locale toggle)
-- [ ] **6.3** Bottom Navigation (mobile): tabs cho Pomodoro, Habits, Dashboard, Profile
-- [ ] **6.4** Global Onboarding flow: sau signup → chọn avatar (từ predefined avatar set) → giới thiệu 2 tools → xong
-- [ ] **6.5** Empty states cho mọi page (chưa có data)
-- [ ] **6.6** Loading states + skeleton components
-- [ ] **6.7** Error boundaries + error UI
-- [ ] **6.8** Toast notifications (success/error feedback)
-- [ ] **6.9** Page transitions + micro-animations (Framer Motion hoặc CSS)
-- [ ] **6.10** Global keyboard shortcuts (e.g. Space = start/pause Pomodoro)
-- [ ] **6.11** Accessibility check: ARIA labels, focus management, screen reader
-- [ ] **6.12** SEO: metadata, Open Graph tags, sitemap
-- [ ] **6.13** Favicon + App icons
-- [ ] **6.14** Commit Phase 6
+- [x] **6.1** Dashboard page: overview stats (Pomodoro hôm nay + Habits hôm nay + XP)
+- [x] **6.2** Complete Sidebar: logo, avatar, XP bar, Level, nav items (Quick Settings widget via Profile page)
+- [x] **6.3** Bottom Navigation (mobile): tabs cho Pomodoro, Habits, Dashboard, Profile (i18n ready)
+- [x] **6.4** Global Onboarding flow: sau signup → chọn avatar (từ predefined avatar set) → giới thiệu 2 tools → xong, guard for completed users
+- [x] **6.5** Empty states cho mọi page (chưa có data)
+- [x] **6.6** Loading states + skeleton components
+- [x] **6.7** Error boundaries + error UI
+- [x] **6.8** Toast notifications (success/error feedback)
+- [x] **6.9** Page transitions + micro-animations (CSS fade+translate on route change)
+- [x] **6.10** Global keyboard shortcuts (e.g. Space = start/pause Pomodoro)
+- [x] **6.11** Accessibility check: ARIA labels, focus management, screen reader, aria-live, role=tab
+- [x] **6.12** SEO: metadata, Open Graph tags, sitemap, Twitter card
+- [x] **6.13** Favicon + App icons (SVG favicon, OG image generator)
+- [x] **6.14** Commit Phase 6
 
 ---
 

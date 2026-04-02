@@ -22,6 +22,7 @@ interface ProfileData {
   current_xp: number
   current_level: number
   total_xp_earned: number
+  onboarding_completed: boolean
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)

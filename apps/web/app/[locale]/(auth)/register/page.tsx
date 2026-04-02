@@ -11,9 +11,12 @@ import { Card, CardContent, CardFooter } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import { GoogleSignInButton } from '@/components/auth/google-signin-button'
 import { createClient } from '@/lib/supabase/client'
+import { useParams } from 'next/navigation'
 
 export default function RegisterPage() {
   const t = useTranslations('auth')
+  const params = useParams()
+  const locale = (params.locale as string) ?? 'en'
   const [isPending, startTransition] = useTransition()
   const [error, setError] = useState<string | null>(null)
   const supabase = createClient()
@@ -37,7 +40,7 @@ export default function RegisterPage() {
         setError(error.message)
       } else if (data.user) {
         await supabase.from('profiles').update({ display_name: displayName }).eq('id', data.user.id)
-        window.location.href = '/dashboard'
+        window.location.href = `/${locale}/onboarding`
       }
     })
   }
@@ -75,7 +78,7 @@ export default function RegisterPage() {
                 </div>
               )}
               <div className="space-y-1.5">
-                <Label htmlFor="displayName">{t('profile.displayName')}</Label>
+                <Label htmlFor="displayName">{t('displayName')}</Label>
                 <Input
                   id="displayName"
                   name="displayName"
@@ -120,7 +123,7 @@ export default function RegisterPage() {
           <CardFooter className="flex justify-center text-sm">
             <p className="text-muted-foreground">
               {t('hasAccount')}{' '}
-              <Link href="/login" className="text-primary font-medium hover:underline">
+              <Link href={`/${locale}/login`} className="text-primary font-medium hover:underline">
                 {t('signIn')}
               </Link>
             </p>

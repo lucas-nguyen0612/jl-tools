@@ -11,6 +11,7 @@ import { PomodoroControls } from '@/components/pomodoro/pomodoro-controls'
 import { LevelUpModal } from '@/components/gamification/level-up-modal'
 import { toast } from '@/components/ui/sonner'
 import { XP_SOURCES } from '@/lib/constants/levels'
+import { useKeyboardShortcuts } from '@/hooks/useKeyboardShortcuts'
 
 const XP_PER_SESSION = XP_SOURCES.POMODORO_COMPLETE
 
@@ -30,6 +31,27 @@ export function PomodoroApp({ locale }: PomodoroAppProps) {
   const prevStatusRef = useRef(state.status)
   const prevPhaseRef = useRef(state.phase)
   const phaseJustCompletedRef = useRef(false)
+
+  // Keyboard shortcuts
+  useKeyboardShortcuts([
+    {
+      key: 's',
+      handler: () => {
+        if (state.status === 'idle' || state.status === 'completed') start()
+        else if (state.status === 'paused') resume()
+        else if (state.status === 'running') pause()
+      },
+    },
+    {
+      key: 'p',
+      handler: () => {
+        if (state.status === 'running') pause()
+        else if (state.status === 'paused') resume()
+      },
+    },
+    { key: 'Escape', handler: () => cancel() },
+    { key: 'n', handler: () => skip() },
+  ])
 
   const totalSeconds =
     state.phase === 'focus'

@@ -27,7 +27,35 @@ export const metadata: Metadata = {
   },
   description:
     'Gamified productivity tools: Pomodoro Timer & Habit Tracker. Earn XP, level up, build discipline.',
-  icons: { icon: '/favicon.ico' },
+  keywords: ['pomodoro', 'habit tracker', 'productivity', 'XP', 'gamification', 'focus timer'],
+  authors: [{ name: 'JL-Tools' }],
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    alternateLocale: 'vi_VN',
+    siteName: 'JL-Tools',
+    title: 'JL-Tools — Gamified Productivity',
+    description:
+      'Boost your productivity with Pomodoro Timer and Habit Tracker. Earn XP, level up, and build lasting discipline.',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'JL-Tools — Gamified Productivity',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'JL-Tools — Gamified Productivity',
+    description:
+      'Boost your productivity with Pomodoro Timer and Habit Tracker. Earn XP, level up.',
+  },
+  icons: {
+    icon: '/favicon.svg',
+    apple: '/apple-touch-icon.png',
+  },
 }
 
 export const viewport: Viewport = {

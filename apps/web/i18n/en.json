@@ -12,8 +12,6 @@
     "next": "Next",
     "done": "Done",
     "close": "Close",
-    "back": "Back",
-    "save": "Save",
     "saving": "Saving...",
     "settingsSaved": "Settings saved"
   },
@@ -23,6 +21,7 @@
     "logout": "Log out",
     "email": "Email",
     "password": "Password",
+    "displayName": "Display name",
     "forgotPassword": "Forgot password?",
     "noAccount": "Don't have an account?",
     "hasAccount": "Already have an account?",
@@ -33,13 +32,15 @@
     "bySigningUp": "By signing up, you agree to our",
     "termsOfService": "Terms of Service",
     "and": "and",
-    "privacyPolicy": "Privacy Policy"
+    "privacyPolicy": "Privacy Policy",
+    "back": "Back"
   },
   "nav": {
     "dashboard": "Dashboard",
     "pomodoro": "Pomodoro",
     "habits": "Habits",
-    "profile": "Profile"
+    "profile": "Profile",
+    "level": "Level"
   },
   "dashboard": {
     "welcome": "Welcome back",

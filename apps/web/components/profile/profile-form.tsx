@@ -50,7 +50,7 @@ export function ProfileForm() {
 
   async function handleSignOut() {
     await signOut()
-    router.push('/login')
+    router.push(`/${profile?.locale ?? 'en'}/login`)
   }
 
   return (
