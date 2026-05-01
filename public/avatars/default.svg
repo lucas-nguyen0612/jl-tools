@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" fill="none">
+  <circle cx="128" cy="128" r="128" fill="#1a1a2e"/>
+  <!-- Body / torso -->
+  <path d="M52 256 C56 208 84 184 128 184 C172 184 200 208 204 256 Z" fill="#4a4a6a" opacity="0.9"/>
+  <!-- Head -->
+  <ellipse cx="128" cy="104" rx="44" ry="52" fill="#6a6a8a" opacity="0.95"/>
+  <!-- Face highlight -->
+  <ellipse cx="128" cy="100" rx="30" ry="36" fill="#7a7a9a" opacity="0.6"/>
+  <!-- Eyes -->
+  <circle cx="114" cy="98" r="5" fill="#a0a0c0" opacity="0.85"/>
+  <circle cx="142" cy="98" r="5" fill="#a0a0c0" opacity="0.85"/>
+  <!-- Neck -->
+  <rect x="114" y="148" width="28" height="20" rx="6" fill="#5a5a7a" opacity="0.85"/>
+  <!-- Shoulder line -->
+  <path d="M84 184 C96 176 160 176 172 184" stroke="#5a5a7a" stroke-width="2" fill="none" opacity="0.6"/>
+</svg>
