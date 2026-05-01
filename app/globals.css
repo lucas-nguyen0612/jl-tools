@@ -2,10 +2,173 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ===== JL Design Tokens ===== */
+/* Source: styles/tokens.css — Modern Cozy RPG aesthetic */
+
 :root {
-  color-scheme: light;
+  /* Type */
+  --jl-font-sans: "Geist", "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --jl-font-display: "Fraunces", "Cooper", "Georgia", serif;
+  --jl-font-mono: "JetBrains Mono", "IBM Plex Mono", ui-monospace, monospace;
+
+  /* Warm neutral palette (oklch) */
+  --jl-bg: oklch(0.985 0.008 80);
+  --jl-bg-raised: oklch(0.995 0.005 80);
+  --jl-bg-sunken: oklch(0.965 0.010 80);
+  --jl-line: oklch(0.90 0.012 80);
+  --jl-line-soft: oklch(0.94 0.010 80);
+  --jl-text: oklch(0.22 0.015 60);
+  --jl-text-soft: oklch(0.46 0.015 60);
+  --jl-text-faint: oklch(0.62 0.012 60);
+
+  /* Accents — tunable via Tweaks (hue rotates) */
+  --jl-hue: 38;                /* warm amber default */
+  --jl-accent: oklch(0.70 0.15 var(--jl-hue));
+  --jl-accent-strong: oklch(0.58 0.17 var(--jl-hue));
+  --jl-accent-soft: oklch(0.94 0.05 var(--jl-hue));
+  --jl-accent-ink: oklch(0.30 0.10 var(--jl-hue));
+
+  /* Semantic (fixed hues, same chroma family) */
+  --jl-success: oklch(0.70 0.14 150);
+  --jl-warn:    oklch(0.75 0.14 70);
+  --jl-danger:  oklch(0.65 0.17 25);
+  --jl-info:    oklch(0.68 0.13 240);
+  --jl-epic:    oklch(0.62 0.17 300);
+
+  /* Rarity (RPG) */
+  --jl-common:    oklch(0.70 0.01 80);
+  --jl-uncommon:  oklch(0.68 0.14 150);
+  --jl-rare:      oklch(0.65 0.15 240);
+  --jl-legendary: oklch(0.70 0.15 var(--jl-hue));
+  --jl-mythic:    oklch(0.62 0.17 300);
+
+  /* Radii + shadow */
+  --jl-r-sm: 8px;
+  --jl-r:    12px;
+  --jl-r-lg: 18px;
+  --jl-r-xl: 28px;
+  --jl-shadow-sm: 0 1px 2px oklch(0.22 0.02 60 / 0.06), 0 1px 1px oklch(0.22 0.02 60 / 0.04);
+  --jl-shadow:    0 4px 12px oklch(0.22 0.02 60 / 0.07), 0 1px 2px oklch(0.22 0.02 60 / 0.04);
+  --jl-shadow-lg: 0 18px 40px oklch(0.22 0.02 60 / 0.10), 0 2px 4px oklch(0.22 0.02 60 / 0.05);
+
+  /* Layout */
+  --jl-gap: 20px;
+  --jl-p: 16px;          /* Widget/card inner padding — change here to apply everywhere */
+
+  /* Aliases used by legacy components — keep both names working */
+  --jl-bg-elevated: var(--jl-bg-raised);
+  --jl-border:      var(--jl-line);
 }
 
-body {
-  @apply bg-background text-foreground;
+.jl-dark {
+  --jl-bg: oklch(0.18 0.010 60);
+  --jl-bg-raised: oklch(0.22 0.012 60);
+  --jl-bg-sunken: oklch(0.15 0.010 60);
+  --jl-line: oklch(0.30 0.012 60);
+  --jl-line-soft: oklch(0.26 0.010 60);
+  --jl-text: oklch(0.96 0.008 80);
+  --jl-text-soft: oklch(0.76 0.010 60);
+  --jl-text-faint: oklch(0.58 0.010 60);
+  --jl-accent-soft: oklch(0.30 0.06 var(--jl-hue));
+  --jl-accent-ink: oklch(0.92 0.06 var(--jl-hue));
 }
+
+/* ===== shadcn/ui variable overrides ===== */
+@layer base {
+  :root {
+    --background: var(--jl-bg);
+    --foreground: var(--jl-text);
+    --card: var(--jl-bg-raised);
+    --card-foreground: var(--jl-text);
+    --popover: var(--jl-bg-raised);
+    --popover-foreground: var(--jl-text);
+    --primary: var(--jl-accent-strong);
+    --primary-foreground: white;
+    --secondary: var(--jl-bg-sunken);
+    --secondary-foreground: var(--jl-text);
+    --muted: var(--jl-bg-sunken);
+    --muted-foreground: var(--jl-text-soft);
+    --accent: var(--jl-accent-soft);
+    --accent-foreground: var(--jl-accent-ink);
+    --destructive: var(--jl-danger);
+    --destructive-foreground: white;
+    --border: var(--jl-line);
+    --input: var(--jl-line);
+    --ring: var(--jl-accent);
+    --radius: var(--jl-r);
+  }
+
+  .dark {
+    /* shadcn dark mode — mapped to jl-dark tokens */
+    --background: oklch(0.18 0.010 60);
+    --foreground: oklch(0.96 0.008 80);
+    --card: oklch(0.22 0.012 60);
+    --card-foreground: oklch(0.96 0.008 80);
+    --popover: oklch(0.22 0.012 60);
+    --popover-foreground: oklch(0.96 0.008 80);
+    --muted: oklch(0.15 0.010 60);
+    --muted-foreground: oklch(0.76 0.010 60);
+    --border: oklch(0.30 0.012 60);
+    --input: oklch(0.30 0.012 60);
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--jl-font-sans);
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.45;
+  }
+}
+
+/* ===== jl-* utility classes (ported from claude-design/styles/tokens.css) ===== */
+.jl-display { font-family: var(--jl-font-display); letter-spacing: -0.02em; font-weight: 500; }
+.jl-mono    { font-family: var(--jl-font-mono); font-feature-settings: "ss01"; }
+.jl-tnum    { font-variant-numeric: tabular-nums; }
+
+.jl-card {
+  background: var(--jl-bg-raised);
+  border: 1px solid var(--jl-line);
+  border-radius: var(--jl-r-lg);
+  box-shadow: var(--jl-shadow-sm);
+}
+
+.jl-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  height: 24px; padding: 0 10px;
+  border-radius: 999px; font-size: 12px; font-weight: 500;
+  background: var(--jl-bg-sunken); color: var(--jl-text-soft);
+  border: 1px solid var(--jl-line-soft);
+}
+
+.jl-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  height: 36px; padding: 0 14px;
+  border-radius: var(--jl-r); border: 1px solid var(--jl-line);
+  background: var(--jl-bg-raised); color: var(--jl-text);
+  font-size: 13px; font-weight: 500; cursor: pointer;
+  font-family: inherit;
+  transition: transform .08s ease, background .15s ease, border-color .15s ease;
+}
+.jl-btn:hover  { background: var(--jl-bg-sunken); }
+.jl-btn:active { transform: translateY(1px); }
+
+.jl-btn-primary {
+  background: var(--jl-text); color: var(--jl-bg);
+  border-color: var(--jl-text);
+}
+.jl-btn-primary:hover { background: var(--jl-text); opacity: 0.9; }
+
+.jl-btn-accent {
+  background: var(--jl-accent-strong); color: white;
+  border-color: var(--jl-accent-strong);
+}
+.jl-btn-accent:hover { background: var(--jl-accent-strong); filter: brightness(1.05); }
+
+.jl-scroll::-webkit-scrollbar { width: 10px; height: 10px; }
+.jl-scroll::-webkit-scrollbar-thumb { background: var(--jl-line); border-radius: 10px; border: 2px solid var(--jl-bg); }
+.jl-scroll::-webkit-scrollbar-track { background: transparent; }

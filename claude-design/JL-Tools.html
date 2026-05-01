@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>JL-Tools — Productivity RPG</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/tokens.css" />
+<style>
+  html, body { margin: 0; padding: 0; height: 100%; }
+  body { background: #e9e5dd; font-family: "Geist", sans-serif; }
+
+  /* Tweaks panel */
+  #tweaks {
+    position: fixed; bottom: 20px; right: 20px;
+    width: 280px; z-index: 1000;
+    background: #fff; border: 1px solid #d9d5cc;
+    border-radius: 16px; box-shadow: 0 20px 50px rgba(0,0,0,0.14);
+    font-family: "Geist", sans-serif; font-size: 13px;
+    overflow: hidden; display: none;
+  }
+  #tweaks.on { display: block; }
+  #tweaks header {
+    padding: 12px 14px; border-bottom: 1px solid #eee;
+    display: flex; align-items: center; gap: 8px;
+    font-weight: 600; font-size: 12px;
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  #tweaks .body { padding: 14px; display: flex; flex-direction: column; gap: 14px; }
+  #tweaks label { display: flex; flex-direction: column; gap: 6px; font-size: 11px; color: #666; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; }
+  #tweaks .swatches { display: flex; gap: 6px; flex-wrap: wrap; }
+  #tweaks .sw {
+    width: 28px; height: 28px; border-radius: 50%;
+    cursor: pointer; border: 2px solid transparent;
+    transition: transform .1s ease;
+  }
+  #tweaks .sw.active { border-color: #222; transform: scale(1.05); }
+  #tweaks .seg {
+    display: flex; gap: 4px; padding: 3px;
+    background: #f4f0e8; border-radius: 999px;
+  }
+  #tweaks .seg button {
+    flex: 1; border: none; background: transparent;
+    padding: 6px 8px; border-radius: 999px;
+    font-size: 11px; font-weight: 500; cursor: pointer;
+    font-family: inherit; color: #666;
+  }
+  #tweaks .seg button.on { background: #fff; color: #111; box-shadow: 0 1px 2px rgba(0,0,0,0.08); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<div id="tweaks">
+  <header>Tweaks <span style="margin-left:auto; font-weight:500; text-transform:none; letter-spacing:0; color:#999; font-size:11px;">5 dimensions</span></header>
+  <div class="body">
+    <label>
+      Accent hue
+      <div class="swatches" id="tw-hue"></div>
+    </label>
+    <label>
+      Theme
+      <div class="seg" id="tw-theme">
+        <button data-v="light" class="on">Light</button>
+        <button data-v="dark">Dark</button>
+      </div>
+    </label>
+    <label>
+      Avatar level (evolves)
+      <div class="seg" id="tw-level">
+        <button data-v="3">Novice</button>
+        <button data-v="14" class="on">Rare</button>
+        <button data-v="32">Legendary</button>
+        <button data-v="55">Mythic</button>
+      </div>
+    </label>
+    <label>
+      XP bar segments
+      <div class="seg" id="tw-segs">
+        <button data-v="10">10</button>
+        <button data-v="20" class="on">20</button>
+        <button data-v="40">40</button>
+      </div>
+    </label>
+    <label>
+      Density
+      <div class="seg" id="tw-density">
+        <button data-v="comfy" class="on">Comfy</button>
+        <button data-v="compact">Compact</button>
+      </div>
+    </label>
+  </div>
+</div>
+
+<div id="root"></div>
+
+<script>
+  // Tweakable defaults — persisted via edit-mode protocol
+  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+    "hue": 38,
+    "theme": "light",
+    "level": 14,
+    "segments": 20,
+    "density": "comfy"
+  }/*EDITMODE-END*/;
+  window.__JL_TWEAKS__ = { ...TWEAK_DEFAULTS };
+</script>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="lib/icons.jsx"></script>
+<script type="text/babel" src="lib/rpg.jsx"></script>
+<script type="text/babel" src="lib/design-canvas.jsx"></script>
+<script type="text/babel" src="screens/landing.jsx"></script>
+<script type="text/babel" src="screens/dashboard.jsx"></script>
+<script type="text/babel" src="screens/pomodoro.jsx"></script>
+<script type="text/babel" src="screens/habits.jsx"></script>
+<script type="text/babel" src="screens/flashcards.jsx"></script>
+<script type="text/babel" src="screens/character.jsx"></script>
+<script type="text/babel" src="screens/mobile.jsx"></script>
+
+<script type="text/babel">
+  // Apply tweaks live
+  const applyTweaks = (t) => {
+    const r = document.documentElement;
+    r.style.setProperty("--jl-hue", t.hue);
+    document.body.classList.toggle("jl-dark", t.theme === "dark");
+    document.querySelectorAll(".jl-root").forEach(el => el.classList.toggle("jl-dark", t.theme === "dark"));
+    // density — tune --jl-gap
+    r.style.setProperty("--jl-gap", t.density === "compact" ? "14px" : "20px");
+  };
+  applyTweaks(window.__JL_TWEAKS__);
+
+  // Edit-mode protocol
+  window.addEventListener("message", (e) => {
+    if (!e.data || typeof e.data !== "object") return;
+    if (e.data.type === "__activate_edit_mode") {
+      document.getElementById("tweaks").classList.add("on");
+    } else if (e.data.type === "__deactivate_edit_mode") {
+      document.getElementById("tweaks").classList.remove("on");
+    }
+  });
+  window.parent.postMessage({ type: "__edit_mode_available" }, "*");
+
+  // Build tweaks UI
+  const HUES = [ {n:"Amber", h:38}, {n:"Rose", h:18}, {n:"Violet", h:295}, {n:"Emerald", h:155}, {n:"Sky", h:235}, {n:"Gold", h:75} ];
+  const hueBox = document.getElementById("tw-hue");
+  HUES.forEach(({ n, h }) => {
+    const d = document.createElement("div");
+    d.className = "sw" + (h === window.__JL_TWEAKS__.hue ? " active" : "");
+    d.title = n;
+    d.style.background = `oklch(0.70 0.15 ${h})`;
+    d.onclick = () => {
+      window.__JL_TWEAKS__.hue = h;
+      applyTweaks(window.__JL_TWEAKS__);
+      [...hueBox.children].forEach(c => c.classList.remove("active"));
+      d.classList.add("active");
+      window.parent.postMessage({ type: "__edit_mode_set_keys", edits: { hue: h }}, "*");
+      reRender();
+    };
+    hueBox.appendChild(d);
+  });
+  const wireSeg = (id, key, cast = (v) => v) => {
+    document.querySelectorAll(`#${id} button`).forEach(b => {
+      b.onclick = () => {
+        document.querySelectorAll(`#${id} button`).forEach(x => x.classList.remove("on"));
+        b.classList.add("on");
+        const v = cast(b.dataset.v);
+        window.__JL_TWEAKS__[key] = v;
+        applyTweaks(window.__JL_TWEAKS__);
+        window.parent.postMessage({ type: "__edit_mode_set_keys", edits: { [key]: v }}, "*");
+        reRender();
+      };
+    });
+  };
+  wireSeg("tw-theme", "theme");
+  wireSeg("tw-level", "level", (v) => parseInt(v, 10));
+  wireSeg("tw-segs",  "segments", (v) => parseInt(v, 10));
+  wireSeg("tw-density", "density");
+
+  // ---- Canvas assembly ----
+  const App = () => {
+    const { DesignCanvas, DCSection, DCArtboard } = window;
+    const t = window.__JL_TWEAKS__;
+    return (
+      <DesignCanvas>
+        <DCSection id="overview" title="01 · Landing & Hub" subtitle="Marketing site + the home dashboard users see after login">
+          <DCArtboard id="landing" label="Landing page" width={1280} height={1600}>
+            <JLLanding />
+          </DCArtboard>
+          <DCArtboard id="dashboard" label="Dashboard — the hub" width={1440} height={900}>
+            <JLDashboard />
+          </DCArtboard>
+        </DCSection>
+
+        <DCSection id="tools" title="02 · The three tools" subtitle="Each tool shares the same XP, streak, and character progression">
+          <DCArtboard id="pomodoro" label="Pomodoro — live timer, tasks, soundscape, blocker" width={1440} height={980}>
+            <JLPomodoro />
+          </DCArtboard>
+          <DCArtboard id="habits" label="Habits — weekly grid + 6-mo heatmap" width={1440} height={1000}>
+            <JLHabits />
+          </DCArtboard>
+          <DCArtboard id="flash" label="Flashcards — SM-2, flip & rate" width={1440} height={1000}>
+            <JLFlash />
+          </DCArtboard>
+        </DCSection>
+
+        <DCSection id="rpg" title="03 · Character & mobile" subtitle="The RPG sheet, plus a condensed mobile view to show responsive intent">
+          <DCArtboard id="character" label="Character sheet" width={1440} height={960}>
+            <JLCharacter />
+          </DCArtboard>
+          <DCArtboard id="mobile" label="Mobile — home" width={390} height={844}>
+            <JLMobile />
+          </DCArtboard>
+        </DCSection>
+      </DesignCanvas>
+    );
+  };
+
+  let root;
+  const reRender = () => {
+    if (!root) root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App />);
+  };
+  reRender();
+</script>
+</body>
+</html>

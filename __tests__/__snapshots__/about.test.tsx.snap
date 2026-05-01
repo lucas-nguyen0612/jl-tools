@@ -1,0 +1,82 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`AboutSection > matches the snapshot 1`] = `
+<div
+  style="display: flex; flex-direction: column; gap: 28px; padding: 22px 28px 40px; max-width: 720px;"
+>
+  <section
+    style="display: flex; flex-direction: column; gap: 4px;"
+  >
+    <h2
+      style="font-family: var(--jl-font-display); font-size: 20px; font-weight: 700; color: var(--jl-text); margin: 0px;"
+    >
+      JL Tools
+    </h2>
+    <p
+      style="font-size: 13px; color: var(--jl-text-soft); margin: 0px;"
+    >
+      Your personal productivity and learning companion.
+    </p>
+  </section>
+  <section
+    style="display: flex; flex-direction: column; gap: 6px;"
+  >
+    <p
+      style="font-size: 14px; color: var(--jl-text); margin: 0px;"
+    >
+      <span
+        style="color: var(--jl-text-soft); margin-right: 8px;"
+      >
+        Version
+      </span>
+      v0.1.0
+    </p>
+    <p
+      style="font-size: 14px; color: var(--jl-text); margin: 0px;"
+    >
+      <span
+        style="color: var(--jl-text-soft); margin-right: 8px;"
+      >
+        Built
+      </span>
+      2026-04-28
+    </p>
+  </section>
+  <section
+    style="display: flex; flex-direction: column; gap: 6px;"
+  >
+    <h3
+      style="font-family: var(--jl-font-display); font-size: 14px; font-weight: 600; color: var(--jl-text); margin: 0px;"
+    >
+      Feedback
+    </h3>
+    <a
+      href="mailto:dat.t.nguyen.works@gmail.com?subject=JL%20Tools%20Feedback%20-%20v0.1.0"
+      style="font-size: 14px; color: var(--jl-accent); text-decoration: none;"
+    >
+      Send feedback
+    </a>
+  </section>
+  <section
+    style="display: flex; flex-direction: column; gap: 6px;"
+  >
+    <h3
+      style="font-family: var(--jl-font-display); font-size: 14px; font-weight: 600; color: var(--jl-text); margin: 0px;"
+    >
+      Legal
+    </h3>
+    <a
+      href="/legal/terms"
+      style="font-size: 14px; color: var(--jl-accent); text-decoration: none;"
+    >
+      Terms of Service
+    </a>
+    <a
+      href="/legal/privacy"
+      style="font-size: 14px; color: var(--jl-accent); text-decoration: none;"
+    >
+      Privacy Policy
+    </a>
+  </section>
+</div>
+`;

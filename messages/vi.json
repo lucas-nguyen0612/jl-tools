@@ -1,0 +1,944 @@
+{
+  "app": {
+    "name": "JL Tools",
+    "tagline": "tập trung · lên cấp"
+  },
+  "common": {
+    "save": "Lưu",
+    "saving": "Đang lưu…",
+    "cancel": "Hủy",
+    "delete": "Xóa",
+    "edit": "Sửa",
+    "close": "Đóng",
+    "confirm": "Xác nhận",
+    "back": "Quay lại",
+    "continue": "Tiếp tục",
+    "submit": "Gửi",
+    "loading": "Đang tải…",
+    "retry": "Thử lại",
+    "yes": "Có",
+    "no": "Không",
+    "comingSoon": "Sắp ra mắt",
+    "optional": "Tùy chọn",
+    "required": "Bắt buộc",
+    "remove": "Gỡ bỏ",
+    "upload": "Tải lên",
+    "search": "Tìm kiếm",
+    "signOut": "Đăng xuất",
+    "all": "Tất cả",
+    "less": "ít",
+    "more": "nhiều"
+  },
+  "errors": {
+    "validation": {
+      "invalidEmail": "Email không hợp lệ",
+      "passwordMin8": "Mật khẩu phải có ít nhất 8 ký tự",
+      "passwordRequired": "Vui lòng nhập mật khẩu",
+      "emailRequired": "Vui lòng nhập email",
+      "fieldRequired": "Trường này là bắt buộc",
+      "displayNameMaxLength": "Tên hiển thị tối đa 32 ký tự",
+      "passwordMismatch": "Mật khẩu không khớp",
+      "urlInvalid": "URL không hợp lệ",
+      "nameRequired": "Vui lòng nhập tên",
+      "nameTooLong": "Tên quá dài",
+      "descriptionTooLong": "Mô tả quá dài",
+      "frontRequired": "Vui lòng nhập mặt trước",
+      "backRequired": "Vui lòng nhập mặt sau",
+      "colorRequired": "Vui lòng chọn màu"
+    },
+    "auth": {
+      "invalidCredentials": "Email hoặc mật khẩu không đúng",
+      "emailNotConfirmed": "Vui lòng xác nhận email trước khi đăng nhập",
+      "weakPassword": "Mật khẩu quá yếu — hãy chọn mật khẩu mạnh hơn",
+      "otpExpired": "Liên kết xác minh đã hết hạn. Vui lòng yêu cầu liên kết mới.",
+      "otpInvalid": "Liên kết xác minh không hợp lệ",
+      "sessionExpired": "Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.",
+      "rateLimit": "Quá nhiều lần thử. Vui lòng đợi một lát rồi thử lại.",
+      "networkError": "Lỗi mạng — kiểm tra kết nối và thử lại",
+      "unknown": "Đã xảy ra lỗi. Vui lòng thử lại."
+    }
+  },
+  "auth": {
+    "signIn": {
+      "title": "JL-Tools",
+      "subtitle": "Đăng nhập để tiếp tục hành trình của bạn",
+      "emailLabel": "Email",
+      "emailPlaceholder": "ban@example.com",
+      "passwordLabel": "Mật khẩu",
+      "submit": "Đăng nhập",
+      "submitting": "Đang đăng nhập…",
+      "forgotPasswordLink": "Quên mật khẩu?",
+      "noAccountText": "Chưa có tài khoản?",
+      "signUpLink": "Đăng ký",
+      "orDivider": "hoặc"
+    },
+    "signUp": {
+      "title": "Tạo tài khoản",
+      "subtitle": "Bắt đầu hành trình năng suất của bạn",
+      "emailLabel": "Email",
+      "emailPlaceholder": "ban@example.com",
+      "passwordLabel": "Mật khẩu",
+      "confirmPasswordLabel": "Xác nhận mật khẩu",
+      "submit": "Tạo tài khoản",
+      "submitting": "Đang tạo tài khoản…",
+      "haveAccountText": "Đã có tài khoản?",
+      "signInLink": "Đăng nhập"
+    },
+    "forgotPassword": {
+      "title": "Đặt lại mật khẩu",
+      "subtitle": "Nhập email của bạn và chúng tôi sẽ gửi liên kết đặt lại mật khẩu",
+      "emailLabel": "Email",
+      "emailPlaceholder": "ban@example.com",
+      "submit": "Gửi email đặt lại",
+      "submitting": "Đang gửi…",
+      "haveAccountText": "Đã có tài khoản?",
+      "signInLink": "Đăng nhập",
+      "successTitle": "Kiểm tra email của bạn",
+      "successSubtitle": "Đã gửi hướng dẫn đặt lại mật khẩu",
+      "successDescription": "Nếu bạn đã đăng ký bằng email và mật khẩu, bạn sẽ nhận được email đặt lại mật khẩu."
+    },
+    "updatePassword": {
+      "title": "Đặt lại mật khẩu",
+      "subtitle": "Vui lòng nhập mật khẩu mới của bạn bên dưới.",
+      "passwordLabel": "Mật khẩu mới",
+      "passwordPlaceholder": "Mật khẩu mới",
+      "submit": "Lưu mật khẩu mới",
+      "submitting": "Đang lưu…"
+    },
+    "signUpSuccess": {
+      "title": "Cảm ơn bạn đã đăng ký!",
+      "subtitle": "Kiểm tra email để xác nhận",
+      "description": "Bạn đã đăng ký thành công. Vui lòng kiểm tra email để xác nhận tài khoản trước khi đăng nhập."
+    },
+    "error": {
+      "title": "Xin lỗi, đã có lỗi xảy ra.",
+      "codePrefix": "Mã lỗi:",
+      "unspecified": "Đã xảy ra lỗi không xác định."
+    },
+    "googleCta": "Tiếp tục với Google",
+    "otpDialog": {
+      "title": "Xác minh email của bạn",
+      "description": "Tài khoản của bạn chưa được xác minh. Hãy kiểm tra hộp thư tại {email} hoặc gửi lại email xác nhận bên dưới.",
+      "resendCta": "Gửi lại email xác minh",
+      "sending": "Đang gửi…",
+      "successMessage": "Đã gửi email — kiểm tra hộp thư của bạn.",
+      "errorMessage": "Gửi lại thất bại. Vui lòng thử lại."
+    },
+    "logout": "Đăng xuất"
+  },
+  "landing": {
+    "nav": {
+      "tools": "Công cụ",
+      "progression": "Tiến trình",
+      "guild": "Bang hội",
+      "pricing": "Giá",
+      "changelog": "Cập nhật",
+      "signIn": "Đăng nhập",
+      "startFree": "Dùng miễn phí"
+    },
+    "hero": {
+      "badge": "MVP · Pomodoro · Thói quen · Flashcards",
+      "title": "Biến kỷ luật thành một cuộc phiêu lưu.",
+      "subtitle": "JL-Tools gói gọn các ứng dụng bạn vẫn dùng để học sâu — đồng hồ tập trung, bộ theo dõi thói quen và flashcard lặp lại ngắt quãng — vào một hệ thống XP chung. Mỗi phiên, mỗi chuỗi, mỗi thẻ ôn tập đều giúp nhân vật của bạn tiến lên.",
+      "primaryCta": "Bắt đầu cuộc phiêu lưu",
+      "secondaryCta": "Xem demo 90 giây",
+      "stats": {
+        "adventurers": "nhà phiêu lưu",
+        "focusMinutes": "phút tập trung",
+        "streakRate": "duy trì chuỗi 7 ngày"
+      }
+    },
+    "toolStrip": {
+      "pomodoroTitle": "Pomodoro",
+      "pomodoroDescription": "Đồng hồ tập trung kiểu RPG với danh sách việc, âm thanh nền và chặn xao nhãng.",
+      "habitsTitle": "Theo dõi thói quen",
+      "habitsDescription": "Chuỗi ngày, bản đồ nhiệt, thống kê hàng tuần. Một liều dopamine mỗi lần check.",
+      "flashcardsTitle": "Flashcards",
+      "flashcardsDescription": "Lặp lại ngắt quãng SM-2, cloze deletion, image occlusion — chuẩn Anki.",
+      "openTool": "Mở công cụ"
+    },
+    "xpBand": {
+      "badge": "Một nhân vật chung",
+      "title": "Mọi công cụ đều cộng vào cùng một thanh XP.",
+      "description": "Một phiên tập trung 25 phút, một thói quen được tích, 30 flashcard ôn xong — tất cả đều cộng vào cấp độ của bạn. Tiến trình được dồn lại; động lực không bị phân mảnh.",
+      "characterXp": "XP nhân vật",
+      "shared": "chung"
+    },
+    "footer": {
+      "copyright": "© 2026 JL-Tools",
+      "privacy": "Quyền riêng tư",
+      "terms": "Điều khoản",
+      "changelog": "Cập nhật"
+    }
+  },
+  "nav": {
+    "sidebar": {
+      "dashboard": "Tổng quan",
+      "pomodoro": "Pomodoro",
+      "habits": "Thói quen",
+      "flashcards": "Flashcards",
+      "quests": "Nhiệm vụ",
+      "guild": "Bang hội",
+      "character": "Nhân vật",
+      "settings": "Cài đặt",
+      "signOut": "Đăng xuất",
+      "expand": "Mở rộng thanh bên",
+      "collapse": "Thu gọn thanh bên",
+      "characterClass": "Học giả"
+    },
+    "topBar": {
+      "search": "Tìm kiếm",
+      "searchPlaceholder": "Tìm bộ thẻ, thói quen, công việc…",
+      "searchHint": "Bắt đầu gõ để tìm bộ thẻ, thói quen và công việc của bạn.",
+      "noMatches": "Không có kết quả",
+      "searching": "Đang tìm…",
+      "notifications": "Thông báo",
+      "allCaughtUp": "Bạn đã xem hết.",
+      "startFocus": "Bắt đầu tập trung"
+    },
+    "bottomNav": {
+      "dashboard": "Tổng quan",
+      "pomodoro": "Pomodoro",
+      "habits": "Thói quen",
+      "flashcards": "Flashcards",
+      "character": "Nhân vật",
+      "settings": "Cài đặt"
+    },
+    "settings": {
+      "account": "Tài khoản",
+      "profile": "Hồ sơ",
+      "appearance": "Giao diện",
+      "notifications": "Thông báo",
+      "about": "Giới thiệu",
+      "back": "Cài đặt"
+    }
+  },
+  "dashboard": {
+    "greeting": {
+      "morning": "Chào buổi sáng",
+      "afternoon": "Chào buổi chiều",
+      "evening": "Chào buổi tối",
+      "night": "Làm việc khuya nhỉ",
+      "withName": "{greeting}, {name}.",
+      "withoutName": "{greeting}."
+    },
+    "subtitle": "Bạn còn {xp} XP nữa để lên cấp {level}. {quests, plural, =0 {Đã hoàn thành tất cả nhiệm vụ hôm nay!} one {Còn # nhiệm vụ trong hôm nay.} other {Còn # nhiệm vụ trong hôm nay.}}",
+    "topBar": {
+      "search": "Tìm kiếm",
+      "searchPlaceholder": "Tìm bộ thẻ, thói quen, công việc…",
+      "notifications": "Thông báo",
+      "startFocus": "Bắt đầu tập trung",
+      "title": "Tổng quan",
+      "guestSubtitle": "Trung tâm năng suất kiểu RPG của bạn",
+      "guestPrompt": "Vui lòng đăng nhập để xem tổng quan."
+    },
+    "hero": {
+      "stats": {
+        "streak": "Chuỗi",
+        "focusToday": "Tập trung hôm nay",
+        "habitsToday": "Thói quen",
+        "cardsToday": "Ôn tập"
+      },
+      "nextUnlock": {
+        "label": "Mở khóa tiếp",
+        "atLevel": "ở cấp {level}"
+      }
+    },
+    "toolGrid": {
+      "title": "Công cụ của bạn",
+      "active": "{count} đang hoạt động",
+      "pomodoroTitle": "Pomodoro",
+      "pomodoroReady": "Sẵn sàng",
+      "pomodoroSessionsToday": "{count, plural, one {# phiên hôm nay} other {# phiên hôm nay}}",
+      "pomodoroXpEarned": "+{xp} XP đã nhận",
+      "pomodoroStartFocus": "Bắt đầu một phiên tập trung",
+      "pomodoroCta": "Tập trung",
+      "habitsTitle": "Theo dõi thói quen",
+      "habitsStatus": "Hoàn thành {done}/{total} hôm nay",
+      "habitsAllDone": "Đã xong hết! Tuyệt vời",
+      "habitsKeepStreak": "Giữ chuỗi của bạn",
+      "habitsCta": "Check-in",
+      "flashcardsTitle": "Flashcards",
+      "flashcardsDue": "{count} đến hạn",
+      "flashcardsAllCaughtUp": "Đã xong hết!",
+      "flashcardsAwaiting": "Thẻ đang chờ ôn",
+      "flashcardsNoneDue": "Không có thẻ nào đến hạn hôm nay",
+      "flashcardsCta": "Học"
+    },
+    "quests": {
+      "title": "Nhiệm vụ hằng ngày",
+      "resetsIn": "Đặt lại sau {time}",
+      "empty": "Chưa có nhiệm vụ nào. Quay lại sau nhé!",
+      "allDone": "Đã hoàn thành tất cả nhiệm vụ! Hẹn gặp lại ngày mai.",
+      "claimed": "Đã nhận",
+      "xpReward": "+{xp} XP",
+      "bonus": "Thưởng"
+    },
+    "streakCard": {
+      "title": "Chuỗi",
+      "dayStreak": "{days, plural, one {Chuỗi # ngày} other {Chuỗi # ngày}} · dài nhất {longest}",
+      "longest": "dài nhất",
+      "less": "ít",
+      "more": "nhiều"
+    },
+    "weeklyStats": {
+      "title": "Tuần này",
+      "focusHours": "Giờ tập trung",
+      "xpEarned": "XP đã nhận",
+      "habitsDone": "Thói quen đã làm",
+      "cardsReviewed": "Thẻ đã ôn",
+      "noChange": "Bằng tuần trước"
+    },
+    "recentBadges": {
+      "title": "Huy hiệu gần đây",
+      "earnedCount": "{count} đã nhận",
+      "empty": "Hoàn thành một phiên Pomodoro để nhận huy hiệu đầu tiên!",
+      "locked": "Đã khóa"
+    },
+    "notificationPanel": {
+      "title": "Thông báo",
+      "empty": "Bạn đã xem hết.",
+      "leveledUp": "Bạn đã lên cấp {level}!",
+      "leveledUpSub": "Nhấn để xem nhân vật",
+      "newBadges": "{count, plural, one {# huy hiệu mới được mở khóa} other {# huy hiệu mới được mở khóa}}",
+      "newBadgesSub": "Nhấn để xem bộ sưu tập",
+      "streakWarning": "Chuỗi {streak} ngày của bạn đang gặp nguy!",
+      "streakWarningSub": "Check-in một thói quen hoặc hoàn thành phiên tập trung",
+      "questsResetSoon": "{count, plural, one {# nhiệm vụ đặt lại sau {time}} other {# nhiệm vụ đặt lại sau {time}}}",
+      "questsResetSoonSub": "Hoàn thành trước nửa đêm",
+      "overdueCards": "{count, plural, one {# thẻ đến hạn ôn} other {# thẻ đến hạn ôn}}",
+      "habitsLeft": "{count, plural, one {Còn # thói quen hôm nay} other {Còn # thói quen hôm nay}}"
+    },
+    "searchDropdown": {
+      "label": "Tìm nội dung",
+      "placeholder": "Tìm bộ thẻ, thói quen, công việc…",
+      "loading": "Đang tìm…",
+      "empty": "Không có kết quả",
+      "hint": "Bắt đầu gõ để tìm bộ thẻ, thói quen và công việc của bạn.",
+      "sectionDecks": "Bộ thẻ",
+      "sectionHabits": "Thói quen",
+      "sectionTasks": "Công việc"
+    }
+  },
+  "pomodoro": {
+    "title": "Pomodoro",
+    "subtitle": "Khối tập trung · +10 XP mỗi phiên",
+    "mode": {
+      "focus": "Tập trung",
+      "shortBreak": "Nghỉ ngắn",
+      "longBreak": "Nghỉ dài",
+      "focusShort": "Tập trung · {minutes}",
+      "shortShort": "Ngắn · {minutes}",
+      "longShort": "Dài · {minutes}"
+    },
+    "controls": {
+      "start": "Bắt đầu",
+      "pause": "Tạm dừng",
+      "resume": "Tiếp tục",
+      "reset": "Đặt lại đồng hồ",
+      "skip": "Bỏ qua sang giai đoạn tiếp",
+      "startFocus": "Bắt đầu tập trung",
+      "exitFocus": "Thoát chế độ tập trung",
+      "focusModeToggle": "Chế độ tập trung",
+      "focusModeHint": "Chế độ tập trung (F)",
+      "mute": "Tắt tiếng",
+      "unmute": "Bật tiếng",
+      "muteSoundscape": "Tắt âm thanh nền",
+      "unmuteSoundscape": "Bật âm thanh nền",
+      "followerTabDisabled": "Timer đang chạy ở tab khác",
+      "followerTabQuote": "\"Làm hai việc cùng lúc tức là không làm được việc nào.\"",
+      "followerTabQuoteAuthor": "— Publilius Syrus"
+    },
+    "timer": {
+      "elapsed": "{time} đã trôi qua",
+      "workingOn": "Đang làm",
+      "pomodorosCount": "{done}/{total} pomodoro",
+      "noTaskDesktop": "Chọn một việc bên phải để tập trung",
+      "noTaskMobile": "Chọn một việc bên dưới để tập trung",
+      "noTaskSelected": "Chưa chọn việc — nhấn vào một việc bên dưới để tập trung",
+      "shortcutsHint": "bắt đầu/dừng · đặt lại · chế độ tập trung"
+    },
+    "taskList": {
+      "title": "Công việc",
+      "addPlaceholder": "Thêm việc…",
+      "addAria": "Thêm việc",
+      "removeAria": "Xóa việc",
+      "dragAria": "Kéo để sắp xếp",
+      "markComplete": "Đánh dấu hoàn thành",
+      "markIncomplete": "Đánh dấu chưa xong",
+      "empty": "Chưa có việc nào — thêm ở trên để bắt đầu",
+      "emptyShort": "Chưa có việc nào — thêm ở trên"
+    },
+    "soundscape": {
+      "title": "Âm thanh nền",
+      "silent": "Im lặng",
+      "rain": "Mưa",
+      "cafe": "Quán cà phê",
+      "forest": "Rừng",
+      "space": "Vũ trụ",
+      "lofi": "Lo-Fi",
+      "myUploads": "Đã tải lên",
+      "uploadCta": "Tải lên",
+      "uploadingCta": "Đang tải lên…",
+      "namePlaceholder": "Đặt tên cho bài nhạc…",
+      "loading": "Đang tải…",
+      "emptyState": "Chưa có nhạc tự tải lên. Tối đa {maxMb} MB mỗi tệp.",
+      "uploadFailed": "Tải lên thất bại",
+      "deleteFailed": "Xóa thất bại",
+      "delete": "Xóa",
+      "volume": "Âm lượng"
+    },
+    "session": {
+      "started": "Đã bắt đầu phiên",
+      "completed": "Đã hoàn thành phiên",
+      "paused": "Đã tạm dừng phiên",
+      "reset": "Đã đặt lại phiên",
+      "completedCount": "Đã hoàn thành {count, plural, one {# phiên} other {# phiên}}",
+      "completeNotificationTitle": "JL Tools · Hoàn thành phiên",
+      "completeNotificationBody": "Làm tốt lắm! Nghỉ một chút và nhận XP của bạn.",
+      "todayLabel": "Hôm nay",
+      "xpEarnedLabel": "+{xp} XP đã nhận"
+    },
+    "xpTicker": {
+      "title": "XP đã nhận",
+      "totalToday": "+{xp} hôm nay",
+      "focusComplete": "Hoàn thành tập trung",
+      "breakNoXp": "Giờ nghỉ — không nhận XP",
+      "switchToFocus": "Chuyển sang Tập trung để nhận XP",
+      "earnHint": "Hoàn thành phiên tập trung này để nhận +10 XP",
+      "footnote": "Chỉ phiên Tập trung mới có XP · Giờ nghỉ không có XP"
+    },
+    "historyChart": {
+      "title": "14 ngày qua",
+      "offline": "ngoại tuyến",
+      "avg": "Trung bình",
+      "perDay": "/ ngày",
+      "best": "Tốt nhất",
+      "total": "Tổng",
+      "sessions": "phiên"
+    },
+    "settings": {
+      "title": "Thời lượng đồng hồ",
+      "description": "Tùy chỉnh thời lượng tập trung, nghỉ và chu kỳ. Thay đổi tự động được lưu.",
+      "durationFocus": "Tập trung (phút)",
+      "durationShortBreak": "Nghỉ ngắn (phút)",
+      "durationLongBreak": "Nghỉ dài (phút)",
+      "sessionsBeforeLongBreak": "Số phiên trước khi nghỉ dài",
+      "trigger": "Cài đặt đồng hồ"
+    }
+  },
+  "habits": {
+    "title": "Thói quen",
+    "subtitle": "Check-in hằng ngày & chuỗi ngày",
+    "addCta": "+ Thêm thói quen",
+    "addFirstCta": "Thêm thói quen đầu tiên",
+    "todayHeader": "Thói quen hôm nay",
+    "todayProgress": "{done} / {total} đã xong",
+    "allDoneToday": "Hôm nay đã xong tất cả!",
+    "form": {
+      "titleNew": "Thói quen mới",
+      "titleEdit": "Sửa thói quen",
+      "nameLabel": "Tên",
+      "namePlaceholder": "vd. Chạy buổi sáng",
+      "categoryLabel": "Danh mục",
+      "timeOfDayLabel": "Thời gian trong ngày",
+      "colorLabel": "Màu",
+      "targetDaysLabel": "Ngày mục tiêu",
+      "targetDaysHint": "(để trống = hằng ngày)",
+      "reminderLabel": "Nhắc nhở",
+      "save": "Lưu thay đổi",
+      "create": "Tạo thói quen"
+    },
+    "categories": {
+      "health": "Sức khỏe",
+      "fitness": "Thể chất",
+      "learning": "Học tập",
+      "productivity": "Năng suất",
+      "mindfulness": "Tỉnh thức",
+      "other": "Khác"
+    },
+    "timeOfDay": {
+      "morning": "Buổi sáng",
+      "afternoon": "Buổi chiều",
+      "evening": "Buổi tối",
+      "anytime": "Bất kỳ lúc nào",
+      "morningHint": "6 giờ – 12 giờ",
+      "afternoonHint": "12 giờ – 18 giờ",
+      "eveningHint": "18 giờ – 22 giờ",
+      "anytimeHint": "Không cố định"
+    },
+    "card": {
+      "options": "Tùy chọn thói quen",
+      "streakDays": "{days, plural, one {# ngày} other {# ngày}}",
+      "yesterday": "Hôm qua"
+    },
+    "checkIn": {
+      "done": "Xong",
+      "due": "Cần làm",
+      "checkAria": "Check-in thói quen",
+      "uncheckAria": "Bỏ check-in"
+    },
+    "heatmap": {
+      "title": "Hoạt động (26 tuần)",
+      "less": "Ít",
+      "more": "Nhiều"
+    },
+    "weeklyGrid": {
+      "title": "Theo tuần",
+      "habitColumn": "THÓI QUEN",
+      "doneTooltip": "{day} — Đã làm",
+      "notDoneTooltip": "{day} — Chưa làm",
+      "empty": "Thêm thói quen để xem theo tuần"
+    },
+    "insightPanel": {
+      "completionRate": "Tỉ lệ hoàn thành",
+      "byCategory": "Theo danh mục",
+      "noHabits": "Chưa có thói quen nào",
+      "trendUp": "+{pct}% so với 6 ngày trước",
+      "trendDown": "{pct}% so với 6 ngày trước",
+      "trendSame": "Bằng 6 ngày trước",
+      "habitsCount": "{count, plural, one {# thói quen} other {# thói quen}}"
+    },
+    "remindersPanel": {
+      "scheduleTitle": "Lịch hôm nay",
+      "doneCount": "{done}/{total} đã xong",
+      "empty": "Thêm thói quen có giờ cụ thể để xem lịch hằng ngày"
+    },
+    "aiInsight": {
+      "label": "Gợi ý",
+      "longStreak": "Thói quen {name} đang có chuỗi {days} ngày — giữ vững nhé!",
+      "buildingStreak": "{name} đang được xây dần lên {days} ngày. Đừng phá chuỗi!",
+      "morningBetter": "Bạn hoàn thành thói quen buổi sáng đáng tin cậy hơn buổi tối {ratio}× lần. Hãy thử dời thêm thói quen sang buổi sáng.",
+      "allDone": "Đã hoàn thành cả {count} thói quen hôm nay! Bạn đang xây một thói quen không thể cản phá.",
+      "default": "Check-in hằng ngày để xây chuỗi và mở khóa các gợi ý về thói quen của bạn."
+    },
+    "empty": {
+      "title": "Chưa có thói quen nào",
+      "description": "Bắt đầu chuỗi ngày bằng cách thêm thói quen đầu tiên",
+      "cta": "Thêm thói quen đầu tiên"
+    },
+    "limits": {
+      "warningSoon": "{count}/10 thói quen — bạn sắp đạt giới hạn.",
+      "maxReached": "Đã đạt tối đa 10 thói quen"
+    },
+    "streakBadge": {
+      "milestone7": "Chuỗi 7 ngày!",
+      "milestone14": "Chuỗi 14 ngày!",
+      "milestone30": "Chuỗi 30 ngày!"
+    },
+    "todayNote": {
+      "title": "Ghi chú hôm nay",
+      "placeholder": "Hôm nay thế nào?"
+    }
+  },
+  "flashcards": {
+    "title": "Flashcards",
+    "subtitle": "{cards, plural, one {# thẻ} other {# thẻ}} đến hạn trong {decks, plural, one {# bộ} other {# bộ}} · Lịch ôn SM-2 · +2 XP mỗi thẻ",
+    "subtitleEmpty": "Lặp lại ngắt quãng SM-2 · +2 XP mỗi thẻ",
+    "topBar": {
+      "browse": "Duyệt",
+      "browseHint": "Duyệt tất cả thẻ trong bộ này",
+      "browseDisabled": "Hãy chọn một bộ thẻ trước",
+      "newCard": "Thẻ mới",
+      "newCardHint": "Thêm thẻ vào bộ đang chọn",
+      "studyAll": "Học tất cả",
+      "studyAllLabel": "Học {count} thẻ đến hạn của tất cả các bộ",
+      "noneDue": "Không có thẻ nào đến hạn",
+      "loading": "Đang tải…"
+    },
+    "sidebar": {
+      "title": "Bộ thẻ",
+      "newDeck": "Bộ mới",
+      "noDecks": "Chưa có bộ thẻ nào",
+      "selectAria": "Chọn bộ {name}",
+      "optionsAria": "Tùy chọn cho {name}",
+      "browseCards": "Duyệt thẻ",
+      "renameEdit": "Đổi tên / Sửa",
+      "manageCards": "Quản lý thẻ",
+      "editDeck": "Sửa bộ thẻ",
+      "allCaughtUp": "Đã xong hết"
+    },
+    "deck": {
+      "name": "Tên",
+      "namePlaceholder": "OS · Chương 4",
+      "description": "Mô tả",
+      "descriptionPlaceholder": "Bộ thẻ này nói về điều gì…",
+      "color": "Màu",
+      "save": "Lưu thay đổi",
+      "create": "Tạo bộ thẻ",
+      "saving": "Đang lưu…",
+      "editTitle": "Sửa bộ thẻ",
+      "newTitle": "Bộ thẻ mới",
+      "deleteConfirm": "Xóa bộ thẻ này? Tất cả thẻ sẽ bị xóa vĩnh viễn.",
+      "deleteConfirmNamed": "Xóa bộ thẻ \"{name}\"? Tất cả {count, plural, one {# thẻ} other {# thẻ}} sẽ bị xóa vĩnh viễn.",
+      "cardCount": "{cards} thẻ · {newCards} mới",
+      "dueCount": "{count} đến hạn"
+    },
+    "card": {
+      "front": "Mặt trước",
+      "frontPlaceholder": "Câu hỏi hoặc khái niệm…",
+      "back": "Mặt sau",
+      "backPlaceholder": "Câu trả lời hoặc giải thích…",
+      "tagsLabel": "Thẻ (cách nhau bằng dấu phẩy)",
+      "tagsPlaceholder": "os, concurrency, algorithms…",
+      "save": "Lưu thay đổi",
+      "create": "Tạo thẻ",
+      "saving": "Đang lưu…",
+      "editTitle": "Sửa thẻ",
+      "newTitle": "Thẻ mới",
+      "deleteConfirm": "Xóa thẻ này?",
+      "flipHint": "Nhấn Space để lật",
+      "frontHint": "MẶT TRƯỚC · nhấn để lật",
+      "backHint": "MẶT SAU",
+      "questionLabel": "Câu hỏi",
+      "answerLabel": "Câu trả lời",
+      "rateHint": "Đánh giá khả năng nhớ bên dưới · phím 1–4"
+    },
+    "review": {
+      "rating": {
+        "again": "Học lại",
+        "hard": "Khó",
+        "good": "Tốt",
+        "easy": "Dễ"
+      },
+      "nextLabel": "tiếp · {label}",
+      "xpReward": "+{xp} XP",
+      "progress": "Tiến độ phiên",
+      "progressDetail": "{current} / {total} · {percent}%",
+      "undo": "Hoàn tác",
+      "undoNothing": "Không có gì để hoàn tác",
+      "undoHint": "Hoàn tác đánh giá cuối (chỉ cục bộ)",
+      "noCards": "Không có thẻ nào để ôn.",
+      "studyAgain": "Học lại",
+      "backToDecks": "Quay lại bộ thẻ",
+      "completeBadge": "Hoàn thành phiên",
+      "retentionRate": "tỉ lệ ghi nhớ",
+      "xpEarned": "+{xp} XP đã nhận",
+      "xpSaving": "Đang lưu…",
+      "sessionBonus": "bao gồm +{xp} thưởng phiên",
+      "errorSaving": "Lưu phiên thất bại: {error}. Tiến độ chưa được ghi.",
+      "partialFail": "{failed} trong {total} {failed, plural, one {thẻ} other {thẻ}} không lưu được — các đánh giá này chưa được ghi.",
+      "totalReviewed": "Tổng cộng đã ôn {total} thẻ"
+    },
+    "stats": {
+      "retention": {
+        "title": "Khả năng ghi nhớ",
+        "young": "non · <21 ngày",
+        "mature": "trưởng thành · 21+ ngày",
+        "needsReviews": "Hãy ôn thẻ đầu tiên để xem khả năng ghi nhớ",
+        "needsMoreDays": "Cần thêm một ngày ôn nữa để vẽ xu hướng",
+        "selectDeck": "Hãy chọn một bộ để xem thống kê"
+      },
+      "cardPool": {
+        "title": "Kho thẻ · {deck}",
+        "new": "Mới",
+        "learning": "Đang học",
+        "young": "Non (<21d)",
+        "mature": "Trưởng thành (21d+)",
+        "totalCards": "Tổng số thẻ"
+      },
+      "forecast": {
+        "title": "Dự báo · 7 ngày tới",
+        "scheduled": "Đã xếp lịch",
+        "newLegend": "Mới",
+        "tooltip": "{scheduled} đã xếp lịch · {newCount} mới"
+      }
+    },
+    "empty": {
+      "noDecks": "Chưa có bộ thẻ nào",
+      "noDecksDescription": "Chưa có bộ thẻ nào — tạo bộ đầu tiên để bắt đầu học.",
+      "createFirstDeck": "Tạo bộ thẻ đầu tiên",
+      "selectDeck": "Hãy chọn một bộ để bắt đầu học",
+      "allCaughtUpDeck": "Đã xong hết — không có thẻ đến hạn",
+      "noCardsYet": "Chưa có thẻ nào. Thêm thẻ đầu tiên để bắt đầu.",
+      "studyEmpty": "Đã xong hết!",
+      "nextReview": "Lần ôn tiếp theo: ngày mai ({count} thẻ đến hạn)"
+    },
+    "deckOverview": {
+      "totalLabel": "Tổng",
+      "dueNowLabel": "Đến hạn",
+      "newLabel": "Mới",
+      "startReview": "Bắt đầu ôn · {count, plural, one {# thẻ} other {# thẻ}}",
+      "allCaughtUp": "Đã xong hết",
+      "addCard": "Thêm thẻ",
+      "editDeck": "Sửa bộ thẻ",
+      "browseCards": "Duyệt thẻ",
+      "loading": "Đang tải…"
+    },
+    "deckDetail": {
+      "decksLink": "Bộ thẻ",
+      "studyCta": "Học ngay · {count} thẻ đến hạn",
+      "allCaughtUp": "Đã xong hết — không có thẻ đến hạn",
+      "cardsHeader": "Thẻ ({count})",
+      "addCardCta": "+ Thêm thẻ"
+    },
+    "ratingsTally": {
+      "again": "học lại",
+      "hard": "khó",
+      "good": "tốt",
+      "easy": "dễ"
+    }
+  },
+  "character": {
+    "title": "Nhân vật",
+    "subtitle": "Tiến trình của bạn từ mọi công cụ, gộp thành một bảng nhà phiêu lưu.",
+    "guestPrompt": "Vui lòng đăng nhập để xem nhân vật.",
+    "sheet": {
+      "tierNovice": "Tân thủ",
+      "tierApprentice": "Học việc",
+      "tierAdept": "Thành thạo",
+      "tierExpert": "Chuyên gia",
+      "tierMaster": "Cao thủ",
+      "xpProgress": "{current} / {total} XP để lên cấp {level}",
+      "titleLabel": "Danh hiệu",
+      "editAria": "Chỉnh sửa hồ sơ",
+      "stats": {
+        "streak": "Chuỗi",
+        "focus": "Tập trung"
+      }
+    },
+    "badges": {
+      "title": "Huy hiệu",
+      "earnedCount": "{earned} / {total} đã nhận",
+      "filterAll": "tất cả",
+      "filterEarned": "đã nhận",
+      "filterLocked": "đã khóa",
+      "lockedTooltip": "Đã khóa: {description}",
+      "earnedTooltip": "{name} — {description}",
+      "emptyEarned": "Chưa nhận huy hiệu nào — hoàn thành nhiệm vụ để mở khóa!",
+      "emptyAll": "Đã mở tất cả huy hiệu! Tuyệt vời!"
+    },
+    "activity": {
+      "title": "Hoạt động gần đây",
+      "empty": "Chưa có hoạt động — bắt đầu một Pomodoro hoặc check-in một thói quen!",
+      "justNow": "vừa xong",
+      "minutesAgo": "{minutes} phút trước",
+      "hoursAgo": "{hours} giờ trước",
+      "yesterday": "hôm qua",
+      "daysAgo": "{days} ngày trước",
+      "xpAmount": "+{xp} XP"
+    },
+    "stats": {
+      "title": "Chỉ số",
+      "focus": "Tập trung",
+      "focusDesc": "Số giờ học sâu",
+      "discipline": "Kỷ luật",
+      "disciplineDesc": "Sự đều đặn của thói quen",
+      "knowledge": "Kiến thức",
+      "knowledgeDesc": "Số thẻ đã thuộc",
+      "endurance": "Bền bỉ",
+      "enduranceDesc": "Sức bền của chuỗi"
+    }
+  },
+  "settings": {
+    "title": "Cài đặt",
+    "subtitle": "Quản lý tài khoản, giao diện và thông báo của bạn.",
+    "nav": {
+      "account": "Tài khoản",
+      "profile": "Hồ sơ",
+      "appearance": "Giao diện",
+      "notifications": "Thông báo",
+      "about": "Giới thiệu"
+    },
+    "sectionsList": {
+      "profileTitle": "Hồ sơ",
+      "profileDescription": "Tên hiển thị và ảnh đại diện",
+      "accountTitle": "Tài khoản",
+      "accountDescription": "Email, mật khẩu và xóa tài khoản",
+      "appearanceTitle": "Giao diện",
+      "appearanceDescription": "Chủ đề và màu nhấn",
+      "notificationsTitle": "Thông báo",
+      "notificationsDescription": "Âm thanh, lời nhắc và quyền",
+      "aboutTitle": "Giới thiệu",
+      "aboutDescription": "Phiên bản ứng dụng và phản hồi"
+    },
+    "account": {
+      "title": "Tài khoản",
+      "emailTitle": "Địa chỉ email",
+      "emailCurrent": "Hiện tại: {email}. Email xác nhận sẽ được gửi tới địa chỉ mới.",
+      "newEmailLabel": "Email mới",
+      "newEmailPlaceholder": "ban@example.com",
+      "newEmailDiffer": "Email mới phải khác email hiện tại.",
+      "updateEmail": "Cập nhật email",
+      "updatingEmail": "Đang gửi…",
+      "emailSent": "Hãy kiểm tra hộp thư tại {email}.",
+      "emailSentInstruction": "Nhấn vào liên kết xác nhận để hoàn tất thay đổi.",
+      "changeAgain": "Đổi lại",
+      "passwordTitle": "Mật khẩu",
+      "passwordDescription": "Tối thiểu 8 ký tự. Khi đổi mật khẩu, các thiết bị khác sẽ bị đăng xuất.",
+      "currentPasswordLabel": "Mật khẩu hiện tại",
+      "newPasswordLabel": "Mật khẩu mới",
+      "confirmPasswordLabel": "Xác nhận mật khẩu mới",
+      "currentPasswordIncorrect": "Mật khẩu hiện tại không đúng",
+      "updatePassword": "Cập nhật mật khẩu",
+      "updatingPassword": "Đang cập nhật…",
+      "passwordUpdated": "Đã cập nhật mật khẩu.",
+      "signedOutOtherDevices": "Vì lý do bảo mật, bạn đã được đăng xuất khỏi các thiết bị khác.",
+      "signOutTitle": "Đăng xuất",
+      "signOutDescription": "Đăng xuất khỏi thiết bị này. Tài khoản và tiến trình của bạn vẫn an toàn.",
+      "signOutCta": "Đăng xuất",
+      "deleteAccount": {
+        "title": "Vùng nguy hiểm",
+        "description": "Xóa vĩnh viễn tài khoản và toàn bộ dữ liệu. Hành động này không thể hoàn tác.",
+        "cta": "Xóa tài khoản",
+        "confirmTitle": "Xóa tài khoản của bạn",
+        "confirmDescription": "Đây là hành động vĩnh viễn. Mọi dữ liệu sẽ bị xóa và không thể khôi phục.",
+        "namePromptPrefix": "Nhập tên hiển thị của bạn",
+        "namePromptSuffix": "để xác nhận",
+        "displayNameAria": "Xác nhận tên hiển thị",
+        "passwordLabel": "Mật khẩu hiện tại",
+        "passwordAria": "Mật khẩu để xóa tài khoản",
+        "confirm": "Xóa tài khoản của tôi",
+        "confirmDeleting": "Đang xóa…",
+        "cancel": "Hủy"
+      }
+    },
+    "profile": {
+      "title": "Hồ sơ",
+      "subtitle": "Quản lý tên hiển thị và ảnh đại diện.",
+      "avatarLabel": "Ảnh đại diện",
+      "displayNameLabel": "Tên hiển thị",
+      "displayNamePlaceholder": "Tên hiển thị của bạn",
+      "emailLabel": "Email",
+      "emailHelp": "Không thể thay đổi email tại đây. Hãy vào Tài khoản để cập nhật email.",
+      "save": "Lưu",
+      "saving": "Đang lưu…",
+      "saved": "Đã lưu",
+      "uploadCta": "Tải ảnh lên",
+      "uploading": "Đang tải lên…",
+      "removeCta": "Gỡ bỏ",
+      "avatarSizeHelp": "PNG, JPG hoặc WEBP — tối đa 5 MB",
+      "avatarTooBig": "Ảnh phải nhỏ hơn 5 MB",
+      "avatarBadType": "Chỉ chấp nhận ảnh PNG / JPG / WEBP",
+      "uploadFailed": "Tải lên thất bại — vui lòng thử lại",
+      "removeFailed": "Gỡ bỏ thất bại — vui lòng thử lại",
+      "avatarAlt": "Ảnh đại diện hồ sơ",
+      "uploadAria": "Tải ảnh đại diện lên",
+      "removeDialogTitle": "Gỡ bỏ ảnh đại diện?",
+      "removeDialogDescription": "Ảnh đại diện sẽ được đặt lại về mặc định. Hành động này không thể hoàn tác.",
+      "uploadHint": "PNG, JPG hoặc WEBP · tối đa 5 MB",
+      "sizeLimitError": "Tệp phải nhỏ hơn hoặc bằng 5 MB",
+      "typeError": "Chỉ hỗ trợ PNG, JPG và WEBP"
+    },
+    "appearance": {
+      "title": "Giao diện",
+      "themeTitle": "Chủ đề",
+      "themeDescription": "Chọn cách hiển thị của ứng dụng.",
+      "themeLight": "Sáng",
+      "themeLightDesc": "Luôn sáng",
+      "themeDark": "Tối",
+      "themeDarkDesc": "Luôn tối",
+      "themeSystem": "Theo hệ thống",
+      "themeSystemDesc": "Khớp với thiết bị",
+      "accentTitle": "Màu nhấn",
+      "accentDescription": "Kéo để điều chỉnh tông màu nhấn từ ấm sang lạnh.",
+      "accentAria": "Tông màu nhấn",
+      "hueTitle": "Màu nhấn",
+      "hueDescription": "Kéo để thay đổi tông màu nhấn trong toàn bộ ứng dụng.",
+      "huePreview": "Xem trước",
+      "saving": "Đang lưu…",
+      "saved": "Đã lưu"
+    },
+    "notifications": {
+      "title": "Thông báo",
+      "browserTitle": "Thông báo trình duyệt",
+      "browserDescription": "Cho phép trình duyệt hiển thị thông báo trên màn hình khi phiên kết thúc.",
+      "browserStatusGranted": "Đã cho phép",
+      "browserStatusDenied": "Đã chặn",
+      "browserStatusDefault": "Tắt",
+      "browserStatusUnsupported": "Không hỗ trợ",
+      "browserStatusChecking": "Đang kiểm tra…",
+      "browserStatusAria": "Quyền thông báo trình duyệt: {status}",
+      "enableCta": "Bật",
+      "deniedHelp": "Mở cài đặt trình duyệt để cho phép thông báo cho trang này.",
+      "unsupportedHelp": "Thiết bị này không hỗ trợ thông báo trình duyệt.",
+      "pomodoroSoundTitle": "Âm báo Pomodoro",
+      "pomodoroSoundDescription": "Phát một âm ngắn khi phiên tập trung kết thúc.",
+      "pomodoroSoundAria": "Bật âm báo Pomodoro",
+      "volumeLabel": "Âm lượng",
+      "volumeAria": "Âm lượng cảnh báo",
+      "habitRemindersTitle": "Nhắc thói quen",
+      "habitRemindersDescription": "Bật nhắc nhở trong ứng dụng cho các thói quen đã đặt giờ.",
+      "habitRemindersAria": "Bật nhắc thói quen",
+      "on": "Bật",
+      "off": "Tắt",
+      "pomodoro": {
+        "title": "Âm báo Pomodoro",
+        "description": "Phát âm thanh khi phiên tập trung kết thúc.",
+        "volumeLabel": "Âm lượng",
+        "toggleLabel": "Bật âm thanh"
+      },
+      "habits": {
+        "title": "Nhắc thói quen",
+        "description": "Hiện thông báo trình duyệt cho thói quen có khung giờ đặt.",
+        "masterToggleLabel": "Bật nhắc thói quen"
+      },
+      "browser": {
+        "title": "Thông báo trình duyệt",
+        "description": "Cần thiết cho nhắc thói quen và cảnh báo Pomodoro.",
+        "grantCta": "Bật thông báo trình duyệt",
+        "deniedGuide": "Thông báo trình duyệt đang bị chặn. Mở cài đặt trình duyệt để cho phép.",
+        "statusGranted": "Đã cấp",
+        "statusDenied": "Đã từ chối",
+        "statusDefault": "Chưa đặt"
+      }
+    },
+    "about": {
+      "title": "Giới thiệu",
+      "appName": "JL Tools",
+      "tagline": "Bạn đồng hành về năng suất và học tập của bạn.",
+      "versionLabel": "Phiên bản",
+      "buildLabel": "Build",
+      "feedbackTitle": "Phản hồi",
+      "feedbackCta": "Gửi phản hồi",
+      "feedbackSubject": "Phản hồi JL Tools - v{version}",
+      "legalTitle": "Pháp lý",
+      "termsLink": "Điều khoản dịch vụ",
+      "privacyLink": "Chính sách bảo mật",
+      "builtLabel": "Build"
+    }
+  },
+  "legal": {
+    "privacy": {
+      "title": "Chính sách bảo mật",
+      "metadataTitle": "Chính sách bảo mật — JL Tools",
+      "comingSoon": "Sắp ra mắt.",
+      "body": "Chính sách bảo mật đầy đủ của chúng tôi đang được soạn thảo. Trong thời gian này, nếu có bất kỳ câu hỏi nào, vui lòng liên hệ với chúng tôi tại {email}."
+    },
+    "terms": {
+      "title": "Điều khoản dịch vụ",
+      "metadataTitle": "Điều khoản dịch vụ — JL Tools",
+      "comingSoon": "Sắp ra mắt.",
+      "body": "Điều khoản dịch vụ đầy đủ của chúng tôi đang được soạn thảo. Trong thời gian này, nếu có bất kỳ câu hỏi nào, vui lòng liên hệ với chúng tôi tại {email}."
+    }
+  },
+  "onboarding": {
+    "step1": {
+      "title": "Đặt tên cho nhân vật",
+      "subtitle": "Đây là tên bạn sẽ xuất hiện trong hệ thống RPG",
+      "namePlaceholder": "Nhà phiêu lưu",
+      "continue": "Tiếp tục"
+    },
+    "step2": {
+      "title": "Mục tiêu của bạn là gì?",
+      "subtitle": "Chọn tất cả những điều áp dụng",
+      "goalLearning": "Học tập",
+      "goalWork": "Công việc",
+      "goalHabits": "Thói quen",
+      "goalMemory": "Ghi nhớ",
+      "continue": "Tiếp tục",
+      "back": "Quay lại"
+    },
+    "step3": {
+      "title": "Chọn công cụ đầu tiên",
+      "subtitle": "Bạn có thể dùng tất cả công cụ bất cứ lúc nào",
+      "pomodoroTitle": "Pomodoro",
+      "pomodoroDesc": "Đồng hồ tập trung & danh sách việc",
+      "habitsTitle": "Theo dõi thói quen",
+      "habitsDesc": "Check-in hằng ngày & chuỗi ngày",
+      "flashcardsTitle": "Flashcards",
+      "flashcardsDesc": "Ôn tập lặp lại ngắt quãng",
+      "back": "Quay lại"
+    }
+  }
+}

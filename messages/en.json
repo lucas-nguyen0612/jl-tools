@@ -1,0 +1,944 @@
+{
+  "app": {
+    "name": "JL Tools",
+    "tagline": "focus · level up"
+  },
+  "common": {
+    "save": "Save",
+    "saving": "Saving…",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "close": "Close",
+    "confirm": "Confirm",
+    "back": "Back",
+    "continue": "Continue",
+    "submit": "Submit",
+    "loading": "Loading…",
+    "retry": "Retry",
+    "yes": "Yes",
+    "no": "No",
+    "comingSoon": "Coming soon",
+    "optional": "Optional",
+    "required": "Required",
+    "remove": "Remove",
+    "upload": "Upload",
+    "search": "Search",
+    "signOut": "Sign out",
+    "all": "All",
+    "less": "less",
+    "more": "more"
+  },
+  "errors": {
+    "validation": {
+      "invalidEmail": "Invalid email address",
+      "passwordMin8": "Password must be at least 8 characters",
+      "passwordRequired": "Password is required",
+      "emailRequired": "Email is required",
+      "fieldRequired": "This field is required",
+      "displayNameMaxLength": "Display name must be 32 characters or fewer",
+      "passwordMismatch": "Passwords don't match",
+      "urlInvalid": "Invalid URL",
+      "nameRequired": "Name is required",
+      "nameTooLong": "Name is too long",
+      "descriptionTooLong": "Description is too long",
+      "frontRequired": "Front side is required",
+      "backRequired": "Back side is required",
+      "colorRequired": "Color is required"
+    },
+    "auth": {
+      "invalidCredentials": "Invalid email or password",
+      "emailNotConfirmed": "Please confirm your email before signing in",
+      "weakPassword": "Password is too weak — please pick a stronger one",
+      "otpExpired": "This verification link has expired. Please request a new one.",
+      "otpInvalid": "This verification link is invalid",
+      "sessionExpired": "Your session has expired. Please sign in again.",
+      "rateLimit": "Too many attempts. Please wait a moment and try again.",
+      "networkError": "Network error — check your connection and try again",
+      "unknown": "Something went wrong. Please try again."
+    }
+  },
+  "auth": {
+    "signIn": {
+      "title": "JL-Tools",
+      "subtitle": "Sign in to continue your journey",
+      "emailLabel": "Email",
+      "emailPlaceholder": "m@example.com",
+      "passwordLabel": "Password",
+      "submit": "Sign In",
+      "submitting": "Signing in…",
+      "forgotPasswordLink": "Forgot password?",
+      "noAccountText": "Don't have an account?",
+      "signUpLink": "Sign up",
+      "orDivider": "or"
+    },
+    "signUp": {
+      "title": "Create Account",
+      "subtitle": "Begin your productivity journey",
+      "emailLabel": "Email",
+      "emailPlaceholder": "m@example.com",
+      "passwordLabel": "Password",
+      "confirmPasswordLabel": "Confirm Password",
+      "submit": "Create Account",
+      "submitting": "Creating account…",
+      "haveAccountText": "Already have an account?",
+      "signInLink": "Sign in"
+    },
+    "forgotPassword": {
+      "title": "Reset Your Password",
+      "subtitle": "Type in your email and we'll send you a link to reset your password",
+      "emailLabel": "Email",
+      "emailPlaceholder": "m@example.com",
+      "submit": "Send reset email",
+      "submitting": "Sending…",
+      "haveAccountText": "Already have an account?",
+      "signInLink": "Login",
+      "successTitle": "Check Your Email",
+      "successSubtitle": "Password reset instructions sent",
+      "successDescription": "If you registered using your email and password, you will receive a password reset email."
+    },
+    "updatePassword": {
+      "title": "Reset Your Password",
+      "subtitle": "Please enter your new password below.",
+      "passwordLabel": "New password",
+      "passwordPlaceholder": "New password",
+      "submit": "Save new password",
+      "submitting": "Saving…"
+    },
+    "signUpSuccess": {
+      "title": "Thank you for signing up!",
+      "subtitle": "Check your email to confirm",
+      "description": "You've successfully signed up. Please check your email to confirm your account before signing in."
+    },
+    "error": {
+      "title": "Sorry, something went wrong.",
+      "codePrefix": "Code error:",
+      "unspecified": "An unspecified error occurred."
+    },
+    "googleCta": "Continue with Google",
+    "otpDialog": {
+      "title": "Verify your email",
+      "description": "Your account hasn't been verified yet. Check your inbox at {email} or resend the confirmation email below.",
+      "resendCta": "Resend verification email",
+      "sending": "Sending…",
+      "successMessage": "Email sent — check your inbox.",
+      "errorMessage": "Failed to resend. Please try again."
+    },
+    "logout": "Logout"
+  },
+  "landing": {
+    "nav": {
+      "tools": "Tools",
+      "progression": "Progression",
+      "guild": "Guild",
+      "pricing": "Pricing",
+      "changelog": "Changelog",
+      "signIn": "Sign in",
+      "startFree": "Start free"
+    },
+    "hero": {
+      "badge": "MVP · Pomodoro · Habits · Flashcards",
+      "title": "Turn discipline into a quest.",
+      "subtitle": "JL-Tools bundles the apps you already use for deep work — a focus timer, habit tracker, and spaced-repetition flashcards — under one shared XP system. Every session, every streak, every card reviewed moves your character forward.",
+      "primaryCta": "Begin your adventure",
+      "secondaryCta": "Watch 90-sec demo",
+      "stats": {
+        "adventurers": "adventurers",
+        "focusMinutes": "focus minutes",
+        "streakRate": "keep a 7-day streak"
+      }
+    },
+    "toolStrip": {
+      "pomodoroTitle": "Pomodoro",
+      "pomodoroDescription": "RPG focus timer with tasks, ambient soundscapes and distraction blocker.",
+      "habitsTitle": "Habit Tracker",
+      "habitsDescription": "Streaks, heatmap, weekly insights. One dopamine hit per check.",
+      "flashcardsTitle": "Flashcards",
+      "flashcardsDescription": "SM-2 spaced repetition, cloze deletion, image occlusion — Anki-grade.",
+      "openTool": "Open tool"
+    },
+    "xpBand": {
+      "badge": "One shared character",
+      "title": "Every tool feeds the same XP bar.",
+      "description": "A 25-min focus session, a habit checked off, 30 flashcards reviewed — they all contribute to your level. Progress compounds; motivation doesn't fragment.",
+      "characterXp": "Character XP",
+      "shared": "shared"
+    },
+    "footer": {
+      "copyright": "© 2026 JL-Tools",
+      "privacy": "Privacy",
+      "terms": "Terms",
+      "changelog": "Changelog"
+    }
+  },
+  "nav": {
+    "sidebar": {
+      "dashboard": "Dashboard",
+      "pomodoro": "Pomodoro",
+      "habits": "Habits",
+      "flashcards": "Flashcards",
+      "quests": "Quests",
+      "guild": "Guild",
+      "character": "Character",
+      "settings": "Settings",
+      "signOut": "Sign out",
+      "expand": "Expand sidebar",
+      "collapse": "Collapse sidebar",
+      "characterClass": "Scholar"
+    },
+    "topBar": {
+      "search": "Search",
+      "searchPlaceholder": "Search decks, habits, tasks…",
+      "searchHint": "Start typing to search your decks, habits, and tasks.",
+      "noMatches": "No matches",
+      "searching": "Searching…",
+      "notifications": "Notifications",
+      "allCaughtUp": "You're all caught up.",
+      "startFocus": "Start focus"
+    },
+    "bottomNav": {
+      "dashboard": "Dashboard",
+      "pomodoro": "Pomodoro",
+      "habits": "Habits",
+      "flashcards": "Flashcards",
+      "character": "Character",
+      "settings": "Settings"
+    },
+    "settings": {
+      "account": "Account",
+      "profile": "Profile",
+      "appearance": "Appearance",
+      "notifications": "Notifications",
+      "about": "About",
+      "back": "Settings"
+    }
+  },
+  "dashboard": {
+    "greeting": {
+      "morning": "Good morning",
+      "afternoon": "Good afternoon",
+      "evening": "Good evening",
+      "night": "Working late",
+      "withName": "{greeting}, {name}.",
+      "withoutName": "{greeting}."
+    },
+    "subtitle": "You're {xp} XP away from Level {level}. {quests, plural, =0 {All quests done today!} one {# quest remaining today.} other {# quests remaining today.}}",
+    "topBar": {
+      "search": "Search",
+      "searchPlaceholder": "Search decks, habits, tasks…",
+      "notifications": "Notifications",
+      "startFocus": "Start focus",
+      "title": "Dashboard",
+      "guestSubtitle": "Your RPG productivity hub",
+      "guestPrompt": "Please sign in to view your dashboard."
+    },
+    "hero": {
+      "stats": {
+        "streak": "Streak",
+        "focusToday": "Focus today",
+        "habitsToday": "Habits",
+        "cardsToday": "Reviews"
+      },
+      "nextUnlock": {
+        "label": "Next unlock",
+        "atLevel": "at Level {level}"
+      }
+    },
+    "toolGrid": {
+      "title": "Your tools",
+      "active": "{count} active",
+      "pomodoroTitle": "Pomodoro",
+      "pomodoroReady": "Ready",
+      "pomodoroSessionsToday": "{count, plural, one {# session today} other {# sessions today}}",
+      "pomodoroXpEarned": "+{xp} XP earned",
+      "pomodoroStartFocus": "Start a focus session",
+      "pomodoroCta": "Start Focus",
+      "habitsTitle": "Habit Tracker",
+      "habitsStatus": "{done}/{total} done today",
+      "habitsAllDone": "All done! Great work",
+      "habitsKeepStreak": "Keep your streak alive",
+      "habitsCta": "Check In",
+      "flashcardsTitle": "Flashcards",
+      "flashcardsDue": "{count} due",
+      "flashcardsAllCaughtUp": "All caught up!",
+      "flashcardsAwaiting": "Cards awaiting review",
+      "flashcardsNoneDue": "No cards due today",
+      "flashcardsCta": "Study"
+    },
+    "quests": {
+      "title": "Daily Quests",
+      "resetsIn": "Resets in {time}",
+      "empty": "No quests assigned yet. Check back soon!",
+      "allDone": "All quests complete! Come back tomorrow.",
+      "claimed": "Claimed",
+      "xpReward": "+{xp} XP",
+      "bonus": "Bonus"
+    },
+    "streakCard": {
+      "title": "Streak",
+      "dayStreak": "{days, plural, one {# day streak} other {# day streak}} · longest {longest}",
+      "longest": "longest",
+      "less": "less",
+      "more": "more"
+    },
+    "weeklyStats": {
+      "title": "This week",
+      "focusHours": "Focus hours",
+      "xpEarned": "XP earned",
+      "habitsDone": "Habits done",
+      "cardsReviewed": "Cards reviewed",
+      "noChange": "Same as last week"
+    },
+    "recentBadges": {
+      "title": "Recent Badges",
+      "earnedCount": "{count} earned",
+      "empty": "Earn your first badge by completing a Pomodoro session!",
+      "locked": "Locked"
+    },
+    "notificationPanel": {
+      "title": "Notifications",
+      "empty": "You're all caught up.",
+      "leveledUp": "You leveled up to Level {level}!",
+      "leveledUpSub": "Tap to view your character",
+      "newBadges": "{count, plural, one {# new badge unlocked} other {# new badges unlocked}}",
+      "newBadgesSub": "Tap to view your collection",
+      "streakWarning": "Your {streak}-day streak is at risk!",
+      "streakWarningSub": "Check in a habit or finish a focus session",
+      "questsResetSoon": "{count, plural, one {# quest resets in {time}} other {# quests reset in {time}}}",
+      "questsResetSoonSub": "Finish them before midnight",
+      "overdueCards": "{count, plural, one {# card due for review} other {# cards due for review}}",
+      "habitsLeft": "{count, plural, one {# habit left today} other {# habits left today}}"
+    },
+    "searchDropdown": {
+      "label": "Search content",
+      "placeholder": "Search decks, habits, tasks…",
+      "loading": "Searching…",
+      "empty": "No matches",
+      "hint": "Start typing to search your decks, habits, and tasks.",
+      "sectionDecks": "Decks",
+      "sectionHabits": "Habits",
+      "sectionTasks": "Tasks"
+    }
+  },
+  "pomodoro": {
+    "title": "Pomodoro",
+    "subtitle": "Focus block · +10 XP per session",
+    "mode": {
+      "focus": "Focus",
+      "shortBreak": "Short break",
+      "longBreak": "Long break",
+      "focusShort": "Focus · {minutes}",
+      "shortShort": "Short · {minutes}",
+      "longShort": "Long · {minutes}"
+    },
+    "controls": {
+      "start": "Start",
+      "pause": "Pause",
+      "resume": "Resume",
+      "reset": "Reset timer",
+      "skip": "Skip to next phase",
+      "startFocus": "Start focus",
+      "exitFocus": "Exit Focus Mode",
+      "focusModeToggle": "Focus Mode",
+      "focusModeHint": "Focus mode (F)",
+      "mute": "Mute",
+      "unmute": "Unmute",
+      "muteSoundscape": "Mute soundscape",
+      "unmuteSoundscape": "Unmute soundscape",
+      "followerTabDisabled": "Timer is running in another tab",
+      "followerTabQuote": "\"To do two things at once is to do neither.\"",
+      "followerTabQuoteAuthor": "— Publilius Syrus"
+    },
+    "timer": {
+      "elapsed": "{time} elapsed",
+      "workingOn": "Working on",
+      "pomodorosCount": "{done}/{total} pomodoros",
+      "noTaskDesktop": "Pick a task on the right to focus on",
+      "noTaskMobile": "Pick a task below to focus on",
+      "noTaskSelected": "No task selected — click a task below to focus",
+      "shortcutsHint": "start/pause · reset · focus mode"
+    },
+    "taskList": {
+      "title": "Tasks",
+      "addPlaceholder": "Add a task…",
+      "addAria": "Add task",
+      "removeAria": "Remove task",
+      "dragAria": "Drag to reorder",
+      "markComplete": "Mark complete",
+      "markIncomplete": "Mark incomplete",
+      "empty": "No tasks yet — add one above to get started",
+      "emptyShort": "No tasks yet — add one above"
+    },
+    "soundscape": {
+      "title": "Soundscape",
+      "silent": "Silent",
+      "rain": "Rain",
+      "cafe": "Café",
+      "forest": "Forest",
+      "space": "Space",
+      "lofi": "Lo-Fi",
+      "myUploads": "My uploads",
+      "uploadCta": "Upload",
+      "uploadingCta": "Uploading…",
+      "namePlaceholder": "Name this track…",
+      "loading": "Loading…",
+      "emptyState": "No custom tracks yet. Up to {maxMb} MB per file.",
+      "uploadFailed": "Upload failed",
+      "deleteFailed": "Delete failed",
+      "delete": "Delete",
+      "volume": "Volume"
+    },
+    "session": {
+      "started": "Session started",
+      "completed": "Session complete",
+      "paused": "Session paused",
+      "reset": "Session reset",
+      "completedCount": "Completed {count, plural, one {# session} other {# sessions}}",
+      "completeNotificationTitle": "JL Tools · Session Complete",
+      "completeNotificationBody": "Nice work! Take a break and earn your XP.",
+      "todayLabel": "Today",
+      "xpEarnedLabel": "+{xp} XP earned"
+    },
+    "xpTicker": {
+      "title": "XP Earned",
+      "totalToday": "+{xp} today",
+      "focusComplete": "Focus complete",
+      "breakNoXp": "Break time — no XP earned",
+      "switchToFocus": "Switch to Focus to earn XP",
+      "earnHint": "Complete this focus session to earn +10 XP",
+      "footnote": "Only Focus sessions earn XP · Breaks are XP-free"
+    },
+    "historyChart": {
+      "title": "Last 14 days",
+      "offline": "offline",
+      "avg": "Avg",
+      "perDay": "/ day",
+      "best": "Best",
+      "total": "Total",
+      "sessions": "sessions"
+    },
+    "settings": {
+      "title": "Timer Durations",
+      "description": "Customize focus, break, and cycle lengths. Changes save automatically.",
+      "durationFocus": "Focus (min)",
+      "durationShortBreak": "Short break (min)",
+      "durationLongBreak": "Long break (min)",
+      "sessionsBeforeLongBreak": "Sessions before long break",
+      "trigger": "Timer settings"
+    }
+  },
+  "habits": {
+    "title": "Habits",
+    "subtitle": "Daily check-ins & streaks",
+    "addCta": "+ Add Habit",
+    "addFirstCta": "Add your first habit",
+    "todayHeader": "Today's Habits",
+    "todayProgress": "{done} / {total} done",
+    "allDoneToday": "All done for today!",
+    "form": {
+      "titleNew": "New Habit",
+      "titleEdit": "Edit Habit",
+      "nameLabel": "Name",
+      "namePlaceholder": "e.g. Morning run",
+      "categoryLabel": "Category",
+      "timeOfDayLabel": "Time of Day",
+      "colorLabel": "Color",
+      "targetDaysLabel": "Target Days",
+      "targetDaysHint": "(empty = daily)",
+      "reminderLabel": "Reminder",
+      "save": "Save Changes",
+      "create": "Create Habit"
+    },
+    "categories": {
+      "health": "Health",
+      "fitness": "Fitness",
+      "learning": "Learning",
+      "productivity": "Productivity",
+      "mindfulness": "Mindfulness",
+      "other": "Other"
+    },
+    "timeOfDay": {
+      "morning": "Morning",
+      "afternoon": "Afternoon",
+      "evening": "Evening",
+      "anytime": "Anytime",
+      "morningHint": "6 am – 12 pm",
+      "afternoonHint": "12 pm – 6 pm",
+      "eveningHint": "6 pm – 10 pm",
+      "anytimeHint": "No specific time"
+    },
+    "card": {
+      "options": "Habit options",
+      "streakDays": "{days, plural, one {# day} other {# days}}",
+      "yesterday": "Yesterday"
+    },
+    "checkIn": {
+      "done": "Done",
+      "due": "Due",
+      "checkAria": "Check in habit",
+      "uncheckAria": "Uncheck habit"
+    },
+    "heatmap": {
+      "title": "Activity (26 weeks)",
+      "less": "Less",
+      "more": "More"
+    },
+    "weeklyGrid": {
+      "title": "Weekly view",
+      "habitColumn": "HABIT",
+      "doneTooltip": "{day} — Done",
+      "notDoneTooltip": "{day} — Not done",
+      "empty": "Add habits to see your weekly view"
+    },
+    "insightPanel": {
+      "completionRate": "Completion rate",
+      "byCategory": "By category",
+      "noHabits": "No habits yet",
+      "trendUp": "+{pct}% vs last 6 days",
+      "trendDown": "{pct}% vs last 6 days",
+      "trendSame": "Same as last 6 days",
+      "habitsCount": "{count, plural, one {# habit} other {# habits}}"
+    },
+    "remindersPanel": {
+      "scheduleTitle": "Today's Schedule",
+      "doneCount": "{done}/{total} done",
+      "empty": "Add habits with a time slot to see your daily schedule"
+    },
+    "aiInsight": {
+      "label": "Insight",
+      "longStreak": "Your {name} habit is on a {days}-day streak — keep the momentum!",
+      "buildingStreak": "{name} is building momentum at {days} days. Don't break the chain!",
+      "morningBetter": "You complete morning habits {ratio}× more reliably than evening ones. Try scheduling more habits in the morning.",
+      "allDone": "All {count} habits done today! You're building an unstoppable routine.",
+      "default": "Check in daily to build streaks and unlock insights about your habits."
+    },
+    "empty": {
+      "title": "No habits yet",
+      "description": "Build a streak by adding your first daily habit",
+      "cta": "Add your first habit"
+    },
+    "limits": {
+      "warningSoon": "{count}/10 habits — you're approaching the limit.",
+      "maxReached": "Max 10 habits reached"
+    },
+    "streakBadge": {
+      "milestone7": "7 day streak!",
+      "milestone14": "14 day streak!",
+      "milestone30": "30 day streak!"
+    },
+    "todayNote": {
+      "title": "Today's note",
+      "placeholder": "How did today go?"
+    }
+  },
+  "flashcards": {
+    "title": "Flashcards",
+    "subtitle": "{cards, plural, one {# card} other {# cards}} due across {decks, plural, one {# deck} other {# decks}} · SM-2 scheduling · +2 XP per card",
+    "subtitleEmpty": "SM-2 spaced repetition · +2 XP per card",
+    "topBar": {
+      "browse": "Browse",
+      "browseHint": "Browse all cards in this deck",
+      "browseDisabled": "Select a deck first",
+      "newCard": "New card",
+      "newCardHint": "Add a card to the selected deck",
+      "studyAll": "Study all",
+      "studyAllLabel": "Study {count} due cards across all decks",
+      "noneDue": "No cards due right now",
+      "loading": "Loading…"
+    },
+    "sidebar": {
+      "title": "Decks",
+      "newDeck": "New deck",
+      "noDecks": "No decks yet",
+      "selectAria": "Select deck {name}",
+      "optionsAria": "Options for {name}",
+      "browseCards": "Browse cards",
+      "renameEdit": "Rename / Edit",
+      "manageCards": "Manage Cards",
+      "editDeck": "Edit Deck",
+      "allCaughtUp": "All caught up"
+    },
+    "deck": {
+      "name": "Name",
+      "namePlaceholder": "OS · Chapter 4",
+      "description": "Description",
+      "descriptionPlaceholder": "What this deck covers…",
+      "color": "Color",
+      "save": "Save Changes",
+      "create": "Create Deck",
+      "saving": "Saving…",
+      "editTitle": "Edit Deck",
+      "newTitle": "New Deck",
+      "deleteConfirm": "Delete this deck? All cards will be permanently removed.",
+      "deleteConfirmNamed": "Delete deck \"{name}\"? All {count, plural, one {# card} other {# cards}} will be permanently removed.",
+      "cardCount": "{cards} cards · {newCards} new",
+      "dueCount": "{count} due"
+    },
+    "card": {
+      "front": "Front",
+      "frontPlaceholder": "Question or concept…",
+      "back": "Back",
+      "backPlaceholder": "Answer or explanation…",
+      "tagsLabel": "Tags (comma-separated)",
+      "tagsPlaceholder": "os, concurrency, algorithms…",
+      "save": "Save Changes",
+      "create": "Create Card",
+      "saving": "Saving…",
+      "editTitle": "Edit Card",
+      "newTitle": "New Card",
+      "deleteConfirm": "Delete this card?",
+      "flipHint": "Press Space to flip",
+      "frontHint": "FRONT · click to flip",
+      "backHint": "BACK",
+      "questionLabel": "Question",
+      "answerLabel": "Answer",
+      "rateHint": "Rate your recall below · keyboard 1–4"
+    },
+    "review": {
+      "rating": {
+        "again": "Again",
+        "hard": "Hard",
+        "good": "Good",
+        "easy": "Easy"
+      },
+      "nextLabel": "next · {label}",
+      "xpReward": "+{xp} XP",
+      "progress": "Session progress",
+      "progressDetail": "{current} / {total} · {percent}%",
+      "undo": "Undo",
+      "undoNothing": "Nothing to undo",
+      "undoHint": "Undo last rating (local only)",
+      "noCards": "No cards to review.",
+      "studyAgain": "Study Again",
+      "backToDecks": "Back to Decks",
+      "completeBadge": "Session complete",
+      "retentionRate": "retention rate",
+      "xpEarned": "+{xp} XP earned",
+      "xpSaving": "Saving…",
+      "sessionBonus": "includes +{xp} session bonus",
+      "errorSaving": "Failed to save this session: {error}. Progress is NOT recorded.",
+      "partialFail": "{failed} of {total} {failed, plural, one {card} other {cards}} failed to save — these reviews were not recorded.",
+      "totalReviewed": "{total} cards reviewed in total"
+    },
+    "stats": {
+      "retention": {
+        "title": "Retention",
+        "young": "young · <21 days",
+        "mature": "mature · 21+ days",
+        "needsReviews": "Review your first card to see retention",
+        "needsMoreDays": "One more day of review to draw your trend",
+        "selectDeck": "Select a deck to see stats"
+      },
+      "cardPool": {
+        "title": "Card pool · {deck}",
+        "new": "New",
+        "learning": "Learning",
+        "young": "Young (<21d)",
+        "mature": "Mature (21d+)",
+        "totalCards": "Total cards"
+      },
+      "forecast": {
+        "title": "Forecast · next 7 days",
+        "scheduled": "Scheduled",
+        "newLegend": "New",
+        "tooltip": "{scheduled} scheduled · {newCount} new"
+      }
+    },
+    "empty": {
+      "noDecks": "No decks yet",
+      "noDecksDescription": "No decks yet — create your first deck to start learning.",
+      "createFirstDeck": "Create your first deck",
+      "selectDeck": "Select a deck to start studying",
+      "allCaughtUpDeck": "All caught up — no cards due",
+      "noCardsYet": "No cards yet. Add your first card to get started.",
+      "studyEmpty": "All caught up!",
+      "nextReview": "Next review: tomorrow ({count} cards due)"
+    },
+    "deckOverview": {
+      "totalLabel": "Total",
+      "dueNowLabel": "Due now",
+      "newLabel": "New",
+      "startReview": "Start review · {count, plural, one {# card} other {# cards}}",
+      "allCaughtUp": "All caught up",
+      "addCard": "Add card",
+      "editDeck": "Edit deck",
+      "browseCards": "Browse cards",
+      "loading": "Loading…"
+    },
+    "deckDetail": {
+      "decksLink": "Decks",
+      "studyCta": "Study Now · {count} cards due",
+      "allCaughtUp": "All caught up — no cards due",
+      "cardsHeader": "Cards ({count})",
+      "addCardCta": "+ Add Card"
+    },
+    "ratingsTally": {
+      "again": "again",
+      "hard": "hard",
+      "good": "good",
+      "easy": "easy"
+    }
+  },
+  "character": {
+    "title": "Character",
+    "subtitle": "Your progress across every tool, collected into one adventurer sheet.",
+    "guestPrompt": "Please sign in to view your character.",
+    "sheet": {
+      "tierNovice": "Novice",
+      "tierApprentice": "Apprentice",
+      "tierAdept": "Adept",
+      "tierExpert": "Expert",
+      "tierMaster": "Master",
+      "xpProgress": "{current} / {total} XP to Lv {level}",
+      "titleLabel": "Title",
+      "editAria": "Edit profile",
+      "stats": {
+        "streak": "Streak",
+        "focus": "Focus"
+      }
+    },
+    "badges": {
+      "title": "Badges",
+      "earnedCount": "{earned} of {total} earned",
+      "filterAll": "all",
+      "filterEarned": "earned",
+      "filterLocked": "locked",
+      "lockedTooltip": "Locked: {description}",
+      "earnedTooltip": "{name} — {description}",
+      "emptyEarned": "No badges earned yet — complete quests to unlock them!",
+      "emptyAll": "All badges unlocked! Amazing!"
+    },
+    "activity": {
+      "title": "Recent Activity",
+      "empty": "No activity yet — start a Pomodoro or check in a habit!",
+      "justNow": "just now",
+      "minutesAgo": "{minutes}m ago",
+      "hoursAgo": "{hours}h ago",
+      "yesterday": "yesterday",
+      "daysAgo": "{days}d ago",
+      "xpAmount": "+{xp} XP"
+    },
+    "stats": {
+      "title": "Stats",
+      "focus": "Focus",
+      "focusDesc": "Hours of deep work",
+      "discipline": "Discipline",
+      "disciplineDesc": "Habit consistency",
+      "knowledge": "Knowledge",
+      "knowledgeDesc": "Cards mastered",
+      "endurance": "Endurance",
+      "enduranceDesc": "Streak strength"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Manage your account, appearance, and notifications.",
+    "nav": {
+      "account": "Account",
+      "profile": "Profile",
+      "appearance": "Appearance",
+      "notifications": "Notifications",
+      "about": "About"
+    },
+    "sectionsList": {
+      "profileTitle": "Profile",
+      "profileDescription": "Display name and avatar",
+      "accountTitle": "Account",
+      "accountDescription": "Email, password, and account deletion",
+      "appearanceTitle": "Appearance",
+      "appearanceDescription": "Theme and accent color",
+      "notificationsTitle": "Notifications",
+      "notificationsDescription": "Sounds, reminders, and permissions",
+      "aboutTitle": "About",
+      "aboutDescription": "App version and feedback"
+    },
+    "account": {
+      "title": "Account",
+      "emailTitle": "Email address",
+      "emailCurrent": "Current: {email}. A confirmation email will be sent to the new address.",
+      "newEmailLabel": "New email address",
+      "newEmailPlaceholder": "you@example.com",
+      "newEmailDiffer": "New email must differ from your current email.",
+      "updateEmail": "Update email",
+      "updatingEmail": "Sending…",
+      "emailSent": "Check your inbox at {email}.",
+      "emailSentInstruction": "Click the confirmation link to complete the change.",
+      "changeAgain": "Change again",
+      "passwordTitle": "Password",
+      "passwordDescription": "Minimum 8 characters. Changing your password signs you out on other devices.",
+      "currentPasswordLabel": "Current password",
+      "newPasswordLabel": "New password",
+      "confirmPasswordLabel": "Confirm new password",
+      "currentPasswordIncorrect": "Current password is incorrect",
+      "updatePassword": "Update password",
+      "updatingPassword": "Updating…",
+      "passwordUpdated": "Password updated.",
+      "signedOutOtherDevices": "For security, we signed you out on other devices.",
+      "signOutTitle": "Sign out",
+      "signOutDescription": "Sign out of this device. Your account and progress are safe.",
+      "signOutCta": "Sign out",
+      "deleteAccount": {
+        "title": "Danger zone",
+        "description": "Permanently delete your account and all associated data. This cannot be undone.",
+        "cta": "Delete account",
+        "confirmTitle": "Delete your account",
+        "confirmDescription": "This is permanent. All your data will be deleted and cannot be recovered.",
+        "namePromptPrefix": "Type your display name",
+        "namePromptSuffix": "to confirm",
+        "displayNameAria": "Display name confirmation",
+        "passwordLabel": "Current password",
+        "passwordAria": "Password for account deletion",
+        "confirm": "Delete my account",
+        "confirmDeleting": "Deleting…",
+        "cancel": "Cancel"
+      }
+    },
+    "profile": {
+      "title": "Profile",
+      "subtitle": "Manage your display name and avatar.",
+      "avatarLabel": "Avatar",
+      "displayNameLabel": "Display name",
+      "displayNamePlaceholder": "Your display name",
+      "emailLabel": "Email",
+      "emailHelp": "Email cannot be changed here. Use Account settings to update your email.",
+      "save": "Save",
+      "saving": "Saving…",
+      "saved": "Saved",
+      "uploadCta": "Upload photo",
+      "uploading": "Uploading…",
+      "removeCta": "Remove",
+      "avatarSizeHelp": "PNG, JPG or WEBP — max 5 MB",
+      "avatarTooBig": "Image must be under 5 MB",
+      "avatarBadType": "Only PNG / JPG / WEBP images are allowed",
+      "uploadFailed": "Upload failed — please try again",
+      "removeFailed": "Remove failed — please try again",
+      "avatarAlt": "Profile avatar",
+      "uploadAria": "Upload avatar image",
+      "removeDialogTitle": "Remove avatar?",
+      "removeDialogDescription": "Your profile picture will be reset to the default. This cannot be undone.",
+      "uploadHint": "PNG, JPG or WEBP · max 5 MB",
+      "sizeLimitError": "File must be 5 MB or smaller",
+      "typeError": "Only PNG, JPG, and WEBP are supported"
+    },
+    "appearance": {
+      "title": "Appearance",
+      "themeTitle": "Theme",
+      "themeDescription": "Choose how the app looks.",
+      "themeLight": "Light",
+      "themeLightDesc": "Always light",
+      "themeDark": "Dark",
+      "themeDarkDesc": "Always dark",
+      "themeSystem": "System",
+      "themeSystemDesc": "Match device",
+      "accentTitle": "Accent",
+      "accentDescription": "Drag to tune the warm-to-cool accent hue.",
+      "accentAria": "Accent hue",
+      "hueTitle": "Accent color",
+      "hueDescription": "Drag to change the accent hue across the app.",
+      "huePreview": "Preview",
+      "saving": "Saving…",
+      "saved": "Saved"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "browserTitle": "Browser notifications",
+      "browserDescription": "Allow the browser to show desktop notifications when sessions complete.",
+      "browserStatusGranted": "Allowed",
+      "browserStatusDenied": "Blocked",
+      "browserStatusDefault": "Off",
+      "browserStatusUnsupported": "Not supported",
+      "browserStatusChecking": "Checking…",
+      "browserStatusAria": "Browser notification permission: {status}",
+      "enableCta": "Enable",
+      "deniedHelp": "Open browser settings to allow notifications for this site.",
+      "unsupportedHelp": "Browser notifications are not supported on this device.",
+      "pomodoroSoundTitle": "Pomodoro alert sound",
+      "pomodoroSoundDescription": "Play a short tone when a focus session ends.",
+      "pomodoroSoundAria": "Enable Pomodoro alert sound",
+      "volumeLabel": "Volume",
+      "volumeAria": "Alert volume",
+      "habitRemindersTitle": "Habit reminders",
+      "habitRemindersDescription": "Enable in-app reminders for your scheduled habits.",
+      "habitRemindersAria": "Enable habit reminders",
+      "on": "On",
+      "off": "Off",
+      "pomodoro": {
+        "title": "Pomodoro sound",
+        "description": "Play a sound when a focus session ends.",
+        "volumeLabel": "Volume",
+        "toggleLabel": "Enable sound"
+      },
+      "habits": {
+        "title": "Habit reminders",
+        "description": "Show a browser notification for habits with a time slot set.",
+        "masterToggleLabel": "Enable habit reminders"
+      },
+      "browser": {
+        "title": "Browser notifications",
+        "description": "Required for habit reminders and Pomodoro alerts.",
+        "grantCta": "Enable browser notifications",
+        "deniedGuide": "Browser notifications are blocked. Open your browser settings to allow them.",
+        "statusGranted": "Granted",
+        "statusDenied": "Denied",
+        "statusDefault": "Not set"
+      }
+    },
+    "about": {
+      "title": "About",
+      "appName": "JL Tools",
+      "tagline": "Your personal productivity and learning companion.",
+      "versionLabel": "Version",
+      "buildLabel": "Built",
+      "feedbackTitle": "Feedback",
+      "feedbackCta": "Send feedback",
+      "feedbackSubject": "JL Tools Feedback - v{version}",
+      "legalTitle": "Legal",
+      "termsLink": "Terms of Service",
+      "privacyLink": "Privacy Policy",
+      "builtLabel": "Built"
+    }
+  },
+  "legal": {
+    "privacy": {
+      "title": "Privacy Policy",
+      "metadataTitle": "Privacy Policy — JL Tools",
+      "comingSoon": "Coming soon.",
+      "body": "Our full Privacy Policy is being drafted. In the meantime, if you have any questions please contact us at {email}."
+    },
+    "terms": {
+      "title": "Terms of Service",
+      "metadataTitle": "Terms of Service — JL Tools",
+      "comingSoon": "Coming soon.",
+      "body": "Our full Terms of Service are being drafted. In the meantime, if you have any questions please contact us at {email}."
+    }
+  },
+  "onboarding": {
+    "step1": {
+      "title": "Name your character",
+      "subtitle": "This is how you'll appear in the RPG system",
+      "namePlaceholder": "Adventurer",
+      "continue": "Continue"
+    },
+    "step2": {
+      "title": "What are your goals?",
+      "subtitle": "Select all that apply",
+      "goalLearning": "Learning",
+      "goalWork": "Work",
+      "goalHabits": "Habits",
+      "goalMemory": "Memory",
+      "continue": "Continue",
+      "back": "Back"
+    },
+    "step3": {
+      "title": "Choose your first tool",
+      "subtitle": "You can use all tools anytime",
+      "pomodoroTitle": "Pomodoro",
+      "pomodoroDesc": "Focus timer & task list",
+      "habitsTitle": "Habit Tracker",
+      "habitsDesc": "Daily check-ins & streaks",
+      "flashcardsTitle": "Flashcards",
+      "flashcardsDesc": "Spaced repetition review",
+      "back": "Back"
+    }
+  }
+}
