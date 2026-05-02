@@ -45,7 +45,12 @@ export function QuickCreatePopover(
   if (!anchorRect) return null
 
   function buildIso(time: string): string {
-    return `${defaultDate}T${time}`
+    const offsetMinutes = new Date().getTimezoneOffset()
+    const sign = offsetMinutes <= 0 ? '+' : '-'
+    const abs = Math.abs(offsetMinutes)
+    const hh = String(Math.floor(abs / 60)).padStart(2, '0')
+    const mm = String(abs % 60).padStart(2, '0')
+    return `${defaultDate}T${time}:00${sign}${hh}:${mm}`
   }
 
   async function handleSave() {

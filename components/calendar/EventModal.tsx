@@ -42,7 +42,16 @@ function splitDateTimeLocal(iso: string): { date: string; time: string } {
 }
 
 function joinDateTimeLocal(date: string, time: string): string {
-  return `${date}T${time || '00:00'}`
+  const t = time || '00:00'
+  // Include local timezone offset so the server parses the correct absolute time.
+  // Without this, a server running UTC interprets "19:00" as UTC 19:00 instead
+  // of the user's local 19:00, causing events to shift by the UTC offset.
+  const offsetMinutes = new Date().getTimezoneOffset() // negative for UTC+N
+  const sign = offsetMinutes <= 0 ? '+' : '-'
+  const abs = Math.abs(offsetMinutes)
+  const hh = String(Math.floor(abs / 60)).padStart(2, '0')
+  const mm = String(abs % 60).padStart(2, '0')
+  return `${date}T${t}:00${sign}${hh}:${mm}`
 }
 
 function defaultStartForDate(dateStr?: string): { date: string; time: string } {
