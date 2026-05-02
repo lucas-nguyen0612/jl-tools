@@ -348,7 +348,8 @@
       "unmuteSoundscape": "Bật âm thanh nền",
       "followerTabDisabled": "Timer đang chạy ở tab khác",
       "followerTabQuote": "\"Làm hai việc cùng lúc tức là không làm được việc nào.\"",
-      "followerTabQuoteAuthor": "— Publilius Syrus"
+      "followerTabQuoteAuthor": "— Publilius Syrus",
+      "startBreak": "Bắt đầu nghỉ"
     },
     "timer": {
       "elapsed": "{time} đã trôi qua",
@@ -935,6 +936,7 @@
       "editTitle": "Chỉnh sửa sự kiện",
       "viewInPomodoro": "Mở trong Pomodoro",
       "viewInHabits": "Mở trong Thói quen",
+      "taskTitle": "Công việc",
       "readOnlyHint": "Sự kiện này được tạo từ trang khác và chỉ xem được ở đây."
     },
     "pomodoro": {
@@ -955,7 +957,7 @@
       "google": "Google",
       "pomodoro": "Pomodoro",
       "habits": "Thói quen",
-      "tasks": "Tasks"
+      "tasks": "Công việc"
     },
     "agenda": {
       "title": "Hôm nay",

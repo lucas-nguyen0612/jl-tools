@@ -52,6 +52,7 @@ export default function PomodoroPage() {
   const tasks = usePomodoroStore(s => s.tasks)
   const activeTaskId = usePomodoroStore(s => s.activeTaskId)
   const settings = usePomodoroStore(s => s.settings)
+  const sessionJustCompleted = usePomodoroStore(s => s.sessionJustCompleted)
   const startTimer = usePomodoroStore(s => s.startTimer)
   const pauseTimer = usePomodoroStore(s => s.pauseTimer)
   const resetTimer = usePomodoroStore(s => s.resetTimer)
@@ -89,6 +90,12 @@ export default function PomodoroPage() {
   function handleSkip() {
     claimLeadership()
     skipPhase()
+  }
+
+  function handleStartBreak() {
+    claimLeadership()
+    skipPhase()
+    startTimer()
   }
 
   // Keyboard shortcuts
@@ -157,6 +164,7 @@ export default function PomodoroPage() {
           onPause={handlePause}
           onReset={handleReset}
           onSkip={handleSkip}
+          onStartBreak={handleStartBreak}
           isLeader={isLeader}
         />
       )}
@@ -255,10 +263,12 @@ export default function PomodoroPage() {
                     <TimerControls
                       isRunning={isRunning}
                       isLeader={isLeader}
+                      sessionJustCompleted={sessionJustCompleted}
                       onStart={handleStart}
                       onPause={handlePause}
                       onReset={handleReset}
                       onSkip={handleSkip}
+                      onStartBreak={handleStartBreak}
                     />
 
                     <SessionDots

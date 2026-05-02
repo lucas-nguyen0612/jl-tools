@@ -45,6 +45,7 @@ interface PomodoroStore {
   pausedAt: number | null
   interruptions: number
   hydrated: boolean
+  sessionJustCompleted: boolean
 
   hydrate: (data: { tasks: PomodoroTask[]; settings: PomodoroSettings | null }) => void
 
@@ -123,6 +124,7 @@ export const usePomodoroStore = create<PomodoroStore>()(
       pausedAt: null,
       interruptions: 0,
       hydrated: false,
+      sessionJustCompleted: false,
 
       hydrate: ({ tasks, settings }) => {
         set(state => {
@@ -142,7 +144,7 @@ export const usePomodoroStore = create<PomodoroStore>()(
       },
 
       startTimer: () => {
-        set({ isRunning: true, startedAt: Date.now(), pausedAt: null })
+        set({ isRunning: true, startedAt: Date.now(), pausedAt: null, sessionJustCompleted: false })
       },
 
       pauseTimer: () => {
@@ -160,6 +162,7 @@ export const usePomodoroStore = create<PomodoroStore>()(
           isRunning: false,
           startedAt: null,
           pausedAt: null,
+          sessionJustCompleted: false,
         })
       },
 
@@ -176,6 +179,7 @@ export const usePomodoroStore = create<PomodoroStore>()(
           startedAt: null,
           pausedAt: null,
           interruptions: 0,
+          sessionJustCompleted: false,
         })
       },
 
@@ -263,7 +267,8 @@ export const usePomodoroStore = create<PomodoroStore>()(
       },
 
       tick: () => {
-        const { timeLeft, phase } = get()
+        const { timeLeft, phase, sessionJustCompleted } = get()
+        if (sessionJustCompleted) return
         if (timeLeft <= 1) {
           // Time's up
           if (phase === 'work') {
@@ -282,6 +287,9 @@ export const usePomodoroStore = create<PomodoroStore>()(
         const cleanBonus = state.interruptions === 0 ? 5 : 0
         const xpAwarded = xpBase + cleanBonus
 
+        // Stop the timer immediately so tick() doesn't re-fire while async work runs
+        set({ isRunning: false, timeLeft: 0, interruptions: 0 })
+
         // Play timer-end alert tone (reads notification_settings at firing time)
         void playAlertTone().catch(err =>
           console.error('[pomodoro] playAlertTone failed:', err)
@@ -298,7 +306,6 @@ export const usePomodoroStore = create<PomodoroStore>()(
             ),
           }))
         }
-        set({ interruptions: 0 })
 
         // Post to API
         try {
@@ -329,8 +336,8 @@ export const usePomodoroStore = create<PomodoroStore>()(
           emitAppEvent('jl:xp-gain', { amount: xpAwarded })
         }
 
-        // Advance to next phase
-        get().skipPhase()
+        // Signal UI to let user decide when to start the break
+        set({ sessionJustCompleted: true })
       },
     }),
     {

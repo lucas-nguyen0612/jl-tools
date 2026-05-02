@@ -42,7 +42,7 @@ export const CALENDAR_SOURCES: Record<SourceKey, SourceMeta> = {
   },
   task: {
     key: 'task',
-    color: 'var(--jl-warning)',
+    color: 'var(--jl-warn)',
     filterLabelKey: 'filters.tasks',
     Icon: SquareCheck,
     deepLinkPath: null,

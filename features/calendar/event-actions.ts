@@ -16,8 +16,12 @@ function mapGoogleEvent(ev: {
   end?: { dateTime?: string | null; date?: string | null } | null
   colorId?: string | null
   description?: string | null
+  extendedProperties?: { private?: Record<string, string> | null } | null
 }): CalendarEvent {
   const allDay = !ev.start?.dateTime
+  const jlSource = ev.extendedProperties?.private?.jlSource
+  const source: CalendarEvent['source'] =
+    jlSource === 'habit' || jlSource === 'pomodoro' ? jlSource : 'google'
   return {
     id: ev.id ?? '',
     title: ev.summary ?? '(No title)',
@@ -25,7 +29,7 @@ function mapGoogleEvent(ev: {
     end: ev.end?.dateTime ?? ev.end?.date ?? '',
     allDay,
     color: ev.colorId ?? undefined,
-    source: 'google',
+    source,
     description: ev.description ?? undefined,
   }
 }
