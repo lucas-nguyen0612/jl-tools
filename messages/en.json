@@ -348,7 +348,8 @@
       "unmuteSoundscape": "Unmute soundscape",
       "followerTabDisabled": "Timer is running in another tab",
       "followerTabQuote": "\"To do two things at once is to do neither.\"",
-      "followerTabQuoteAuthor": "— Publilius Syrus"
+      "followerTabQuoteAuthor": "— Publilius Syrus",
+      "startBreak": "Start Break"
     },
     "timer": {
       "elapsed": "{time} elapsed",
@@ -935,6 +936,7 @@
       "editTitle": "Edit Event",
       "viewInPomodoro": "View in Pomodoro",
       "viewInHabits": "View in Habits",
+      "taskTitle": "Task",
       "readOnlyHint": "This event is created from another page and is read-only here."
     },
     "pomodoro": {

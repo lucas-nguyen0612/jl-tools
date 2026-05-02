@@ -13,6 +13,7 @@ interface FocusModeOverlayProps {
   onPause: () => void
   onReset: () => void
   onSkip: () => void
+  onStartBreak: () => void
   isLeader?: boolean
 }
 
@@ -27,11 +28,12 @@ function clamp(value: number, lo: number, hi: number) {
   return Math.max(lo, Math.min(hi, value))
 }
 
-export function FocusModeOverlay({ onClose, onStart, onPause, onReset, onSkip, isLeader = true }: FocusModeOverlayProps) {
+export function FocusModeOverlay({ onClose, onStart, onPause, onReset, onSkip, onStartBreak, isLeader = true }: FocusModeOverlayProps) {
   const t = useTranslations('pomodoro')
   const phase = usePomodoroStore(s => s.phase)
   const timeLeft = usePomodoroStore(s => s.timeLeft)
   const isRunning = usePomodoroStore(s => s.isRunning)
+  const sessionJustCompleted = usePomodoroStore(s => s.sessionJustCompleted)
   const settings = usePomodoroStore(s => s.settings)
   const activeTaskId = usePomodoroStore(s => s.activeTaskId)
   const tasks = usePomodoroStore(s => s.tasks)
@@ -127,10 +129,12 @@ export function FocusModeOverlay({ onClose, onStart, onPause, onReset, onSkip, i
       <TimerControls
         isRunning={isRunning}
         isLeader={isLeader}
+        sessionJustCompleted={sessionJustCompleted}
         onStart={onStart}
         onPause={onPause}
         onReset={onReset}
         onSkip={onSkip}
+        onStartBreak={onStartBreak}
       />
     </div>
   )

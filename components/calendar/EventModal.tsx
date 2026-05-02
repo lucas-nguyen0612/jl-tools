@@ -12,7 +12,7 @@ import {
   DialogFooter,
 } from '@/components/ui/dialog'
 import { useCreateEvent, useUpdateEvent, useDeleteEvent } from '@/features/calendar/queries'
-import { getSourceMeta } from '@/features/calendar/sources'
+import { getSourceMeta, SOURCE_FILTER_LABEL_KEYS } from '@/features/calendar/sources'
 import type { CalendarEvent } from '@/features/calendar/types'
 
 export type EventModalProps = {
@@ -215,7 +215,9 @@ export function EventModal({
       <DialogContent>
         <DialogHeader>
           <DialogTitle>
-            {mode === 'create' ? t('event.newTitle') : t('event.editTitle')}
+            {isReadOnly && event?.source === 'task'
+              ? t('event.taskTitle')
+              : mode === 'create' ? t('event.newTitle') : t('event.editTitle')}
           </DialogTitle>
         </DialogHeader>
 
@@ -363,13 +365,40 @@ function ReadOnlyEventBody({
   onDeepLink: (path: string) => void
 }) {
   const t = useTranslations('calendar')
-  const { deepLinkPath, deepLinkLabelKey } = getSourceMeta(event.source)
+  const { deepLinkPath, deepLinkLabelKey, color, Icon } = getSourceMeta(event.source)
+  const sourceLabel = t(SOURCE_FILTER_LABEL_KEYS[event.source])
   const timeLabel = formatEventTime(event.start, event.end, event.allDay)
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+      <div
+        style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: 6,
+          alignSelf: 'flex-start',
+          height: 24,
+          padding: '0 10px',
+          borderRadius: 999,
+          fontSize: 12,
+          fontWeight: 500,
+          background: `color-mix(in oklch, ${color} 14%, transparent)`,
+          border: `1px solid color-mix(in oklch, ${color} 40%, transparent)`,
+          color: 'var(--jl-text)',
+        }}
+      >
+        <Icon size={12} style={{ color, flexShrink: 0 }} />
+        <span>{sourceLabel}</span>
+      </div>
+
       <p style={{ margin: 0, fontSize: 14, fontWeight: 600 }}>{event.title}</p>
       <p style={{ margin: 0, fontSize: 13, color: 'var(--jl-text-soft)' }}>{timeLabel}</p>
+
+      {event.description && (
+        <p style={{ margin: 0, fontSize: 13, color: 'var(--jl-text-soft)', whiteSpace: 'pre-wrap' }}>
+          {event.description}
+        </p>
+      )}
 
       {deepLinkPath && deepLinkLabelKey && (
         <button
