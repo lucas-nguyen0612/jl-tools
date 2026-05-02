@@ -302,6 +302,7 @@ export const usePomodoroStore = create<PomodoroStore>()(
 
         // Post to API
         try {
+          const completedAt = new Date()
           const res = await fetch('/api/pomodoro/sessions', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -315,6 +316,15 @@ export const usePomodoroStore = create<PomodoroStore>()(
           const data = await res.json()
           emitAppEvent('jl:xp-gain', { amount: data.xpAwarded ?? xpAwarded })
           if (data.leveledUp) emitAppEvent('jl:levelup', undefined)
+          if (data.success) {
+            const durationMs = state.settings.workDuration * 1000
+            emitAppEvent('jl:pomodoro-complete-calendar', {
+              startedAt: new Date(completedAt.getTime() - durationMs).toISOString(),
+              completedAt: completedAt.toISOString(),
+              durationMinutes: Math.round(state.settings.workDuration / 60),
+              taskName: state.tasks.find(t => t.id === state.activeTaskId)?.title,
+            })
+          }
         } catch {
           emitAppEvent('jl:xp-gain', { amount: xpAwarded })
         }

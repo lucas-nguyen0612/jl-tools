@@ -13,9 +13,17 @@
  *   }, [])
  */
 
+export type PomodoroCompleteCalendarPayload = {
+  startedAt: string
+  completedAt: string
+  durationMinutes: number
+  taskName?: string
+}
+
 export type AppEvents = {
   'jl:xp-gain': { amount: number; source?: string }
   'jl:levelup': { newLevel: number; oldLevel: number } | undefined
+  'jl:pomodoro-complete-calendar': PomodoroCompleteCalendarPayload
 }
 
 export function emitAppEvent<K extends keyof AppEvents>(

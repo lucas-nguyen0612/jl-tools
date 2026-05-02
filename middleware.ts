@@ -8,8 +8,8 @@ const intlMiddleware = createIntlMiddleware(routing);
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Skip i18n cho Supabase OAuth callback và API routes
-  if (pathname.startsWith("/auth/callback") || pathname.startsWith("/api")) {
+  // Skip i18n cho Supabase OAuth callback, Google Calendar callback, và API routes
+  if (pathname.startsWith("/auth/callback") || pathname.startsWith("/auth/calendar/callback") || pathname.startsWith("/api")) {
     return await updateSession(request);
   }
 

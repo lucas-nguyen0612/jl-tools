@@ -20,6 +20,7 @@ import { XPTickerPanel } from '@/components/pomodoro/XPTickerPanel'
 import { SessionHistoryChart } from '@/components/pomodoro/SessionHistoryChart'
 import { ToolErrorBoundary } from '@/components/errors/ToolErrorBoundary'
 import { onAppEvent } from '@/lib/events'
+import { PomodoroCalendarToast } from '@/components/calendar/PomodoroCalendarToast'
 
 const cardStyle: React.CSSProperties = {
   background: 'var(--jl-bg-raised)',
@@ -96,9 +97,15 @@ export default function PomodoroPage() {
       if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return
       if (e.key === ' ') {
         e.preventDefault()
-        if (isRunning) { handlePause() } else { handleStart() }
+        claimLeadership()
+        if (isRunning) {
+          pauseTimer()
+        } else {
+          startTimer()
+          if (phase === 'work') setFocusMode(true)
+        }
       }
-      if (e.key === 'r' || e.key === 'R') handleReset()
+      if (e.key === 'r' || e.key === 'R') { claimLeadership(); resetTimer() }
       if (e.key === 'f' || e.key === 'F') setFocusMode(m => !m)
     }
     window.addEventListener('keydown', onKey)
@@ -141,6 +148,8 @@ export default function PomodoroPage() {
 
   return (
     <ToolErrorBoundary toolName="Pomodoro">
+      <PomodoroCalendarToast />
+
       {focusMode && (
         <FocusModeOverlay
           onClose={() => setFocusMode(false)}

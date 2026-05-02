@@ -5,6 +5,7 @@ import { createClient } from '@/lib/supabase/server'
 import { format, subDays } from 'date-fns'
 import { XP_VALUES } from '@/lib/xp/constants'
 import type { Habit, HabitCompletion, HabitFormValues, HabitNote, ToggleResult } from './types'
+import { syncHabitCalendarEvent } from '@/features/calendar/habits-sync'
 
 export async function createHabit(
   userId: string,
@@ -114,13 +115,24 @@ export async function toggleHabitCompletion(
     .single() as unknown as Promise<{ data: Pick<HabitCompletion, 'id'> | null }>)
 
   if (existing) {
-    // Uncheck: delete completion
-    const { error } = await (supabase
-      .from('habit_completions')
-      .delete()
-      .eq('id', existing.id) as unknown as Promise<{ error: { message: string } | null }>)
+    const [{ error: deleteError }, { data: habitMeta }] = await Promise.all([
+      supabase.from('habit_completions').delete().eq('id', existing.id) as unknown as Promise<{ error: { message: string } | null }>,
+      supabase.from('habits').select('name, color').eq('id', habitId).single() as unknown as Promise<{ data: Pick<Habit, 'name' | 'color'> | null }>,
+    ])
 
-    if (error) return { checked: true, xpAwarded: 0, allDoneBonus: false, error: error.message }
+    if (deleteError) return { checked: true, xpAwarded: 0, allDoneBonus: false, error: deleteError.message }
+
+    if (habitMeta) {
+      void syncHabitCalendarEvent({
+        userId,
+        habitId,
+        habitName: habitMeta.name,
+        habitColor: habitMeta.color,
+        date,
+        checked: false,
+      }).catch(() => {})
+    }
+
     revalidatePath('/habits')
     revalidatePath('/dashboard')
     return { checked: false, xpAwarded: 0, allDoneBonus: false }
@@ -131,9 +143,9 @@ export async function toggleHabitCompletion(
   // we must NOT update habits or insert xp_transactions here to avoid duplicate work.
   const { data: habitBefore } = await (supabase
     .from('habits')
-    .select('current_streak, last_completed_date')
+    .select('current_streak, last_completed_date, name, color')
     .eq('id', habitId)
-    .single() as unknown as Promise<{ data: Pick<Habit, 'current_streak' | 'last_completed_date'> | null }>)
+    .single() as unknown as Promise<{ data: Pick<Habit, 'current_streak' | 'last_completed_date' | 'name' | 'color'> | null }>)
 
   const STREAK_MILESTONE_XP: Record<number, number> = { 7: 50, 14: 100, 30: 200 }
   let milestoneXp = 0
@@ -150,6 +162,17 @@ export async function toggleHabitCompletion(
     .insert({ habit_id: habitId, user_id: userId, completed_date: date } as never) as unknown as Promise<{ error: { message: string } | null }>)
 
   if (insertError) return { checked: false, xpAwarded: 0, allDoneBonus: false, error: insertError.message }
+
+  if (habitBefore) {
+    void syncHabitCalendarEvent({
+      userId,
+      habitId,
+      habitName: habitBefore.name,
+      habitColor: habitBefore.color,
+      date,
+      checked: true,
+    }).catch(() => {})
+  }
 
   // Check if all habits done today → bonus XP
   const { data: allHabits } = await (supabase

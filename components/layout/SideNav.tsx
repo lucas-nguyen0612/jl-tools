@@ -15,6 +15,7 @@ import {
   Settings,
   LogOut,
   PanelLeft,
+  CalendarDays,
 } from 'lucide-react'
 import { Avatar } from '@/components/rpg/Avatar'
 import { XPBar } from '@/components/rpg/XPBar'
@@ -28,6 +29,7 @@ type SidebarLabelKey =
   | 'quests'
   | 'guild'
   | 'character'
+  | 'calendar'
   | 'settings'
 
 type NavItem = {
@@ -42,10 +44,11 @@ export const NAV_ITEMS: NavItem[] = [
   { href: '/pomodoro', icon: Timer, labelKey: 'pomodoro' },
   { href: '/habits', icon: Flame, labelKey: 'habits' },
   { href: '/flashcards', icon: Layers, labelKey: 'flashcards' },
-  { href: '/quests', icon: Swords, labelKey: 'quests', disabled: true },
-  { href: '/guild', icon: Users, labelKey: 'guild', disabled: true },
+  { href: '/calendar', icon: CalendarDays, labelKey: 'calendar' },
   { href: '/character', icon: Shield, labelKey: 'character' },
   { href: '/settings', icon: Settings, labelKey: 'settings' },
+  { href: '/quests', icon: Swords, labelKey: 'quests', disabled: true },
+  { href: '/guild', icon: Users, labelKey: 'guild', disabled: true },
 ]
 
 interface SideNavProps {
