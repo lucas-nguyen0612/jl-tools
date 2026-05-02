@@ -180,6 +180,7 @@
       "quests": "Nhiệm vụ",
       "guild": "Bang hội",
       "character": "Nhân vật",
+      "calendar": "Lịch",
       "settings": "Cài đặt",
       "signOut": "Đăng xuất",
       "expand": "Mở rộng thanh bên",
@@ -897,6 +898,89 @@
       "privacyLink": "Chính sách bảo mật",
       "builtLabel": "Build"
     }
+  },
+  "calendar": {
+    "title": "Lịch",
+    "subtitle": "Lịch của bạn, đồng bộ với Google Calendar",
+    "connect": {
+      "title": "Kết nối Google Calendar",
+      "description": "Xem sự kiện, tạo khối tập trung và theo dõi thói quen tất cả trong một nơi.",
+      "cta": "Kết nối Google Calendar",
+      "connecting": "Đang kết nối…"
+    },
+    "disconnect": {
+      "cta": "Ngắt kết nối",
+      "confirm": "Ngắt kết nối Google Calendar? Dữ liệu cục bộ sẽ bị xóa.",
+      "disconnecting": "Đang ngắt kết nối…"
+    },
+    "connected": "Đã kết nối",
+    "error": {
+      "googleDenied": "Quyền truy cập Google Calendar bị từ chối.",
+      "callbackFailed": "Kết nối Google Calendar thất bại. Vui lòng thử lại."
+    },
+    "event": {
+      "titleLabel": "Tiêu đề",
+      "titlePlaceholder": "Tiêu đề sự kiện",
+      "startLabel": "Bắt đầu",
+      "endLabel": "Kết thúc",
+      "allDayLabel": "Cả ngày",
+      "descriptionLabel": "Mô tả",
+      "descriptionPlaceholder": "Thêm mô tả…",
+      "save": "Lưu",
+      "saving": "Đang lưu…",
+      "delete": "Xóa sự kiện",
+      "deleting": "Đang xóa…",
+      "cancel": "Hủy",
+      "newTitle": "Sự kiện mới",
+      "editTitle": "Chỉnh sửa sự kiện",
+      "viewInPomodoro": "Mở trong Pomodoro",
+      "viewInHabits": "Mở trong Thói quen",
+      "readOnlyHint": "Sự kiện này được tạo từ trang khác và chỉ xem được ở đây."
+    },
+    "pomodoro": {
+      "createPrompt": "Phiên hoàn thành! Thêm vào Lịch?",
+      "createCta": "Thêm sự kiện",
+      "dismiss": "Bỏ qua"
+    },
+    "views": {
+      "month": "Tháng",
+      "week": "Tuần",
+      "day": "Ngày",
+      "today": "Hôm nay",
+      "prev": "Trước",
+      "next": "Sau"
+    },
+    "filters": {
+      "title": "Lịch",
+      "google": "Google",
+      "pomodoro": "Pomodoro",
+      "habits": "Thói quen"
+    },
+    "agenda": {
+      "title": "Hôm nay",
+      "empty": "Không có lịch.",
+      "allDay": "Cả ngày"
+    },
+    "miniMonth": {
+      "title": "Chuyển nhanh",
+      "prev": "Tháng trước",
+      "next": "Tháng sau"
+    },
+    "shortcuts": {
+      "title": "Phím tắt",
+      "today": "Về hôm nay",
+      "views": "Đổi chế độ xem (Ngày / Tuần / Tháng)",
+      "nav": "Trước / sau",
+      "new": "Tạo sự kiện"
+    },
+    "quickCreate": {
+      "titlePlaceholder": "Thêm tiêu đề",
+      "save": "Lưu",
+      "more": "Tuỳ chọn khác →"
+    },
+    "connectedAs": "Đã kết nối {email}",
+    "dragDisabledTooltip": "Sự kiện này chỉ đọc. Mở trang gốc để chỉnh sửa.",
+    "loading": "Đang tải sự kiện…"
   },
   "legal": {
     "privacy": {

@@ -1,5 +1,7 @@
 # JL Tools — Project Context for AI Agents
 
+> **Building UI?** Đọc [`docs/design-system.md`](./docs/design-system.md) trước — chứa tokens `--jl-*`, layout patterns, shadcn primitives đã cài, i18n convention, và anti-patterns. Tránh được việc tự nghĩ pattern lệch với phần còn lại của codebase.
+
 ## Stack
 
 | Layer | Technology |

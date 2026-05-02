@@ -180,6 +180,7 @@
       "quests": "Quests",
       "guild": "Guild",
       "character": "Character",
+      "calendar": "Calendar",
       "settings": "Settings",
       "signOut": "Sign out",
       "expand": "Expand sidebar",
@@ -897,6 +898,89 @@
       "privacyLink": "Privacy Policy",
       "builtLabel": "Built"
     }
+  },
+  "calendar": {
+    "title": "Calendar",
+    "subtitle": "Your schedule, synced with Google Calendar",
+    "connect": {
+      "title": "Connect Google Calendar",
+      "description": "View your events, create focus blocks, and see your habits all in one place.",
+      "cta": "Connect Google Calendar",
+      "connecting": "Connecting…"
+    },
+    "disconnect": {
+      "cta": "Disconnect",
+      "confirm": "Disconnect Google Calendar? Your local data will be removed.",
+      "disconnecting": "Disconnecting…"
+    },
+    "connected": "Connected",
+    "error": {
+      "googleDenied": "Google Calendar access was denied.",
+      "callbackFailed": "Failed to connect Google Calendar. Please try again."
+    },
+    "event": {
+      "titleLabel": "Title",
+      "titlePlaceholder": "Event title",
+      "startLabel": "Start",
+      "endLabel": "End",
+      "allDayLabel": "All day",
+      "descriptionLabel": "Description",
+      "descriptionPlaceholder": "Add a description…",
+      "save": "Save",
+      "saving": "Saving…",
+      "delete": "Delete event",
+      "deleting": "Deleting…",
+      "cancel": "Cancel",
+      "newTitle": "New Event",
+      "editTitle": "Edit Event",
+      "viewInPomodoro": "View in Pomodoro",
+      "viewInHabits": "View in Habits",
+      "readOnlyHint": "This event is created from another page and is read-only here."
+    },
+    "pomodoro": {
+      "createPrompt": "Session complete! Add to Calendar?",
+      "createCta": "Add event",
+      "dismiss": "Dismiss"
+    },
+    "views": {
+      "month": "Month",
+      "week": "Week",
+      "day": "Day",
+      "today": "Today",
+      "prev": "Previous",
+      "next": "Next"
+    },
+    "filters": {
+      "title": "Calendars",
+      "google": "Google",
+      "pomodoro": "Pomodoro",
+      "habits": "Habits"
+    },
+    "agenda": {
+      "title": "Today",
+      "empty": "Nothing scheduled.",
+      "allDay": "All day"
+    },
+    "miniMonth": {
+      "title": "Jump to date",
+      "prev": "Previous month",
+      "next": "Next month"
+    },
+    "shortcuts": {
+      "title": "Keyboard shortcuts",
+      "today": "Jump to today",
+      "views": "Switch view (Day / Week / Month)",
+      "nav": "Previous / next period",
+      "new": "Create event"
+    },
+    "quickCreate": {
+      "titlePlaceholder": "Add title",
+      "save": "Save",
+      "more": "More options →"
+    },
+    "connectedAs": "Connected as {email}",
+    "dragDisabledTooltip": "This event is read-only. Open its source page to edit.",
+    "loading": "Loading events…"
   },
   "legal": {
     "privacy": {
