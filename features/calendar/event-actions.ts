@@ -38,6 +38,14 @@ async function getCalendarInstance() {
   return google.calendar({ version: 'v3', auth: authClient })
 }
 
+async function getTasksInstance() {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) throw new Error('Not authenticated')
+  const authClient = await getAuthorizedClient(user.id)
+  return google.tasks({ version: 'v1', auth: authClient })
+}
+
 function mapCalendarError(err: unknown, fallbackCode: string): { message: string; code: string } {
   const message = err instanceof Error ? err.message : 'Calendar operation failed'
   if (message === 'CALENDAR_NOT_CONNECTED') return { message, code: 'CALENDAR_NOT_CONNECTED' }
@@ -125,5 +133,64 @@ export async function deleteEvent(eventId: string): Promise<ActionResult<void>> 
     return { data: undefined, error: null }
   } catch (err) {
     return { data: null, error: mapCalendarError(err, 'DELETE_EVENT_FAILED') }
+  }
+}
+
+export async function listTasks(
+  timeMin: string,
+  timeMax: string,
+): Promise<ActionResult<CalendarEvent[]>> {
+  try {
+    const tasksClient = await getTasksInstance()
+
+    // Fetch all task lists so tasks outside @default are included.
+    const listsRes = await tasksClient.tasklists.list({ maxResults: 20 })
+    const taskLists = listsRes.data.items ?? []
+
+    const rangeStart = new Date(timeMin)
+    const rangeEnd = new Date(timeMax)
+
+    // Fetch incomplete tasks from all lists in parallel.
+    // Filter by due date client-side — the API-level dueMin/dueMax param is
+    // unreliable when task due times are stored as midnight UTC.
+    const taskResults = await Promise.all(
+      taskLists.map((list) =>
+        tasksClient.tasks.list({
+          tasklist: list.id!,
+          showCompleted: false,
+          maxResults: 100,
+        }),
+      ),
+    )
+
+    const events: CalendarEvent[] = taskResults
+      .flatMap((res) => res.data.items ?? [])
+      .filter((t) => {
+        if (!t.due) return false
+        const due = new Date(t.due)
+        return due >= rangeStart && due <= rangeEnd
+      })
+      .map((t) => ({
+        id: t.id ?? '',
+        title: t.title ?? '(No title)',
+        start: t.due!.split('T')[0],
+        end: t.due!.split('T')[0],
+        allDay: true,
+        source: 'task' as const,
+        description: t.notes ?? undefined,
+      }))
+
+    return { data: events, error: null }
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err)
+    // Silently return empty only for genuine scope/auth issues.
+    if (
+      msg === 'CALENDAR_NOT_CONNECTED' ||
+      msg === 'Not authenticated' ||
+      msg.toLowerCase().includes('insufficient')
+    ) {
+      return { data: [], error: null }
+    }
+    return { data: null, error: mapCalendarError(err, 'LIST_TASKS_FAILED') }
   }
 }

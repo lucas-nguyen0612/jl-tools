@@ -14,7 +14,7 @@ export type CalendarConnectionStatus = {
   email?: string
 }
 
-export type CalendarEventSource = 'google' | 'pomodoro' | 'habit'
+export type CalendarEventSource = 'google' | 'pomodoro' | 'habit' | 'task'
 
 export type CalendarEvent = {
   id: string
