@@ -15,7 +15,7 @@ import type {
 import type { DateClickArg, EventResizeDoneArg } from '@fullcalendar/interaction'
 import { useTranslations, useLocale } from 'next-intl'
 
-import { useCalendarEvents, useUpdateEvent } from '@/features/calendar/queries'
+import { useCalendarEvents, useCalendarTasks, useUpdateEvent } from '@/features/calendar/queries'
 import type { CalendarEvent } from '@/features/calendar/types'
 import {
   SOURCE_KEYS,
@@ -89,16 +89,24 @@ export function CalendarView() {
     defaultDate: '',
   })
 
-  const { data: result, isFetching } = useCalendarEvents(
+  const { data: result, isFetching: fetchingEvents } = useCalendarEvents(
     currentRange.timeMin,
     currentRange.timeMax,
   )
+  const { data: tasksResult, isFetching: fetchingTasks } = useCalendarTasks(
+    currentRange.timeMin,
+    currentRange.timeMax,
+  )
+  const isFetching = fetchingEvents || fetchingTasks
   const updateMutation = useUpdateEvent()
 
-  const allEvents = useMemo<CalendarEvent[]>(() => result?.data ?? [], [result])
+  const allEvents = useMemo<CalendarEvent[]>(
+    () => [...(result?.data ?? []), ...(tasksResult?.data ?? [])],
+    [result, tasksResult],
+  )
 
   const sourceCounts = useMemo<Record<SourceKey, number>>(() => {
-    const counts: Record<SourceKey, number> = { google: 0, pomodoro: 0, habit: 0 }
+    const counts: Record<SourceKey, number> = { google: 0, pomodoro: 0, habit: 0, task: 0 }
     for (const ev of allEvents) {
       if (ev.source in counts) counts[ev.source as SourceKey] += 1
     }
@@ -275,6 +283,7 @@ export function CalendarView() {
       </div>
     )
   }
+
 
   return (
     <div

@@ -1,6 +1,6 @@
-import { CalendarDays, Flame, Sprout, type LucideIcon } from 'lucide-react'
+import { CalendarDays, Flame, Sprout, SquareCheck, type LucideIcon } from 'lucide-react'
 
-export type SourceKey = 'google' | 'pomodoro' | 'habit'
+export type SourceKey = 'google' | 'pomodoro' | 'habit' | 'task'
 
 export type SourceMeta = {
   key: SourceKey
@@ -40,6 +40,14 @@ export const CALENDAR_SOURCES: Record<SourceKey, SourceMeta> = {
     deepLinkPath: '/habits',
     deepLinkLabelKey: 'event.viewInHabits',
   },
+  task: {
+    key: 'task',
+    color: 'var(--jl-warning)',
+    filterLabelKey: 'filters.tasks',
+    Icon: SquareCheck,
+    deepLinkPath: null,
+    deepLinkLabelKey: null,
+  },
 }
 
 export const SOURCE_KEYS: SourceKey[] = Object.keys(CALENDAR_SOURCES) as SourceKey[]
@@ -52,6 +60,7 @@ export const SOURCE_FILTER_LABEL_KEYS = {
   google: 'filters.google',
   pomodoro: 'filters.pomodoro',
   habit: 'filters.habits',
+  task: 'filters.tasks',
 } as const
 
 

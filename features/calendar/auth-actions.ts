@@ -8,6 +8,7 @@ import { getOAuthClient, getAuthorizedClient } from './oauth-client'
 import type { CalendarConnectionStatus } from './types'
 
 const CALENDAR_SCOPE = 'https://www.googleapis.com/auth/calendar'
+const TASKS_SCOPE = 'https://www.googleapis.com/auth/tasks.readonly'
 const STATE_COOKIE = 'cal_oauth_state'
 
 export async function connectGoogleCalendar() {
@@ -22,7 +23,7 @@ export async function connectGoogleCalendar() {
   })
   const authUrl = oauth2Client.generateAuthUrl({
     access_type: 'offline',
-    scope: [CALENDAR_SCOPE],
+    scope: [CALENDAR_SCOPE, TASKS_SCOPE],
     prompt: 'consent',
     state,
   })
