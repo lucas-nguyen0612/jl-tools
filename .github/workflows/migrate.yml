@@ -17,6 +17,12 @@ jobs:
         with:
           version: latest
 
+      - name: Repair stale migration history
+        run: supabase migration repair --status reverted 20260204112749 --db-url "${{ secrets.SUPABASE_DB_URL }}"
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+        continue-on-error: true
+
       - name: Push migrations
         run: supabase db push --db-url "${{ secrets.SUPABASE_DB_URL }}"
         env:
