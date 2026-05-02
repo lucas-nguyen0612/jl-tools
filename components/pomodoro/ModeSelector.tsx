@@ -19,14 +19,13 @@ export function ModeSelector({ phase, onSelect, disabled, durations }: ModeSelec
   return (
     <div
       style={{
-        display: 'flex',
+        display: 'inline-flex',
+        alignSelf: 'flex-start',
         gap: 6,
         padding: 4,
         background: 'var(--jl-bg-sunken)',
         border: '1px solid var(--jl-line-soft)',
         borderRadius: 999,
-        width: '100%',
-        maxWidth: 300,
       }}
     >
       {modes.map((m) => {
@@ -40,10 +39,10 @@ export function ModeSelector({ phase, onSelect, disabled, durations }: ModeSelec
               height: 30,
               border: 'none',
               cursor: disabled ? 'not-allowed' : 'pointer',
-              flex: 1,
-              padding: '0 8px',
+              padding: '0 12px',
               borderRadius: 999,
               fontSize: 12,
+              whiteSpace: 'nowrap',
               background: isActive ? 'var(--jl-bg-raised)' : 'transparent',
               boxShadow: isActive ? 'var(--jl-shadow-sm)' : 'none',
               color: isActive ? 'var(--jl-text)' : 'var(--jl-text-soft)',

@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl'
 import { TopBar } from '@/components/layout/TopBar'
 import { hydratePomodoroFromDb, usePomodoroStore } from '@/store/pomodoroStore'
 import { useTimer } from '@/hooks/useTimer'
+import { useDocumentTitle } from '@/hooks/useDocumentTitle'
 import { usePomodoroSync } from '@/hooks/usePomodoroSync'
 import { useSoundscapePlayer } from '@/hooks/useSoundscapePlayer'
 import { PomodoroTimer } from '@/components/pomodoro/PomodoroTimer'
@@ -34,6 +35,7 @@ export default function PomodoroPage() {
   const { isLeader, claimLeadership } = usePomodoroSync()
   useTimer({ enabled: isLeader })
   useSoundscapePlayer()
+  useDocumentTitle()
 
   // Hydrate tasks + settings from DB once on mount
   useEffect(() => {
