@@ -4,8 +4,12 @@
  */
 import type { XpSourceType } from './types'
 
-/** XP granted per completed Pomodoro session */
-export const XP_PER_POMODORO = 50
+/**
+ * XP granted per completed Pomodoro session (base; clean-bonus excluded).
+ * Matches `XP_PER_POMODORO_BASE` in `features/pomodoro/constants.ts`, which is
+ * the value the server actually awards. Used by dashboard estimates.
+ */
+export const XP_PER_POMODORO = 10
 
 /** XP granted per habit check-in */
 export const XP_PER_HABIT = 10

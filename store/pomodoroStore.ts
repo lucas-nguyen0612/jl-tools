@@ -283,9 +283,6 @@ export const usePomodoroStore = create<PomodoroStore>()(
 
       onSessionComplete: async () => {
         const state = get()
-        const xpBase = 10
-        const cleanBonus = state.interruptions === 0 ? 5 : 0
-        const xpAwarded = xpBase + cleanBonus
 
         // Stop the timer immediately so tick() doesn't re-fire while async work runs
         set({ isRunning: false, timeLeft: 0, interruptions: 0 })
@@ -307,33 +304,46 @@ export const usePomodoroStore = create<PomodoroStore>()(
           }))
         }
 
-        // Post to API
+        // Server is the source of truth for XP — do not pre-compute or fall back
+        // to a guess on failure (would lie to the user about XP they didn't get).
+        const completedAt = new Date()
+        const durationMinutes = Math.round(state.settings.workDuration / 60)
         try {
-          const completedAt = new Date()
           const res = await fetch('/api/pomodoro/sessions', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
               taskId: state.activeTaskId,
-              durationMinutes: Math.round(state.settings.workDuration / 60),
+              durationMinutes,
               interruptions: state.interruptions,
-              isClean: state.interruptions === 0,
             }),
           })
-          const data = await res.json()
-          emitAppEvent('jl:xp-gain', { amount: data.xpAwarded ?? xpAwarded })
-          if (data.leveledUp) emitAppEvent('jl:levelup', undefined)
-          if (data.success) {
-            const durationMs = state.settings.workDuration * 1000
+          const data = (await res.json()) as {
+            success?: boolean
+            xpAwarded?: number
+            leveledUp?: boolean
+            xpError?: string
+          }
+          if (res.ok && data.success) {
+            if (typeof data.xpAwarded === 'number' && data.xpAwarded > 0) {
+              emitAppEvent('jl:xp-gain', { amount: data.xpAwarded })
+            }
+            if (data.leveledUp) emitAppEvent('jl:levelup', undefined)
+            if (data.xpError) {
+              console.error('[pomodoro] session recorded but XP not awarded:', data.xpError)
+            }
+            const durationMs = durationMinutes * 60 * 1000
             emitAppEvent('jl:pomodoro-complete-calendar', {
               startedAt: new Date(completedAt.getTime() - durationMs).toISOString(),
               completedAt: completedAt.toISOString(),
-              durationMinutes: Math.round(state.settings.workDuration / 60),
+              durationMinutes,
               taskName: state.tasks.find(t => t.id === state.activeTaskId)?.title,
             })
+          } else {
+            console.error('[pomodoro] failed to record session', res.status, data)
           }
-        } catch {
-          emitAppEvent('jl:xp-gain', { amount: xpAwarded })
+        } catch (err) {
+          console.error('[pomodoro] network error recording session', err)
         }
 
         // Signal UI to let user decide when to start the break
