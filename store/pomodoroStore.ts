@@ -10,6 +10,7 @@ import {
   upsertPomodoroSettings,
 } from '@/features/pomodoro/actions'
 import { emitAppEvent } from '@/lib/events'
+import type { PomodoroCompleteCalendarPayload } from '@/lib/events'
 import { playAlertTone } from '@/features/pomodoro/playAlertTone'
 
 export type Phase = 'work' | 'short' | 'long'
@@ -33,6 +34,12 @@ export interface PomodoroSettings {
   focusBlockerEnabled: boolean
 }
 
+export interface CompletedFocusSession {
+  xpAwarded: number
+  sessionCount: number
+  calendarPayload: PomodoroCompleteCalendarPayload | null
+}
+
 interface PomodoroStore {
   phase: Phase
   timeLeft: number
@@ -46,6 +53,7 @@ interface PomodoroStore {
   interruptions: number
   hydrated: boolean
   sessionJustCompleted: boolean
+  lastCompletedFocusSession: CompletedFocusSession | null
 
   hydrate: (data: { tasks: PomodoroTask[]; settings: PomodoroSettings | null }) => void
 
@@ -61,6 +69,7 @@ interface PomodoroStore {
   updateSettings: (s: Partial<PomodoroSettings>) => void
   tick: () => void
   onSessionComplete: () => Promise<void>
+  dismissSessionCompletion: () => void
 }
 
 function durationForPhase(phase: Phase, settings: PomodoroSettings): number {
@@ -125,6 +134,7 @@ export const usePomodoroStore = create<PomodoroStore>()(
       interruptions: 0,
       hydrated: false,
       sessionJustCompleted: false,
+      lastCompletedFocusSession: null,
 
       hydrate: ({ tasks, settings }) => {
         set(state => {
@@ -144,7 +154,13 @@ export const usePomodoroStore = create<PomodoroStore>()(
       },
 
       startTimer: () => {
-        set({ isRunning: true, startedAt: Date.now(), pausedAt: null, sessionJustCompleted: false })
+        set({
+          isRunning: true,
+          startedAt: Date.now(),
+          pausedAt: null,
+          sessionJustCompleted: false,
+          lastCompletedFocusSession: null,
+        })
       },
 
       pauseTimer: () => {
@@ -163,6 +179,7 @@ export const usePomodoroStore = create<PomodoroStore>()(
           startedAt: null,
           pausedAt: null,
           sessionJustCompleted: false,
+          lastCompletedFocusSession: null,
         })
       },
 
@@ -180,6 +197,7 @@ export const usePomodoroStore = create<PomodoroStore>()(
           pausedAt: null,
           interruptions: 0,
           sessionJustCompleted: false,
+          lastCompletedFocusSession: null,
         })
       },
 
@@ -283,9 +301,22 @@ export const usePomodoroStore = create<PomodoroStore>()(
 
       onSessionComplete: async () => {
         const state = get()
+        const nextSessionCount = state.sessionCount + 1
+        const nextBreakPhase = nextPhase('work', state.sessionCount, state.settings.sessionsUntilLong)
+        const completedAt = new Date()
+        const durationMinutes = Math.round(state.settings.workDuration / 60)
+        const durationMs = durationMinutes * 60 * 1000
 
         // Stop the timer immediately so tick() doesn't re-fire while async work runs
-        set({ isRunning: false, timeLeft: 0, interruptions: 0 })
+        set({
+          isRunning: false,
+          phase: nextBreakPhase,
+          timeLeft: durationForPhase(nextBreakPhase, state.settings),
+          sessionCount: nextSessionCount,
+          startedAt: null,
+          pausedAt: null,
+          interruptions: 0,
+        })
 
         // Play timer-end alert tone (reads notification_settings at firing time)
         void playAlertTone().catch(err =>
@@ -306,8 +337,9 @@ export const usePomodoroStore = create<PomodoroStore>()(
 
         // Server is the source of truth for XP — do not pre-compute or fall back
         // to a guess on failure (would lie to the user about XP they didn't get).
-        const completedAt = new Date()
-        const durationMinutes = Math.round(state.settings.workDuration / 60)
+        let xpAwarded = 0
+        let calendarPayload: PomodoroCompleteCalendarPayload | null = null
+
         try {
           const res = await fetch('/api/pomodoro/sessions', {
             method: 'POST',
@@ -326,19 +358,19 @@ export const usePomodoroStore = create<PomodoroStore>()(
           }
           if (res.ok && data.success) {
             if (typeof data.xpAwarded === 'number' && data.xpAwarded > 0) {
+              xpAwarded = data.xpAwarded
               emitAppEvent('jl:xp-gain', { amount: data.xpAwarded })
             }
             if (data.leveledUp) emitAppEvent('jl:levelup', undefined)
             if (data.xpError) {
               console.error('[pomodoro] session recorded but XP not awarded:', data.xpError)
             }
-            const durationMs = durationMinutes * 60 * 1000
-            emitAppEvent('jl:pomodoro-complete-calendar', {
+            calendarPayload = {
               startedAt: new Date(completedAt.getTime() - durationMs).toISOString(),
               completedAt: completedAt.toISOString(),
               durationMinutes,
               taskName: state.tasks.find(t => t.id === state.activeTaskId)?.title,
-            })
+            }
           } else {
             console.error('[pomodoro] failed to record session', res.status, data)
           }
@@ -347,7 +379,21 @@ export const usePomodoroStore = create<PomodoroStore>()(
         }
 
         // Signal UI to let user decide when to start the break
-        set({ sessionJustCompleted: true })
+        set({
+          sessionJustCompleted: true,
+          lastCompletedFocusSession: {
+            xpAwarded,
+            sessionCount: nextSessionCount,
+            calendarPayload,
+          },
+        })
+      },
+
+      dismissSessionCompletion: () => {
+        set({
+          sessionJustCompleted: false,
+          lastCompletedFocusSession: null,
+        })
       },
     }),
     {

@@ -51,6 +51,8 @@ function resetStore() {
     pausedAt: null,
     interruptions: 0,
     hydrated: false,
+    sessionJustCompleted: false,
+    lastCompletedFocusSession: null,
   })
 }
 
@@ -200,6 +202,22 @@ describe('usePomodoroStore', () => {
       usePomodoroStore.setState({ interruptions: 3 })
       await usePomodoroStore.getState().onSessionComplete()
       expect(usePomodoroStore.getState().interruptions).toBe(0)
+    })
+
+    it('increments completed session count and prepares the next break immediately', async () => {
+      mockFetchOk({ xpAwarded: 10, leveledUp: false })
+
+      await usePomodoroStore.getState().onSessionComplete()
+
+      const s = usePomodoroStore.getState()
+      expect(s.sessionCount).toBe(1)
+      expect(s.phase).toBe('short')
+      expect(s.timeLeft).toBe(DEFAULT_SHORT)
+      expect(s.sessionJustCompleted).toBe(true)
+      expect(s.lastCompletedFocusSession).toMatchObject({
+        xpAwarded: 10,
+        sessionCount: 1,
+      })
     })
   })
 

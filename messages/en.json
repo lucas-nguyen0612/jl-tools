@@ -401,6 +401,20 @@
       "todayLabel": "Today",
       "xpEarnedLabel": "+{xp} XP earned"
     },
+    "sessionCompleteDialog": {
+      "title": "Focus session complete!",
+      "description": "Nice work. Your XP and completed focus session count were updated.",
+      "xpEarned": "+{xp} XP",
+      "xpLabel": "added now",
+      "sessionCount": "{count, plural, one {# session} other {# sessions}}",
+      "sessionCountLabel": "completed",
+      "calendarCheckbox": "Add this focus session to Google Calendar",
+      "calendarHint": "Creates a calendar event for the session that just ended.",
+      "calendarError": "Could not add to Google Calendar.",
+      "startBreak": "Start break",
+      "ok": "OK",
+      "saving": "Saving..."
+    },
     "xpTicker": {
       "title": "XP Earned",
       "totalToday": "+{xp} today",

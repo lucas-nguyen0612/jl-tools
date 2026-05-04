@@ -18,9 +18,9 @@ import { SoundscapeSelector } from '@/components/pomodoro/SoundscapeSelector'
 import { DurationSettingsModal } from '@/components/pomodoro/DurationSettingsModal'
 import { XPTickerPanel } from '@/components/pomodoro/XPTickerPanel'
 import { SessionHistoryChart } from '@/components/pomodoro/SessionHistoryChart'
+import { FocusSessionCompleteDialog } from '@/components/pomodoro/FocusSessionCompleteDialog'
 import { ToolErrorBoundary } from '@/components/errors/ToolErrorBoundary'
 import { onAppEvent } from '@/lib/events'
-import { PomodoroCalendarToast } from '@/components/calendar/PomodoroCalendarToast'
 
 const cardStyle: React.CSSProperties = {
   background: 'var(--jl-bg-raised)',
@@ -53,10 +53,12 @@ export default function PomodoroPage() {
   const activeTaskId = usePomodoroStore(s => s.activeTaskId)
   const settings = usePomodoroStore(s => s.settings)
   const sessionJustCompleted = usePomodoroStore(s => s.sessionJustCompleted)
+  const lastCompletedFocusSession = usePomodoroStore(s => s.lastCompletedFocusSession)
   const startTimer = usePomodoroStore(s => s.startTimer)
   const pauseTimer = usePomodoroStore(s => s.pauseTimer)
   const resetTimer = usePomodoroStore(s => s.resetTimer)
   const skipPhase = usePomodoroStore(s => s.skipPhase)
+  const dismissSessionCompletion = usePomodoroStore(s => s.dismissSessionCompletion)
 
   const activeTask = tasks.find(t => t.id === activeTaskId) ?? null
 
@@ -68,6 +70,10 @@ export default function PomodoroPage() {
         : settings.longDuration
 
   const [focusMode, setFocusMode] = useState(false)
+
+  useEffect(() => {
+    if (sessionJustCompleted) setFocusMode(false)
+  }, [sessionJustCompleted])
 
   // Any explicit timer interaction claims leadership so this tab becomes the sole runner.
   // Focus mode is opened only on the tab where the user clicks — never via sync.
@@ -94,7 +100,6 @@ export default function PomodoroPage() {
 
   function handleStartBreak() {
     claimLeadership()
-    skipPhase()
     startTimer()
   }
 
@@ -102,6 +107,7 @@ export default function PomodoroPage() {
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return
+      if (sessionJustCompleted) return
       if (e.key === ' ') {
         e.preventDefault()
         claimLeadership()
@@ -117,7 +123,7 @@ export default function PomodoroPage() {
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [isRunning, phase, claimLeadership, startTimer, pauseTimer, resetTimer])
+  }, [isRunning, phase, sessionJustCompleted, claimLeadership, startTimer, pauseTimer, resetTimer])
 
   // Notification permission
   useEffect(() => {
@@ -155,7 +161,12 @@ export default function PomodoroPage() {
 
   return (
     <ToolErrorBoundary toolName="Pomodoro">
-      <PomodoroCalendarToast />
+      <FocusSessionCompleteDialog
+        open={sessionJustCompleted && !!lastCompletedFocusSession}
+        session={lastCompletedFocusSession}
+        onDismiss={dismissSessionCompletion}
+        onStartBreak={handleStartBreak}
+      />
 
       {focusMode && (
         <FocusModeOverlay
