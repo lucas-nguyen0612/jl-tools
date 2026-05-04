@@ -28,3 +28,15 @@ export const LONG_BREAK_CYCLE = SESSIONS_BEFORE_LONG_BREAK
 
 /** Maximum label length in characters */
 export const MAX_LABEL_LENGTH = 50
+
+/**
+ * XP awarded for a completed focus session.
+ * Server (`/api/pomodoro/sessions`) is the source of truth — clients must not
+ * recompute and emit this value independently.
+ */
+export const XP_PER_POMODORO_BASE = 10
+export const XP_PER_POMODORO_CLEAN_BONUS = 5
+
+/** Sane bounds for the duration_minutes the client may report. */
+export const MIN_POMODORO_DURATION_MINUTES = 1
+export const MAX_POMODORO_DURATION_MINUTES = 120

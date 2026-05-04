@@ -29,10 +29,10 @@ export type XpTransaction = {
 // ============================================================
 // XP amounts — constants (MUST match DB CHECK constraints)
 // DB caps: CHECK (amount > 0 AND amount <= 1000)
+// XP per source lives in each feature's constants file (e.g.
+// features/pomodoro/constants.ts) — only DB-wide caps live here.
 // ============================================================
 
-export const XP_PER_POMODORO = 50
-export const XP_PER_HABIT    = 10
 export const MAX_XP_PER_ACTION = 1000  // DB-enforced upper bound
 export const MAX_LEVEL        = 20
 

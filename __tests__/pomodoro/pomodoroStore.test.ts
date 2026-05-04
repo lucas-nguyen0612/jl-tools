@@ -140,24 +140,35 @@ describe('usePomodoroStore', () => {
   })
 
   describe('onSessionComplete — XP grant', () => {
-    it('dispatches jl:xp-gain with base 10 + clean bonus 5 when interruptions === 0', async () => {
+    function mockFetchOk(body: { success?: boolean; xpAwarded?: number; leveledUp?: boolean; xpError?: string }) {
+      vi.stubGlobal(
+        'fetch',
+        vi.fn(async () =>
+          new Response(JSON.stringify({ success: true, ...body }), {
+            status: 200,
+            headers: { 'Content-Type': 'application/json' },
+          })
+        )
+      )
+    }
+
+    it('dispatches jl:xp-gain with the amount the server reports (15 = 10 base + 5 clean bonus)', async () => {
       const dispatchSpy = vi.spyOn(window, 'dispatchEvent')
-      // Force fetch to throw so we hit the catch branch and use the local xpAwarded value.
-      vi.stubGlobal('fetch', vi.fn(async () => { throw new Error('offline') }))
+      mockFetchOk({ xpAwarded: 15, leveledUp: false })
 
       await usePomodoroStore.getState().onSessionComplete()
 
       const xpEvents = dispatchSpy.mock.calls
         .map(c => c[0])
         .filter(e => (e as CustomEvent).type === 'jl:xp-gain') as CustomEvent[]
-      expect(xpEvents.length).toBeGreaterThan(0)
+      expect(xpEvents.length).toBe(1)
       const detail = xpEvents[0].detail as { amount: number }
-      expect(detail.amount).toBe(15) // 10 base + 5 clean bonus
+      expect(detail.amount).toBe(15)
     })
 
-    it('dispatches jl:xp-gain with only base 10 when interruptions > 0', async () => {
+    it('dispatches jl:xp-gain with the server-reported base 10 when the session was interrupted', async () => {
       const dispatchSpy = vi.spyOn(window, 'dispatchEvent')
-      vi.stubGlobal('fetch', vi.fn(async () => { throw new Error('offline') }))
+      mockFetchOk({ xpAwarded: 10, leveledUp: false })
 
       usePomodoroStore.setState({ interruptions: 2 })
       await usePomodoroStore.getState().onSessionComplete()
@@ -165,9 +176,24 @@ describe('usePomodoroStore', () => {
       const xpEvents = dispatchSpy.mock.calls
         .map(c => c[0])
         .filter(e => (e as CustomEvent).type === 'jl:xp-gain') as CustomEvent[]
-      expect(xpEvents.length).toBeGreaterThan(0)
+      expect(xpEvents.length).toBe(1)
       const detail = xpEvents[0].detail as { amount: number }
       expect(detail.amount).toBe(10)
+    })
+
+    it('does NOT dispatch jl:xp-gain on network failure (no XP was actually awarded server-side)', async () => {
+      const dispatchSpy = vi.spyOn(window, 'dispatchEvent')
+      vi.stubGlobal('fetch', vi.fn(async () => { throw new Error('offline') }))
+      // Suppress the expected console.error
+      const errSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
+
+      await usePomodoroStore.getState().onSessionComplete()
+
+      const xpEvents = dispatchSpy.mock.calls
+        .map(c => c[0])
+        .filter(e => (e as CustomEvent).type === 'jl:xp-gain')
+      expect(xpEvents.length).toBe(0)
+      errSpy.mockRestore()
     })
 
     it('clears interruptions after a session completes', async () => {
