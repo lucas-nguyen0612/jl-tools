@@ -401,6 +401,20 @@
       "todayLabel": "Hôm nay",
       "xpEarnedLabel": "+{xp} XP đã nhận"
     },
+    "sessionCompleteDialog": {
+      "title": "Hoàn thành phiên tập trung!",
+      "description": "Làm tốt lắm. XP và số phiên tập trung hoàn thành đã được cập nhật.",
+      "xpEarned": "+{xp} XP",
+      "xpLabel": "đã cộng ngay",
+      "sessionCount": "{count, plural, one {# phiên} other {# phiên}}",
+      "sessionCountLabel": "đã hoàn thành",
+      "calendarCheckbox": "Ghi phiên tập trung này lên Google Calendar",
+      "calendarHint": "Tạo sự kiện lịch cho phiên vừa kết thúc.",
+      "calendarError": "Không thể thêm vào Google Calendar.",
+      "startBreak": "Bắt đầu nghỉ",
+      "ok": "OK",
+      "saving": "Đang lưu..."
+    },
     "xpTicker": {
       "title": "XP đã nhận",
       "totalToday": "+{xp} hôm nay",
